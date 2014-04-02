@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nokia Phone Simulator</string>
+    <string name="action_settings">Settings</string>
+    <string name="One">1</string>
+    <string name="Two">2</string>
+    <string name="Three">3</string>
+    <string name="Four">4</string>
+    <string name="Five">5</string>
+    <string name="Six">6</string>
+    <string name="Seven">7</string>
+    <string name="Eight">8</string>
+    <string name="Nine">9</string>
+    <string name="Star">*</string>
+    <string name="Zero">0</string>
+    <string name="Pound">#</string>
+    <string name="Dummy">Dummy</string>
+
+</resources>
