@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+G:\Dropbox\GitHub\sw14_free_20\.metadata\.plugins\org.eclipse.jdt.core
+2613617637.index
+3790011618.index
+523226246.index
