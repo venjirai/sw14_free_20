@@ -26,18 +26,18 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f08000d;
-        public static final int btnButtonEight=0x7f080008;
-        public static final int btnButtonFive=0x7f080005;
-        public static final int btnButtonFour=0x7f080004;
-        public static final int btnButtonNine=0x7f080009;
-        public static final int btnButtonOne=0x7f080001;
-        public static final int btnButtonPound=0x7f08000c;
-        public static final int btnButtonSeven=0x7f080007;
-        public static final int btnButtonSix=0x7f080006;
-        public static final int btnButtonStar=0x7f08000a;
-        public static final int btnButtonThree=0x7f080003;
-        public static final int btnButtonTwo=0x7f080002;
-        public static final int btnButtonZero=0x7f08000b;
+        public static final int btnEight=0x7f080008;
+        public static final int btnFive=0x7f080005;
+        public static final int btnFour=0x7f080004;
+        public static final int btnNine=0x7f080009;
+        public static final int btnOne=0x7f080001;
+        public static final int btnPound=0x7f08000c;
+        public static final int btnSeven=0x7f080007;
+        public static final int btnSix=0x7f080006;
+        public static final int btnStar=0x7f08000a;
+        public static final int btnThree=0x7f080003;
+        public static final int btnTwo=0x7f080002;
+        public static final int btnZero=0x7f08000b;
         public static final int textView=0x7f080000;
     }
     public static final class layout {

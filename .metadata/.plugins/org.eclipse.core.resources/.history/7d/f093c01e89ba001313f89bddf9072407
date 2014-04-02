@@ -66,8 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Seven"
-        android:layout_alignTop="@+id/btnEight"
-        android:layout_toLeftOf="@+id/btnEight"/>
+        android:layout_below="@+id/btnFour"/>
  
     <Button
         android:id="@+id/btnEight"
@@ -82,16 +81,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Nine"
-        android:layout_alignTop="@+id/btnEight"
-        android:layout_toRightOf="@+id/btnEight"/>
+        android:layout_alignTop="@+id/btnEigth"
+        android:layout_toRightOf="@+id/btnEigth"/>
      
      <Button
         android:id="@+id/btnStar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Star"
-        android:layout_alignTop="@+id/btnZero"
-        android:layout_toLeftOf="@+id/btnZero"/>
+        android:layout_below="@+id/btnSeven"/>
  
     <Button
         android:id="@+id/btnZero"
@@ -99,14 +97,15 @@
         android:layout_height="wrap_content"
         android:text="@string/Zero"        
         android:layout_centerInParent="true"
-        android:layout_below="@+id/btnEight"/>
+        android:layout_alignTop="@+id/btnStar"
+        android:layout_toRightOf="@+id/btnOne"/>
  
      <Button
         android:id="@+id/btnPound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Pound"
-        android:layout_alignTop="@+id/btnZero"
-        android:layout_toRightOf="@+id/btnZero"/>
+        android:layout_alignTop="@+id/btnStar"
+        android:layout_toRightOf="@+id/btnTwo"/>
  
 </RelativeLayout>
