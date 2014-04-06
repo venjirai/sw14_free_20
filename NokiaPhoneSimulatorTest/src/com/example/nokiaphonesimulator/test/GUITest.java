@@ -40,8 +40,5 @@ public class GUITest extends
 		this.solo.clickOnButton(13);
 		this.solo.clickOnButton(14);
 		this.solo.clickOnButton(15);
-
 	}
-
-
 }
