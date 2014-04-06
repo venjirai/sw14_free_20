@@ -1,7 +1,6 @@
 package com.example.nokiaphonesimulator;
 
 import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
