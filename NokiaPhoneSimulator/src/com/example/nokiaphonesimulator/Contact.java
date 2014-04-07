@@ -1,8 +1,8 @@
 package com.example.nokiaphonesimulator;
 
 // class representing a single contact
-public class Contact {
-	
+public class Contact 
+{	
 	// member
 	private String id;
 	private String first_name;
@@ -70,4 +70,3 @@ public class Contact {
 	}
 
 }
-

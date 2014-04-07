@@ -3,7 +3,6 @@ package com.example.nokiaphonesimulator;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
@@ -166,6 +165,8 @@ public class NokiaPhoneActivity extends Activity {
     private void digitButton(String digit){
 		phone_number += digit;
 		output1.setText(phone_number);
+		output2.setText("");
+		output3.setText("");
 	}
     
     private void playSound(String sound_name){
