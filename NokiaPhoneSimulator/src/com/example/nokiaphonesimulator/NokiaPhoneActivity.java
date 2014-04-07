@@ -145,8 +145,8 @@ public class NokiaPhoneActivity extends Activity {
 				
 			    Contact contact = contact_list.getContact(cursor);
 			    output1.setText(contact.getPhoneNumber());
-			    output2.setText(contact.getFirstName());
-			    output3.setText(contact.getLastName());				
+			    output2.setText(contact.getGivenName());
+			    output3.setText(contact.getFamilyName());			
 			}});
 		
 		btn_up.setOnClickListener(new OnClickListener() {
@@ -156,8 +156,8 @@ public class NokiaPhoneActivity extends Activity {
 				
 				Contact contact = contact_list.getContact(cursor);
 			    output1.setText(contact.getPhoneNumber());
-			    output2.setText(contact.getFirstName());
-			    output3.setText(contact.getLastName());
+			    output2.setText(contact.getGivenName());
+			    output3.setText(contact.getFamilyName());
 			}});
 				
     }

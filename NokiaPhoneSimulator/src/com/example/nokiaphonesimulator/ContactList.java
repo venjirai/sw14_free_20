@@ -17,17 +17,17 @@ public class ContactList
 	public ContactList(Context context)
 	{
 		this.context = context;
-		new LoadContacts().execute("");
+		new LoadContacts().execute();
 	}
 	
-	private class LoadContacts extends AsyncTask<String, Void, String> 
+	private class LoadContacts extends AsyncTask<Void, Void, Void> 
 	{
 		@Override
-        protected String doInBackground(String... params) 
+        protected Void doInBackground(Void... voids) 
         {        	
         	String id = "";
-    		String first_name = "";
-    		String last_name = "";
+    		String given_name = "";
+    		String family_name = "";
     		String phone_number = "";
     		
         	ContentResolver content_resolver = context.getContentResolver();		
@@ -69,23 +69,18 @@ public class ContactList
                                              null);
                         
                         if (name_cursor.moveToFirst()) {
-                            first_name = name_cursor.getString(name_cursor
+                            given_name = name_cursor.getString(name_cursor
                                             .getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-                            last_name = name_cursor.getString(name_cursor
+                            family_name = name_cursor.getString(name_cursor
                                             .getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
                         }
                         name_cursor.close();
                                   		
-                        contacts.add(new Contact(id, first_name, last_name, phone_number));                       
+                        contacts.add(new Contact(id, given_name, family_name, phone_number));                       
                     }
                 }
             }
-            
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
+			return null;
         }
 
         @Override

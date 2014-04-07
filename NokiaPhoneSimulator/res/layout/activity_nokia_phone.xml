@@ -13,7 +13,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="35dp"
     android:layout_weight="1" >
     
 	    <TextView
@@ -67,28 +67,28 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/clear"/>
+	        android:background="@drawable/btn_clear"/>
 	 
 	    <Button
 	        android:id="@+id/btn_enter"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/enter"/>
+	        android:background="@drawable/btn_enter"/>
 	 
 	     <Button
 	        android:id="@+id/btn_down"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/down"/>
+	        android:background="@drawable/btn_down"/>
 	     
 	     <Button
 	        android:id="@+id/btn_up"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/up"/>
+	        android:background="@drawable/btn_up"/>
 	     
 	</LinearLayout>	   
     <LinearLayout 
@@ -101,7 +101,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/one"/>
+	        android:background="@drawable/btn_one"/>
 	 
 	    <Button
 	        android:id="@+id/btn_two"
@@ -115,7 +115,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/three"/>
+	        android:background="@drawable/btn_three"/>
 	     
 	</LinearLayout>	
     <LinearLayout 
@@ -128,21 +128,21 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/four"/>
+	        android:background="@drawable/btn_four"/>
 	 
 	    <Button
 	        android:id="@+id/btn_five"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/five"/>
+	        android:background="@drawable/btn_five"/>
 	 
 	     <Button
 	        android:id="@+id/btn_six"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/six"/>
+	        android:background="@drawable/btn_six"/>
 
     </LinearLayout>
     <LinearLayout 
@@ -155,21 +155,21 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/seven"/>
+	        android:background="@drawable/btn_seven"/>
 	 
 	    <Button
 	        android:id="@+id/btn_eight"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/eight"/>
+	        android:background="@drawable/btn_eight"/>
 	 
 	     <Button
 	        android:id="@+id/btn_nine"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/nine"/>
+	        android:background="@drawable/btn_nine"/>
 	     
     </LinearLayout>
     <LinearLayout 
@@ -182,20 +182,20 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/star"/>
+	        android:background="@drawable/btn_star"/>
 	 
 	    <Button
 	        android:id="@+id/btn_zero"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/zero"/>
+	        android:background="@drawable/btn_zero"/>
 	 
 	     <Button
 	        android:id="@+id/btn_pound"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
-	        android:text="@string/pound"/>
+	        android:background="@drawable/btn_pound"/>
     </LinearLayout>
 </LinearLayout>

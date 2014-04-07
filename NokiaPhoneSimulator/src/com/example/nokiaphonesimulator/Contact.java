@@ -5,25 +5,25 @@ public class Contact
 {	
 	// member
 	private String id;
-	private String first_name;
-	private String last_name;
+	private String given_name;
+	private String family_name;
 	private String phone_number;
 	
 	// default constructor
 	public Contact()
 	{
 		id = "";
-		first_name = "";
-		last_name = "";
+		given_name = "";
+		family_name = "";
 		phone_number = "";
 	}
 	
 	// constructor
-	public Contact(String id, String first_name, String last_name, String phone_number)
+	public Contact(String id, String given_name, String family_name, String phone_number)
 	{
 		this.id = id;
-		this.first_name = first_name;
-		this.last_name = last_name;
+		this.given_name = given_name;
+		this.family_name = family_name;
 		this.phone_number = phone_number;
 	}
 	
@@ -33,14 +33,14 @@ public class Contact
 		this.id = id;
 	}
 	
-	public void setFirstName(String first_name)
+	public void setGivenName(String first_name)
 	{
-		this.first_name = first_name;
+		this.given_name = first_name;
 	}
 	
-	public void setLastName(String last_name)
+	public void setFamilyName(String last_name)
 	{
-		this.last_name = last_name;
+		this.family_name = last_name;
 	}
 	
 	public void setPhoneNumber(String phone_number)
@@ -54,14 +54,14 @@ public class Contact
 		return id;
 	}
 	
-	public String getFirstName()
+	public String getGivenName()
 	{
-		return first_name;
+		return given_name;
 	}
 	
-	public String getLastName()
+	public String getFamilyName()
 	{
-		return last_name;
+		return family_name;
 	}
 	
 	public String getPhoneNumber()
