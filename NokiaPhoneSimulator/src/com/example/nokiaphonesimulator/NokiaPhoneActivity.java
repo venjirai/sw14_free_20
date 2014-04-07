@@ -1,7 +1,9 @@
 package com.example.nokiaphonesimulator;
 
 import java.io.IOException;
+
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
@@ -15,9 +17,13 @@ import android.widget.TextView;
 public class NokiaPhoneActivity extends Activity {
 	
 	private String phone_number = "";
-	private TextView output1;	
-	
 	private MediaPlayer mp;
+	private ContactList contact_list;
+	private int cursor;
+		
+	private TextView output1;
+	private TextView output2;
+	private TextView output3;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,11 @@ public class NokiaPhoneActivity extends Activity {
 		Button btn_up = (Button) this.findViewById(R.id.btn_up);
 		
 		output1 = (TextView) this.findViewById(R.id.textView_output1);
+		output2 = (TextView) this.findViewById(R.id.textView_output2);
+		output3 = (TextView) this.findViewById(R.id.textView_output3);
 
 		mp = new MediaPlayer();
+		contact_list = new ContactList(this.getApplicationContext());
 		
 		btn_zero.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -132,12 +141,24 @@ public class NokiaPhoneActivity extends Activity {
 		
 		btn_down.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				if(cursor < contact_list.size()-1)
+					cursor++;
 				
+			    Contact contact = contact_list.getContact(cursor);
+			    output1.setText(contact.getPhoneNumber());
+			    output2.setText(contact.getFirstName());
+			    output3.setText(contact.getLastName());				
 			}});
 		
 		btn_up.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				if(cursor > 0)
+					cursor--;
 				
+				Contact contact = contact_list.getContact(cursor);
+			    output1.setText(contact.getPhoneNumber());
+			    output2.setText(contact.getFirstName());
+			    output3.setText(contact.getLastName());
 			}});
 				
     }
@@ -166,7 +187,7 @@ public class NokiaPhoneActivity extends Activity {
     }
     
     private void call(String phone_number) {
-            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
+            Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + output1.getText()));
             startActivity(callIntent);
     }
 }
