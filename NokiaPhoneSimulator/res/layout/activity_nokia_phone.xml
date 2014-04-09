@@ -1,201 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:id="@+id/container"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:keepScreenOn = "true"
-    android:background="@drawable/nokia_phone">
- 
-    <LinearLayout 
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="0dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginBottom="35dp"
-    android:layout_weight="1" >
+    android:layout_height="fill_parent">
     
-	    <TextView
+    <RelativeLayout
+        android:id="@+id/contents"
+        android:layout_width="281px"
+        android:layout_height="539px"
+        android:layout_gravity="center"
+        android:background="@drawable/nokia_phone">
+        
+        <TextView
 	        android:id="@+id/textView_output1"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_width="210px"
+	        android:layout_height="30px"
+	        android:layout_marginLeft="35px"
+	        android:layout_marginTop="25px"
 	        android:gravity="center_horizontal"
-	        android:text="@string/dummy"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <TextView
+	        android:text="@string/dummy"/>
+        
+        <TextView
 	        android:id="@+id/textView_output2"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_width="210px"
+	        android:layout_height="30px"
+	        android:layout_marginLeft="35px"
+	        android:layout_marginTop="55px"
 	        android:gravity="center_horizontal"
-	        android:text="@string/dummy"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <TextView
+	        android:text="@string/dummy"/>
+        
+        <TextView
 	        android:id="@+id/textView_output3"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_width="210px"
+	        android:layout_height="30px"
+	        android:layout_marginLeft="35px"
+	        android:layout_marginTop="85px"
 	        android:gravity="center_horizontal"
-	        android:text="@string/dummy"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <TextView
-	        android:id="@+id/textView_output4"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:text="@string/dummy"/>
+        
+        <TextView
+	        android:id="@+id/textView_outpu44"
+	        android:layout_width="210px"
+	        android:layout_height="30px"
+	        android:layout_marginLeft="35px"
+	        android:layout_marginTop="115px"
 	        android:gravity="center_horizontal"
-	        android:text="@string/dummy"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	    <TextView
+	        android:text="@string/dummy"/>
+        
+        <TextView
 	        android:id="@+id/textView_output5"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
+	        android:layout_width="210px"
+	        android:layout_height="30px"
+	        android:layout_marginLeft="35px"
+	        android:layout_marginTop="145px"
 	        android:gravity="center_horizontal"
-	        android:text="@string/dummy"
-	        android:textAppearance="?android:attr/textAppearanceLarge" />
-	    
-	</LinearLayout>	
-	<LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-    
-	    <Button
+	        android:text="@string/dummy"/>
+        
+        <Button
 	        android:id="@+id/btn_clear"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="67px"
+	        android:layout_height="61px"
+	        android:layout_marginLeft="24px"
+	        android:layout_marginTop="232px"
 	        android:background="@drawable/btn_clear"/>
-	 
-	    <Button
-	        android:id="@+id/btn_enter"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
-	        android:background="@drawable/btn_enter"/>
-	 
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_down"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="50px"
+	        android:layout_height="81px"
+	        android:layout_marginLeft="157px"
+	        android:layout_marginTop="232px"
 	        android:background="@drawable/btn_down"/>
-	     
-	     <Button
+        
+        <Button
+	        android:id="@+id/btn_enter"
+	        android:layout_width="132px"
+	        android:layout_height="39px"
+	        android:layout_marginLeft="74px"
+	        android:layout_marginTop="213px"
+	        android:background="@drawable/btn_enter"/>
+        
+        <Button
 	        android:id="@+id/btn_up"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="50px"
+	        android:layout_height="81px"
+	        android:layout_marginLeft="207px"
+	        android:layout_marginTop="232px"
 	        android:background="@drawable/btn_up"/>
-	     
-	</LinearLayout>	   
-    <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-    
-	    <Button
+        
+        <Button
 	        android:id="@+id/btn_one"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="64px"
+	        android:layout_height="43px"
+	        android:layout_marginLeft="14px"
+	        android:layout_marginTop="314px"
 	        android:background="@drawable/btn_one"/>
-	 
-	    <Button
+        
+        <Button
 	        android:id="@+id/btn_two"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="68px"
+	        android:layout_height="39px"
+	        android:layout_marginLeft="107px"
+	        android:layout_marginTop="329px"
 	        android:background="@drawable/btn_two"/>
-	 
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_three"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="67px"
+	        android:layout_height="43px"
+	        android:layout_marginLeft="203px"
+	        android:layout_marginTop="314px"
 	        android:background="@drawable/btn_three"/>
-	     
-	</LinearLayout>	
-    <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-	     
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_four"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="66px"
+	        android:layout_height="43px"
+	        android:layout_marginLeft="16px"
+	        android:layout_marginTop="368px"
 	        android:background="@drawable/btn_four"/>
-	 
-	    <Button
+        
+        <Button
 	        android:id="@+id/btn_five"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="71px"
+	        android:layout_height="40px"
+	        android:layout_marginLeft="105px"
+	        android:layout_marginTop="382px"
 	        android:background="@drawable/btn_five"/>
-	 
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_six"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="66px"
+	        android:layout_height="44px"
+	        android:layout_marginLeft="200px"
+	        android:layout_marginTop="367px"
 	        android:background="@drawable/btn_six"/>
-
-    </LinearLayout>
-    <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-	     
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_seven"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="64px"
+	        android:layout_height="44px"
+	        android:layout_marginLeft="21px"
+	        android:layout_marginTop="421px"
 	        android:background="@drawable/btn_seven"/>
-	 
-	    <Button
+        
+        <Button
 	        android:id="@+id/btn_eight"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="69px"
+	        android:layout_height="40px"
+	        android:layout_marginLeft="106px"
+	        android:layout_marginTop="436px"
 	        android:background="@drawable/btn_eight"/>
-	 
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_nine"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="66px"
+	        android:layout_height="45px"
+	        android:layout_marginLeft="196px"
+	        android:layout_marginTop="421px"
 	        android:background="@drawable/btn_nine"/>
-	     
-    </LinearLayout>
-    <LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-	     
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_star"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="66px"
+	        android:layout_height="43px"
+	        android:layout_marginLeft="23px"
+	        android:layout_marginTop="476px"
 	        android:background="@drawable/btn_star"/>
-	 
-	    <Button
+        
+        <Button
 	        android:id="@+id/btn_zero"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="70px"
+	        android:layout_height="41px"
+	        android:layout_marginLeft="106px"
+	        android:layout_marginTop="490px"
 	        android:background="@drawable/btn_zero"/>
-	 
-	     <Button
+        
+        <Button
 	        android:id="@+id/btn_pound"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_weight="1"
+	        android:layout_width="65px"
+	        android:layout_height="43px"
+	        android:layout_marginLeft="193px"
+	        android:layout_marginTop="476px"
 	        android:background="@drawable/btn_pound"/>
-    </LinearLayout>
-</LinearLayout>
+        
+    </RelativeLayout>
+</FrameLayout>

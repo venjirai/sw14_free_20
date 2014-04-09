@@ -162,6 +162,18 @@ public class NokiaPhoneActivity extends Activity {
 				
     }
     
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) 
+	{
+        super.onWindowFocusChanged(hasFocus);
+
+        if(hasFocus) 
+        {
+        	new LayoutScaler();
+			LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
+        }
+    }
+    
     private void digitButton(String digit){
 		phone_number += digit;
 		output1.setText(phone_number);
@@ -170,9 +182,6 @@ public class NokiaPhoneActivity extends Activity {
 	}
     
     private void playSound(String sound_name){
-    	 if(mp.isPlaying())  
-             mp.stop();
-
          mp.reset();
          AssetFileDescriptor afd;
     	 try {

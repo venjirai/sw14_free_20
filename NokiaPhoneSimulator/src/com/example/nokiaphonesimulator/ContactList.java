@@ -84,11 +84,15 @@ public class ContactList
         }
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute() 
+        {
+        	
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
+        protected void onProgressUpdate(Void... values) 
+        {
+        	
         }
     }
 	
