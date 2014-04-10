@@ -2,14 +2,15 @@ package com.example.nokiaphonesimulator.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.example.nokiaphonesimulator.ContactList;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.robotium.solo.Solo;
 
-public class GUITest extends ActivityInstrumentationTestCase2<NokiaPhoneActivity> 
+public class ContactListTest extends ActivityInstrumentationTestCase2<NokiaPhoneActivity> 
 {
 	private Solo solo;
 	
-	public GUITest() 
+	public ContactListTest() 
 	{
 		super(NokiaPhoneActivity.class);
 	}
@@ -25,17 +26,12 @@ public class GUITest extends ActivityInstrumentationTestCase2<NokiaPhoneActivity
 		super.tearDown();
 	}
 
-	public void testNumbers() throws Throwable
+	public void testConstructor() throws Throwable
 	{
-		this.solo.clickOnButton(4);
-		this.solo.clickOnButton(5);
-		this.solo.clickOnButton(6);
-		this.solo.clickOnButton(7);
-		this.solo.clickOnButton(8);
-		this.solo.clickOnButton(9);
-		this.solo.clickOnButton(10);
-		this.solo.clickOnButton(11);
-		this.solo.clickOnButton(12);
-		this.solo.clickOnButton(14);
-	}
+	    ContactList contact_list = new ContactList(this.solo.getCurrentActivity().getApplicationContext());
+	    assertNotNull(contact_list);
+	    
+	    int size = contact_list.size();
+	    assertNotNull(size);
+	} 
 }

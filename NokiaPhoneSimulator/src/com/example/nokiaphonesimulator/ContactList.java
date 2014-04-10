@@ -1,22 +1,28 @@
 package com.example.nokiaphonesimulator;
 
 import java.util.Vector;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 
-public class ContactList 
+public class ContactList
 {
 	Context context;
 	Vector<Contact> contacts = new Vector<Contact>();
+	
+	// default constructor
+    public ContactList()
+	{
+    	
+	}
 	
 	// call with ApplicationContext 
 	public ContactList(Context context)
 	{
 		this.context = context;
+		
 		new LoadContacts().execute();
 	}
 	

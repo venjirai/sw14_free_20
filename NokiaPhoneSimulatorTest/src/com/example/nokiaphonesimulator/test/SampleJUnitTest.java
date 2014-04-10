@@ -9,7 +9,7 @@ public class SampleJUnitTest extends TestCase
 		super();
 	}
 
-	public void testAddition() 
+	public void testAddition() throws Throwable
 	{
 	    // trivial test:
 	    assertEquals("4 + 5 must be 9", 9, 4+5);

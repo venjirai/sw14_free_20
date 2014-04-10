@@ -10,7 +10,7 @@ public class ContactTest extends TestCase
 		super();
 	}
 
-	public void testDefaultConstructor() 
+	public void testDefaultConstructor() throws Throwable
 	{
         Contact default_contact = new Contact();
         
@@ -20,7 +20,7 @@ public class ContactTest extends TestCase
 	    assertEquals("phone_number must be emtpy", "", default_contact.getPhoneNumber());
 	}
 	
-	public void testConstructor() 
+	public void testConstructor() throws Throwable
 	{
 		String id = "321";
 		String given_name = "Max";
@@ -28,7 +28,7 @@ public class ContactTest extends TestCase
 		String phone_number = "1234567890";
 		
         Contact contact = new Contact(id, given_name, family_name, phone_number);
-        
+
 	    assertEquals("id must be 321", id, contact.getId());
 	    assertEquals("given_name must be Max", given_name, contact.getGivenName());
 	    assertEquals("family_name must be Jedermann", family_name, contact.getFamilyName());
