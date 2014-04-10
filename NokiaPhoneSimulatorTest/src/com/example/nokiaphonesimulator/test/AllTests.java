@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    GUITest.class,
-   SampleJUnitTest.class
+   SampleJUnitTest.class,
+   ContactTest.class
 })
 
 public class AllTests {   

@@ -25,8 +25,8 @@ public class GUITest extends
 
 	public void testNumbers() {
 		this.solo.clickOnButton(0);
-		//this.solo.clickOnButton(1);
-		this.solo.clickOnButton(2);
+		this.solo.clickOnButton(1);
+		//this.solo.clickOnButton(2);
 		this.solo.clickOnButton(3);
 		this.solo.clickOnButton(4);
 		this.solo.clickOnButton(5);
