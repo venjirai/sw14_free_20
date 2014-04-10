@@ -30,8 +30,13 @@ public class ContactListTest extends ActivityInstrumentationTestCase2<NokiaPhone
 	{
 	    ContactList contact_list = new ContactList(this.solo.getCurrentActivity().getApplicationContext());
 	    assertNotNull(contact_list);
-	    
+	} 
+	
+	public void testGetSize() throws Throwable
+	{
+		ContactList contact_list = new ContactList(this.solo.getCurrentActivity().getApplicationContext());
+		
 	    int size = contact_list.size();
 	    assertNotNull(size);
-	} 
+	}
 }
