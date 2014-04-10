@@ -87,6 +87,8 @@ public class ContactList
                     }
                 }
             }
+            contact_cursor.close();
+            
 			return null;
         }
 

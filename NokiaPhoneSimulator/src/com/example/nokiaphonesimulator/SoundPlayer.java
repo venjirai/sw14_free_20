@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 public class SoundPlayer
@@ -17,7 +18,14 @@ public class SoundPlayer
 	{
 		this.context = context;
 		this.mp = new MediaPlayer();
+		this.mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
 	}
+	
+	// destructor
+	protected void finalize ()  
+	{
+        mp.release();
+    }
 
 	public void play(String sound_name) 
 	{
