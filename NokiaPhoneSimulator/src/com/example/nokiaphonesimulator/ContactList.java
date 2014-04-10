@@ -9,8 +9,9 @@ import android.provider.ContactsContract;
 
 public class ContactList
 {
-	Context context;
-	Vector<Contact> contacts = new Vector<Contact>();
+	// member
+	private Context context;
+	private Vector<Contact> contacts = new Vector<Contact>();
 	
 	// default constructor
     public ContactList()
