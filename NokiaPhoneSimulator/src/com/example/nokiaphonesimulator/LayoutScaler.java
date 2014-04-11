@@ -68,7 +68,7 @@ public class LayoutScaler
             tv.setTextSize(tv.getTextSize() * scale);
         }
         */
-        
+                
         // If it's a ViewGroup, recurse!
         if(root instanceof ViewGroup) 
         {

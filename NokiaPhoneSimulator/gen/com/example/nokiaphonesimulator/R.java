@@ -92,10 +92,10 @@ public final class R {
         public static final int btn_zero=0x7f080015;
         public static final int container=0x7f080000;
         public static final int contents=0x7f080001;
-        public static final int textView_outpu44=0x7f080005;
         public static final int textView_output1=0x7f080002;
         public static final int textView_output2=0x7f080003;
         public static final int textView_output3=0x7f080004;
+        public static final int textView_output4=0x7f080005;
         public static final int textView_output5=0x7f080006;
     }
     public static final class layout {
@@ -152,5 +152,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int NokiaTextView=0x7f060002;
     }
 }

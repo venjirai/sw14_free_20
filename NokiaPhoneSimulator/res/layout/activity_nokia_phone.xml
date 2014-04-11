@@ -12,48 +12,33 @@
         android:background="@drawable/nokia_phone">
         
         <TextView
-	        android:id="@+id/textView_output1"
-	        android:layout_width="210px"
-	        android:layout_height="30px"
-	        android:layout_marginLeft="35px"
+	        android:id="@+id/textView_output1"	        
+            style="@style/NokiaTextView"
 	        android:layout_marginTop="25px"
-	        android:gravity="center_horizontal"
 	        android:text="@string/dummy"/>
         
         <TextView
 	        android:id="@+id/textView_output2"
-	        android:layout_width="210px"
-	        android:layout_height="30px"
-	        android:layout_marginLeft="35px"
+	        style="@style/NokiaTextView"
 	        android:layout_marginTop="55px"
-	        android:gravity="center_horizontal"
 	        android:text="@string/dummy"/>
         
         <TextView
 	        android:id="@+id/textView_output3"
-	        android:layout_width="210px"
-	        android:layout_height="30px"
-	        android:layout_marginLeft="35px"
+	        style="@style/NokiaTextView"
 	        android:layout_marginTop="85px"
-	        android:gravity="center_horizontal"
 	        android:text="@string/dummy"/>
         
         <TextView
-	        android:id="@+id/textView_outpu44"
-	        android:layout_width="210px"
-	        android:layout_height="30px"
-	        android:layout_marginLeft="35px"
+	        android:id="@+id/textView_output4"
+	        style="@style/NokiaTextView"
 	        android:layout_marginTop="115px"
-	        android:gravity="center_horizontal"
 	        android:text="@string/dummy"/>
         
         <TextView
 	        android:id="@+id/textView_output5"
-	        android:layout_width="210px"
-	        android:layout_height="30px"
-	        android:layout_marginLeft="35px"
+	        style="@style/NokiaTextView"
 	        android:layout_marginTop="145px"
-	        android:gravity="center_horizontal"
 	        android:text="@string/dummy"/>
         
         <Button
