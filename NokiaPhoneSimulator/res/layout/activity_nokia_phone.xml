@@ -73,6 +73,7 @@
 	        android:layout_marginTop="232px"
 	        android:background="@drawable/btn_up"/>
         
+        
         <Button
 	        android:id="@+id/btn_one"
 	        android:layout_width="64px"
@@ -80,6 +81,7 @@
 	        android:layout_marginLeft="14px"
 	        android:layout_marginTop="314px"
 	        android:background="@drawable/btn_one"/>
+
         
         <Button
 	        android:id="@+id/btn_two"
@@ -88,6 +90,7 @@
 	        android:layout_marginLeft="107px"
 	        android:layout_marginTop="329px"
 	        android:background="@drawable/btn_two"/>
+	        
         
         <Button
 	        android:id="@+id/btn_three"
