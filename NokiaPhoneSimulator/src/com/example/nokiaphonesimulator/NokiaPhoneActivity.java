@@ -19,6 +19,8 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 	private Context context;
 	
 	private String phone_number = "";
+	private int text_length = 0;
+	
   private SoundPool sp;
 	//private ContactList contact_list;
 	private int cursor;
@@ -27,16 +29,7 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 	private TextView output2;
 	private TextView output3;
 	
-	int zero = 0;
-	int one = 0;
-	int two = 0;
-	int three = 0;
-	int four = 0;
-	int five = 0;
-	int six = 0;
-	int seven = 0;
-	int eight = 0;
-	int nine = 0;
+	int[] sounds = new int[10];
 	
   @Override
   protected void onCreate(Bundle savedInstanceState) 
@@ -48,18 +41,9 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
     context = this.getApplicationContext();
     
     sp = new SoundPool(99, AudioManager.STREAM_MUSIC, 0);
+    LoadSounds();
     
-    zero = sp.load(this, R.raw.s0, 1);
-    one = sp.load(this, R.raw.s1, 1);
-    two = sp.load(this, R.raw.s2, 1);
-    three = sp.load(this, R.raw.s3, 1);
-    four = sp.load(this, R.raw.s4, 1);
-    five = sp.load(this, R.raw.s5, 1);
-    six = sp.load(this, R.raw.s6, 1);
-    seven = sp.load(this, R.raw.s7, 1);
-    eight = sp.load(this, R.raw.s8, 1);
-    nine = sp.load(this, R.raw.s9, 1);
-    
+
     
     Button btn_zero = (Button) this.findViewById(R.id.btn_zero);
   	Button btn_one = (Button) this.findViewById(R.id.btn_one);
@@ -98,8 +82,8 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   	btn_up.setOnClickListener(this);
   	
   	output1 = (TextView) this.findViewById(R.id.textView_output1);
-  	output2 = (TextView) this.findViewById(R.id.textView_output2);
-  	output3 = (TextView) this.findViewById(R.id.textView_output3);
+  	//output2 = (TextView) this.findViewById(R.id.textView_output2);
+  	//output3 = (TextView) this.findViewById(R.id.textView_output3);
   
   	
   	//contact_list = new ContactList(context);
@@ -109,6 +93,22 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   
 
   
+  private void LoadSounds()
+  {
+    sounds[0] = sp.load(this, R.raw.s0, 1);
+    sounds[1] = sp.load(this, R.raw.s1, 1);
+    sounds[2] = sp.load(this, R.raw.s2, 1);
+    sounds[3] = sp.load(this, R.raw.s3, 1);
+    sounds[4] = sp.load(this, R.raw.s4, 1);
+    sounds[5] = sp.load(this, R.raw.s5, 1);
+    sounds[6] = sp.load(this, R.raw.s6, 1);
+    sounds[7] = sp.load(this, R.raw.s7, 1);
+    sounds[8] = sp.load(this, R.raw.s8, 1);
+    sounds[9] = sp.load(this, R.raw.s9, 1);
+  }
+
+
+
   @Override
   public void onWindowFocusChanged(boolean hasFocus) 
   {
@@ -125,10 +125,19 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   
   private void digitButton(String digit)
   {
-  	phone_number += digit;
+    if (text_length < 80)
+      phone_number += digit;
+    else
+      text_length--;
+    
+  	
+  	if (text_length % 16 == 0 && text_length != 80)
+  	  phone_number += "\n";
+  	
+  	
   	output1.setText(phone_number);
-  	output2.setText("");
-  	output3.setText("");
+  	//output2.setText("");
+  	//output3.setText("");
   }
   
   private void call(String phone_number) 
@@ -144,65 +153,75 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   {
     if (v.getId() == R.id.btn_zero)
     {
+      text_length++;
       digitButton("0");
-      sp.play(zero, 1, 1, 0, 0, 1);   
+      sp.play(sounds[0], 1, 1, 0, 0, 1);   
     }
     
     else if (v.getId() == R.id.btn_one)
     {
+      text_length++;
       digitButton("1");
-      sp.play(one, 1, 1, 0, 0, 1);   
+      sp.play(sounds[1], 1, 1, 0, 0, 1);   
     }
     
     else if (v.getId() == R.id.btn_two)
     {
+      text_length++;
       digitButton("2");
-      sp.play(two, 1, 1, 0, 0, 1); 
+      sp.play(sounds[2], 1, 1, 0, 0, 1); 
       
     }
     
     else if (v.getId() == R.id.btn_three)
     {
+      text_length++;
       digitButton("3");
-      sp.play(three, 1, 1, 0, 0, 1); 
+      sp.play(sounds[3], 1, 1, 0, 0, 1); 
     }
     
     else if (v.getId() == R.id.btn_four)
     {
+      text_length++;
       digitButton("4");
-      sp.play(four, 1, 1, 0, 0, 1); 
+      sp.play(sounds[4], 1, 1, 0, 0, 1); 
     }
     
     else if (v.getId() == R.id.btn_five)
     {
+      text_length++;
       digitButton("5");
-      sp.play(five, 1, 1, 0, 0, 1); 
+      sp.play(sounds[5], 1, 1, 0, 0, 1); 
       
     }
     
     else if (v.getId() == R.id.btn_six)
     {
+      text_length++;
       digitButton("6");
-      sp.play(six, 1, 1, 0, 0, 1); 
+      sp.play(sounds[6], 1, 1, 0, 0, 1); 
       
     }
     
     else if (v.getId() == R.id.btn_seven)
     {
+      text_length++;
       digitButton("7");
-      sp.play(seven, 1, 1, 0, 0, 1); 
+      sp.play(sounds[7], 1, 1, 0, 0, 1); 
     }
     
     else if (v.getId() == R.id.btn_eight)
     {
+      text_length++;
       digitButton("8");
-      sp.play(eight, 1, 1, 0, 0, 1); 
+      sp.play(sounds[8], 1, 1, 0, 0, 1); 
     }
     
     else if (v.getId() == R.id.btn_nine)
     {
+      text_length++;
       digitButton("9");
-      sp.play(nine, 1, 1, 0, 0, 1); 
+      sp.play(sounds[9], 1, 1, 0, 0, 1); 
     }
     
     else if (v.getId() == R.id.btn_star)
@@ -223,6 +242,7 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
       {
         phone_number = phone_number.substring(0, phone_number.length() - 1);
         output1.setText(phone_number);
+        text_length--;
       }
       
     }

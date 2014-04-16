@@ -12,34 +12,13 @@
         android:background="@drawable/nokia_phone">
         
         <TextView
-	        android:id="@+id/textView_output1"	        
+            android:id="@+id/textView_output1"
             style="@style/NokiaTextView"
-	        android:layout_marginTop="25px"
-	        android:text="@string/dummy"/>
-        
-        <TextView
-	        android:id="@+id/textView_output2"
-	        style="@style/NokiaTextView"
-	        android:layout_marginTop="55px"
-	        android:text="@string/dummy"/>
-        
-        <TextView
-	        android:id="@+id/textView_output3"
-	        style="@style/NokiaTextView"
-	        android:layout_marginTop="85px"
-	        android:text="@string/dummy"/>
-        
-        <TextView
-	        android:id="@+id/textView_output4"
-	        style="@style/NokiaTextView"
-	        android:layout_marginTop="115px"
-	        android:text="@string/dummy"/>
-        
-        <TextView
-	        android:id="@+id/textView_output5"
-	        style="@style/NokiaTextView"
-	        android:layout_marginTop="145px"
-	        android:text="@string/dummy"/>
+            android:layout_height="100dp"
+            android:layout_marginTop="25px"
+            android:height="100dp"
+            android:maxLength="84"
+            android:text="@string/dummy" />
         
         <Button
 	        android:id="@+id/btn_clear"
