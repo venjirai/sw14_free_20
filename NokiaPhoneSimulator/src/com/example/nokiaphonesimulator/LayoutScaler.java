@@ -1,11 +1,23 @@
 package com.example.nokiaphonesimulator;
 
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class LayoutScaler 
 {
+  private static int width;
+  private static int height;
+  
+    public LayoutScaler(int width, int height)
+    {
+      this.width = width;
+      this.height = height;
+    }
+  
+  
     public static void scaleContents(View rootView, View container) 
     {
     	LayoutScaler.scaleContents(rootView, container, rootView.getWidth(), rootView.getHeight());
@@ -61,13 +73,30 @@ public class LayoutScaler
         );
 
         // If it's a TextView, scale the font size
-        /*
+        
         if(root instanceof TextView) 
         {
             TextView tv = (TextView)root;
-            tv.setTextSize(tv.getTextSize() * scale);
+            
+              
+            
+            if (width <= 480 && height <= 800) 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24);
+  
+            
+            else if (width <= 720 && height <= 1280) 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,27);
+            
+            else if (width <= 800 && height <= 1280) 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,38);
+            
+            /* Add more resolutions here
+            else 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+            */
+            
         }
-        */
+        
                 
         // If it's a ViewGroup, recurse!
         if(root instanceof ViewGroup) 

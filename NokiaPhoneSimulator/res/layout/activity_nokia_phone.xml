@@ -14,11 +14,16 @@
         <TextView
             android:id="@+id/textView_output1"
             style="@style/NokiaTextView"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="105dp"
+            android:layout_marginLeft="28px"
+            android:layout_marginRight="28px"
             android:layout_marginTop="25px"
-            android:height="100dp"
-            android:maxLength="84"
-            android:text="@string/dummy" />
+            android:maxLength="80"
+            android:maxLines="5"
+            android:singleLine="false"
+            android:text="@string/dummy"
+            android:textSize="23dp" />
         
         <Button
 	        android:id="@+id/btn_clear"

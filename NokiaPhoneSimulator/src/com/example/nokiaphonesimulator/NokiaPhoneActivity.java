@@ -5,11 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
 import android.media.SoundPool;
 import android.media.AudioManager;
 
@@ -26,8 +27,11 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 	private int cursor;
 		
 	private TextView output1;
+	
 	private TextView output2;
 	private TextView output3;
+	
+	int displayWidth, displayHeight;
 	
 	int[] sounds = new int[10];
 	
@@ -39,53 +43,22 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
     setContentView(R.layout.activity_nokia_phone);
     
     context = this.getApplicationContext();
-    
+
+    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+    displayWidth = metrics.widthPixels;
+    displayHeight = metrics.heightPixels;
+
     sp = new SoundPool(99, AudioManager.STREAM_MUSIC, 0);
     LoadSounds();
     
+    InitializeButtons();
+ 
 
-    
-    Button btn_zero = (Button) this.findViewById(R.id.btn_zero);
-  	Button btn_one = (Button) this.findViewById(R.id.btn_one);
-  	Button btn_two = (Button) this.findViewById(R.id.btn_two);
-  	Button btn_three = (Button) this.findViewById(R.id.btn_three);
-  	Button btn_four = (Button) this.findViewById(R.id.btn_four);
-  	Button btn_five = (Button) this.findViewById(R.id.btn_five);
-  	Button btn_six = (Button) this.findViewById(R.id.btn_six);
-  	Button btn_seven = (Button) this.findViewById(R.id.btn_seven);
-  	Button btn_eight = (Button) this.findViewById(R.id.btn_eight);
-  	Button btn_nine = (Button) this.findViewById(R.id.btn_nine);
-  	
-  	Button btn_star = (Button) this.findViewById(R.id.btn_star);
-  	Button btn_pound = (Button) this.findViewById(R.id.btn_pound);
-  	Button btn_clear = (Button) this.findViewById(R.id.btn_clear);
-  	Button btn_enter = (Button) this.findViewById(R.id.btn_enter);
-  	Button btn_down = (Button) this.findViewById(R.id.btn_down);
-  	Button btn_up = (Button) this.findViewById(R.id.btn_up);
-  	
-  	btn_zero.setOnClickListener(this);
-  	btn_one.setOnClickListener(this);
-  	btn_two.setOnClickListener(this);
-  	btn_three.setOnClickListener(this);
-  	btn_four.setOnClickListener(this);
-  	btn_five.setOnClickListener(this);
-  	btn_six.setOnClickListener(this);
-  	btn_seven.setOnClickListener(this);
-  	btn_eight.setOnClickListener(this);
-  	btn_nine.setOnClickListener(this);
-  	
-  	btn_star.setOnClickListener(this);
-  	btn_pound.setOnClickListener(this);
-  	btn_clear.setOnClickListener(this);
-  	btn_enter.setOnClickListener(this);
-  	btn_down.setOnClickListener(this);
-  	btn_up.setOnClickListener(this);
-  	
   	output1 = (TextView) this.findViewById(R.id.textView_output1);
+  	
   	//output2 = (TextView) this.findViewById(R.id.textView_output2);
   	//output3 = (TextView) this.findViewById(R.id.textView_output3);
   
-  	
   	//contact_list = new ContactList(context);
   	
  
@@ -93,6 +66,48 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   
 
   
+  private void InitializeButtons()
+  {
+    Button btn_zero = (Button) this.findViewById(R.id.btn_zero);
+    Button btn_one = (Button) this.findViewById(R.id.btn_one);
+    Button btn_two = (Button) this.findViewById(R.id.btn_two);
+    Button btn_three = (Button) this.findViewById(R.id.btn_three);
+    Button btn_four = (Button) this.findViewById(R.id.btn_four);
+    Button btn_five = (Button) this.findViewById(R.id.btn_five);
+    Button btn_six = (Button) this.findViewById(R.id.btn_six);
+    Button btn_seven = (Button) this.findViewById(R.id.btn_seven);
+    Button btn_eight = (Button) this.findViewById(R.id.btn_eight);
+    Button btn_nine = (Button) this.findViewById(R.id.btn_nine);
+    
+    Button btn_star = (Button) this.findViewById(R.id.btn_star);
+    Button btn_pound = (Button) this.findViewById(R.id.btn_pound);
+    Button btn_clear = (Button) this.findViewById(R.id.btn_clear);
+    Button btn_enter = (Button) this.findViewById(R.id.btn_enter);
+    Button btn_down = (Button) this.findViewById(R.id.btn_down);
+    Button btn_up = (Button) this.findViewById(R.id.btn_up);
+    
+    btn_zero.setOnClickListener(this);
+    btn_one.setOnClickListener(this);
+    btn_two.setOnClickListener(this);
+    btn_three.setOnClickListener(this);
+    btn_four.setOnClickListener(this);
+    btn_five.setOnClickListener(this);
+    btn_six.setOnClickListener(this);
+    btn_seven.setOnClickListener(this);
+    btn_eight.setOnClickListener(this);
+    btn_nine.setOnClickListener(this);
+    
+    btn_star.setOnClickListener(this);
+    btn_pound.setOnClickListener(this);
+    btn_clear.setOnClickListener(this);
+    btn_enter.setOnClickListener(this);
+    btn_down.setOnClickListener(this);
+    btn_up.setOnClickListener(this);
+    
+  }
+
+
+
   private void LoadSounds()
   {
     sounds[0] = sp.load(this, R.raw.s0, 1);
@@ -116,7 +131,7 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 
       if(hasFocus) 
       {
-      	new LayoutScaler();
+      	new LayoutScaler(displayWidth, displayHeight);
       	LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
       }
   }
@@ -125,16 +140,12 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
   
   private void digitButton(String digit)
   {
-    if (text_length < 80)
+    if (text_length <= 80)
       phone_number += digit;
     else
       text_length--;
-    
-  	
-  	if (text_length % 16 == 0 && text_length != 80)
-  	  phone_number += "\n";
-  	
-  	
+
+      	
   	output1.setText(phone_number);
   	//output2.setText("");
   	//output3.setText("");
