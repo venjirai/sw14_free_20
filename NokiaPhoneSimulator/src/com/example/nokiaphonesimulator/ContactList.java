@@ -107,7 +107,10 @@ public class ContactList
 	
     public Contact getContact(int index)
     {
-    	return contacts.get(index);
+    	if(contacts.size() == 0)
+    		return null;
+    	else
+    		return contacts.get(index);
     }
     
     public int size()

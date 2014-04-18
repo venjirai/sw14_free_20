@@ -275,19 +275,21 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
           cursor++;
           
         Contact contact = contact_list.getContact(cursor);
-        output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+        if(contact != null)
+        	output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
          
         
       }
       else if (v.getId() == R.id.btn_up)
       {
-        sp.play(tastenton, 1, 1, 0, 0, 1); 
+          sp.play(tastenton, 1, 1, 0, 0, 1); 
         
-        if(cursor > 0)
-          cursor--;
+          if(cursor > 0)
+            cursor--;
         
-        Contact contact = contact_list.getContact(cursor);
-          output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+          Contact contact = contact_list.getContact(cursor);
+          if(contact != null)
+        	  output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
       }
       
       
