@@ -111,6 +111,7 @@ public final class R {
         public static final int s7=0x7f040007;
         public static final int s8=0x7f040008;
         public static final int s9=0x7f040009;
+        public static final int tastenton=0x7f04000a;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;

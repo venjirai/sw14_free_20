@@ -37,6 +37,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 	int displayWidth, displayHeight;
 	
 	int[] sounds = new int[10];
+	int tastenton;
 	
   @Override
   protected void onCreate(Bundle savedInstanceState) 
@@ -117,6 +118,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
   private void LoadSounds()
   {
+    tastenton = sp.load(this, R.raw.tastenton, 1);
     sounds[0] = sp.load(this, R.raw.s0, 1);
     sounds[1] = sp.load(this, R.raw.s1, 1);
     sounds[2] = sp.load(this, R.raw.s2, 1);
@@ -177,20 +179,20 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       {
         text_length++;
         digitButton("0");
-        sp.play(sounds[0], 1, 1, 0, 0, 1);   
+        sp.play(tastenton, 1, 1, 0, 0, 1);   
       }
       else if (v.getId() == R.id.btn_one)
       {
         text_length++;
         digitButton("1");
-        sp.play(sounds[1], 1, 1, 0, 0, 1);   
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
       }
       
       else if (v.getId() == R.id.btn_two)
       {
         text_length++;
         digitButton("2");
-        sp.play(sounds[2], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         
       }
       
@@ -198,21 +200,21 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       {
         text_length++;
         digitButton("3");
-        sp.play(sounds[3], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
       }
       
       else if (v.getId() == R.id.btn_four)
       {
         text_length++;
         digitButton("4");
-        sp.play(sounds[4], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
       }
       
       else if (v.getId() == R.id.btn_five)
       {
         text_length++;
         digitButton("5");
-        sp.play(sounds[5], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1);  
         
       }
       
@@ -220,7 +222,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       {
         text_length++;
         digitButton("6");
-        sp.play(sounds[6], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         
       }
       
@@ -228,37 +230,38 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       {
         text_length++;
         digitButton("7");
-        sp.play(sounds[7], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1);  
       }
       
       else if (v.getId() == R.id.btn_eight)
       {
         text_length++;
         digitButton("8");
-        sp.play(sounds[8], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
       }
       
       else if (v.getId() == R.id.btn_nine)
       {
         text_length++;
         digitButton("9");
-        sp.play(sounds[9], 1, 1, 0, 0, 1); 
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
       }
       
       else if (v.getId() == R.id.btn_star)
       {
-      
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         
       }
       
       else if (v.getId() == R.id.btn_pound)
       {
-      
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         
       }
       
       else if (v.getId() == R.id.btn_clear)
       {
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         if(phone_number.length() > 0)
         {
           phone_number = phone_number.substring(0, phone_number.length() - 1);
@@ -270,10 +273,12 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       
       else if (v.getId() == R.id.btn_enter)
       {
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         call(phone_number);
       }
       else if (v.getId() == R.id.btn_down)
       {
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         /*
         if(cursor < contact_list.size()-1)
           cursor++;
@@ -288,6 +293,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       }
       else if (v.getId() == R.id.btn_up)
       {
+        sp.play(tastenton, 1, 1, 0, 0, 1); 
         /*
         if(cursor > 0)
           cursor--;
