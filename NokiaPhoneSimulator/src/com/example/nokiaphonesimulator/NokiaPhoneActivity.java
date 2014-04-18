@@ -3,6 +3,7 @@ package com.example.nokiaphonesimulator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -53,8 +54,10 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
     
     InitializeButtons();
  
-
+    
+    Typeface font = Typeface.createFromAsset(getAssets(), "nokiafc22.ttf");
   	output1 = (TextView) this.findViewById(R.id.textView_output1);
+  	output1.setTypeface(font);
   	
   	//output2 = (TextView) this.findViewById(R.id.textView_output2);
   	//output3 = (TextView) this.findViewById(R.id.textView_output3);
@@ -131,7 +134,7 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 
       if(hasFocus) 
       {
-      	new LayoutScaler(displayWidth, displayHeight);
+      	new LayoutScaler(displayWidth, displayHeight, this);
       	LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
       }
   }

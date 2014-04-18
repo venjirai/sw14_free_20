@@ -23,7 +23,7 @@
             android:maxLines="5"
             android:singleLine="false"
             android:text="@string/dummy"
-            android:textSize="23dp" />
+            android:textSize="17dip" />
         
         <Button
 	        android:id="@+id/btn_clear"

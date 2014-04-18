@@ -1,5 +1,8 @@
 package com.example.nokiaphonesimulator;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +13,14 @@ public class LayoutScaler
 {
   private static int width;
   private static int height;
+  private static Context context;
   
-    public LayoutScaler(int width, int height)
+  
+    public LayoutScaler(int width, int height, Context context)
     {
       this.width = width;
       this.height = height;
+      this.context = context;
     }
   
   
@@ -77,23 +83,40 @@ public class LayoutScaler
         if(root instanceof TextView) 
         {
             TextView tv = (TextView)root;
+                       
             
-              
-            
-            if (width <= 480 && height <= 800) 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,24);
+            if (width == 480 && height == 800) 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,17);
   
             
-            else if (width <= 720 && height <= 1280) 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,27);
-            
-            else if (width <= 800 && height <= 1280) 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,38);
-            
-            /* Add more resolutions here
-            else 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
+            /* Add more resolutions here, change it so 26 ones fit in one line
+            else if (width =  && height == ) 
+              tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
             */
+            
+            
+            // Device not supported, close the application
+            else
+            {
+              AlertDialog.Builder builder  = new AlertDialog.Builder(context);
+
+              builder.setMessage("Device not supported!");
+              builder.setTitle("Error");         
+              
+              
+              builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
+              {
+                public void onClick(DialogInterface dialog, int id) 
+                {
+                    System.exit(0);
+                }
+              });
+
+              AlertDialog dialog = builder.create();
+              
+              dialog.show();
+                     
+            }
             
         }
         
