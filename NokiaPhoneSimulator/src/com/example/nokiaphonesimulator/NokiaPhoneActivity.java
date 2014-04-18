@@ -8,15 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.media.SoundPool;
 import android.media.AudioManager;
 
 
-public class NokiaPhoneActivity extends Activity implements OnClickListener
+public class NokiaPhoneActivity extends Activity implements OnTouchListener
 {
 	private Context context;
 	
@@ -89,23 +91,25 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
     Button btn_down = (Button) this.findViewById(R.id.btn_down);
     Button btn_up = (Button) this.findViewById(R.id.btn_up);
     
-    btn_zero.setOnClickListener(this);
-    btn_one.setOnClickListener(this);
-    btn_two.setOnClickListener(this);
-    btn_three.setOnClickListener(this);
-    btn_four.setOnClickListener(this);
-    btn_five.setOnClickListener(this);
-    btn_six.setOnClickListener(this);
-    btn_seven.setOnClickListener(this);
-    btn_eight.setOnClickListener(this);
-    btn_nine.setOnClickListener(this);
+    btn_zero.setOnTouchListener(this);
+
+    btn_one.setOnTouchListener(this);
+    btn_two.setOnTouchListener(this);
+    btn_three.setOnTouchListener(this);
+    btn_four.setOnTouchListener(this);
+    btn_five.setOnTouchListener(this);
+    btn_six.setOnTouchListener(this);
+    btn_seven.setOnTouchListener(this);
+    btn_eight.setOnTouchListener(this);
+    btn_nine.setOnTouchListener(this);
     
-    btn_star.setOnClickListener(this);
-    btn_pound.setOnClickListener(this);
-    btn_clear.setOnClickListener(this);
-    btn_enter.setOnClickListener(this);
-    btn_down.setOnClickListener(this);
-    btn_up.setOnClickListener(this);
+    btn_star.setOnTouchListener(this);
+    btn_pound.setOnTouchListener(this);
+    btn_clear.setOnTouchListener(this);
+    btn_enter.setOnTouchListener(this);
+    btn_down.setOnTouchListener(this);
+    btn_up.setOnTouchListener(this);
+    
     
   }
 
@@ -162,136 +166,144 @@ public class NokiaPhoneActivity extends Activity implements OnClickListener
 
 
 
+
   @Override
-  public void onClick(View v)
+  public boolean onTouch(View v, MotionEvent event)
   {
-    if (v.getId() == R.id.btn_zero)
+
+    if(event.getAction() == MotionEvent.ACTION_DOWN)
     {
-      text_length++;
-      digitButton("0");
-      sp.play(sounds[0], 1, 1, 0, 0, 1);   
-    }
-    
-    else if (v.getId() == R.id.btn_one)
-    {
-      text_length++;
-      digitButton("1");
-      sp.play(sounds[1], 1, 1, 0, 0, 1);   
-    }
-    
-    else if (v.getId() == R.id.btn_two)
-    {
-      text_length++;
-      digitButton("2");
-      sp.play(sounds[2], 1, 1, 0, 0, 1); 
-      
-    }
-    
-    else if (v.getId() == R.id.btn_three)
-    {
-      text_length++;
-      digitButton("3");
-      sp.play(sounds[3], 1, 1, 0, 0, 1); 
-    }
-    
-    else if (v.getId() == R.id.btn_four)
-    {
-      text_length++;
-      digitButton("4");
-      sp.play(sounds[4], 1, 1, 0, 0, 1); 
-    }
-    
-    else if (v.getId() == R.id.btn_five)
-    {
-      text_length++;
-      digitButton("5");
-      sp.play(sounds[5], 1, 1, 0, 0, 1); 
-      
-    }
-    
-    else if (v.getId() == R.id.btn_six)
-    {
-      text_length++;
-      digitButton("6");
-      sp.play(sounds[6], 1, 1, 0, 0, 1); 
-      
-    }
-    
-    else if (v.getId() == R.id.btn_seven)
-    {
-      text_length++;
-      digitButton("7");
-      sp.play(sounds[7], 1, 1, 0, 0, 1); 
-    }
-    
-    else if (v.getId() == R.id.btn_eight)
-    {
-      text_length++;
-      digitButton("8");
-      sp.play(sounds[8], 1, 1, 0, 0, 1); 
-    }
-    
-    else if (v.getId() == R.id.btn_nine)
-    {
-      text_length++;
-      digitButton("9");
-      sp.play(sounds[9], 1, 1, 0, 0, 1); 
-    }
-    
-    else if (v.getId() == R.id.btn_star)
-    {
-    
-      
-    }
-    
-    else if (v.getId() == R.id.btn_pound)
-    {
-    
-      
-    }
-    
-    else if (v.getId() == R.id.btn_clear)
-    {
-      if(phone_number.length() > 0)
+      if (v.getId() == R.id.btn_zero)
       {
-        phone_number = phone_number.substring(0, phone_number.length() - 1);
-        output1.setText(phone_number);
-        text_length--;
+        text_length++;
+        digitButton("0");
+        sp.play(sounds[0], 1, 1, 0, 0, 1);   
+      }
+      else if (v.getId() == R.id.btn_one)
+      {
+        text_length++;
+        digitButton("1");
+        sp.play(sounds[1], 1, 1, 0, 0, 1);   
       }
       
-    }
-    
-    else if (v.getId() == R.id.btn_enter)
-    {
-      call(phone_number);
-    }
-    else if (v.getId() == R.id.btn_down)
-    {
-      /*
-      if(cursor < contact_list.size()-1)
-        cursor++;
+      else if (v.getId() == R.id.btn_two)
+      {
+        text_length++;
+        digitButton("2");
+        sp.play(sounds[2], 1, 1, 0, 0, 1); 
         
-      Contact contact = contact_list.getContact(cursor);
-      output1.setText(contact.getPhoneNumber());
-      output2.setText(contact.getGivenName());
-      output3.setText(contact.getFamilyName());     
-       
-       */
+      }
       
-    }
-    else if (v.getId() == R.id.btn_up)
-    {
-      /*
-      if(cursor > 0)
-        cursor--;
+      else if (v.getId() == R.id.btn_three)
+      {
+        text_length++;
+        digitButton("3");
+        sp.play(sounds[3], 1, 1, 0, 0, 1); 
+      }
       
-      Contact contact = contact_list.getContact(cursor);
+      else if (v.getId() == R.id.btn_four)
+      {
+        text_length++;
+        digitButton("4");
+        sp.play(sounds[4], 1, 1, 0, 0, 1); 
+      }
+      
+      else if (v.getId() == R.id.btn_five)
+      {
+        text_length++;
+        digitButton("5");
+        sp.play(sounds[5], 1, 1, 0, 0, 1); 
+        
+      }
+      
+      else if (v.getId() == R.id.btn_six)
+      {
+        text_length++;
+        digitButton("6");
+        sp.play(sounds[6], 1, 1, 0, 0, 1); 
+        
+      }
+      
+      else if (v.getId() == R.id.btn_seven)
+      {
+        text_length++;
+        digitButton("7");
+        sp.play(sounds[7], 1, 1, 0, 0, 1); 
+      }
+      
+      else if (v.getId() == R.id.btn_eight)
+      {
+        text_length++;
+        digitButton("8");
+        sp.play(sounds[8], 1, 1, 0, 0, 1); 
+      }
+      
+      else if (v.getId() == R.id.btn_nine)
+      {
+        text_length++;
+        digitButton("9");
+        sp.play(sounds[9], 1, 1, 0, 0, 1); 
+      }
+      
+      else if (v.getId() == R.id.btn_star)
+      {
+      
+        
+      }
+      
+      else if (v.getId() == R.id.btn_pound)
+      {
+      
+        
+      }
+      
+      else if (v.getId() == R.id.btn_clear)
+      {
+        if(phone_number.length() > 0)
+        {
+          phone_number = phone_number.substring(0, phone_number.length() - 1);
+          output1.setText(phone_number);
+          text_length--;
+        }
+        
+      }
+      
+      else if (v.getId() == R.id.btn_enter)
+      {
+        call(phone_number);
+      }
+      else if (v.getId() == R.id.btn_down)
+      {
+        /*
+        if(cursor < contact_list.size()-1)
+          cursor++;
+          
+        Contact contact = contact_list.getContact(cursor);
         output1.setText(contact.getPhoneNumber());
         output2.setText(contact.getGivenName());
-        output3.setText(contact.getFamilyName());
-      */
+        output3.setText(contact.getFamilyName());     
+         
+         */
+        
+      }
+      else if (v.getId() == R.id.btn_up)
+      {
+        /*
+        if(cursor > 0)
+          cursor--;
+        
+        Contact contact = contact_list.getContact(cursor);
+          output1.setText(contact.getPhoneNumber());
+          output2.setText(contact.getGivenName());
+          output3.setText(contact.getFamilyName());
+        */
+      }
+      
+      
+      
     }
-    
-    
+     
+    return false;
   }
+
 }
