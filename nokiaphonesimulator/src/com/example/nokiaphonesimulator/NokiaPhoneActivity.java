@@ -28,7 +28,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 	private int text_length = 0;
 	
 
-  private SoundPool sp;
+    private SoundPool sp;
 	private TextView output1;
 	
 	int displayWidth, displayHeight;
