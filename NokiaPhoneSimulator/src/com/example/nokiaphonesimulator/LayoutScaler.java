@@ -10,17 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class LayoutScaler 
-{
-  private static int width;
-  private static int height;
-  private static Context context;
-  
-  
-    public LayoutScaler(int width, int height, Context context)
+{ 
+    public LayoutScaler()
     {
-      this.width = width;
-      this.height = height;
-      this.context = context;
+
     }
   
   
@@ -78,47 +71,6 @@ public class LayoutScaler
             (int)(root.getPaddingBottom() * scale)
         );
 
-        // If it's a TextView, scale the font size
-        
-        if(root instanceof TextView) 
-        {
-            TextView tv = (TextView)root;
-                       
-            
-            if (width == 480 && height == 800) 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,17);
-  
-            
-            /* Add more resolutions here, change it so 26 ones fit in one line
-            else if (width =  && height == ) 
-              tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
-            */
-            
-            
-            // Device not supported, close the application
-            else
-            {
-              AlertDialog.Builder builder  = new AlertDialog.Builder(context);
-
-              builder.setMessage("Device not supported!");
-              builder.setTitle("Error");         
-              
-              
-              builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
-              {
-                public void onClick(DialogInterface dialog, int id) 
-                {
-                    System.exit(0);
-                }
-              });
-
-              AlertDialog dialog = builder.create();
-              
-              dialog.show();
-                     
-            }
-            
-        }
         
                 
         // If it's a ViewGroup, recurse!

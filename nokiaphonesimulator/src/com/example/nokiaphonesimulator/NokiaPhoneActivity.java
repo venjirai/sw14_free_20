@@ -1,12 +1,15 @@
 package com.example.nokiaphonesimulator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -27,7 +30,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 	
 	private int text_length = 0;
 	
-
+	private boolean text_big = true;
+	private int chars_over_small = 0;
+	
   private SoundPool sp;
 	private TextView output1;
 	
@@ -59,6 +64,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
   	output1 = (TextView) this.findViewById(R.id.textView_output1);
   	output1.setTypeface(font);
   	
+  	
+  	textViewInitialize(output1);
 
   	contact_list = new ContactList(context);
 
@@ -66,8 +73,67 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
  
   }
   
-
   
+  
+  private void textViewInitialize(TextView tv)
+  {
+    if (displayWidth == 480 && displayHeight == 800) 
+      tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,30);
+    
+    /* Add more resolutions here
+    else if (displayWidth =  && displayHeight == ) 
+      tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
+      */
+   
+  }
+  
+  
+  
+                  
+  private void scaleTextview(TextView tv, String digit)
+  {
+    int lines = tv.getLineCount();
+
+    if (!text_big && digit != "CLEAR")
+      chars_over_small++;
+  
+    else if (digit == "CLEAR")
+      chars_over_small--;
+    
+    if (chars_over_small < 0)
+      chars_over_small = 0;
+    
+    
+    if (lines >= 3)
+    {
+      if (chars_over_small == 0)
+        chars_over_small = 1;
+      
+      text_big = false;
+      
+      if (displayWidth == 480 && displayHeight == 800) 
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,20);
+    
+    }
+    
+    else if (lines <= 2 && digit == "CLEAR" && chars_over_small == 0)
+    {
+      text_big = true;
+      
+      if (displayWidth == 480 && displayHeight == 800) 
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,30);
+  
+      
+      /* Add more resolutions here
+      else if (displayWidth =  && displayHeight == ) 
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
+      */        
+    }
+    
+
+    
+  }
+
   private void InitializeButtons()
   {
     Button btn_zero = (Button) this.findViewById(R.id.btn_zero);
@@ -136,7 +202,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
       if(hasFocus) 
       {
-      	new LayoutScaler(displayWidth, displayHeight, this);
+      	new LayoutScaler();
       	LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
       }
   }
@@ -145,6 +211,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
   
   private void digitButton(String digit)
   {
+    
     if (text_length <= 80)
       phone_number += digit;
     else
@@ -152,7 +219,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
       	
   	output1.setText(phone_number);
+  	scaleTextview(output1, digit);
   }
+  
   
   private void call(String phone_number) 
   {
@@ -259,12 +328,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
       
       else if (v.getId() == R.id.btn_clear)
       {
+        
         sp.play(tastenton, 1, 1, 0, 0, 1); 
         if(phone_number.length() > 0)
         {
           phone_number = phone_number.substring(0, phone_number.length() - 1);
           output1.setText(phone_number);
           text_length--;
+          scaleTextview(output1,"CLEAR");
         }
         
       }
