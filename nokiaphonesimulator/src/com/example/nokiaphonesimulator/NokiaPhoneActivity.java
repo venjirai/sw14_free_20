@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,16 +21,15 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 	private Context context;
 	
 	private String phone_number = "";
+	
+	private ContactList contact_list;
+	private int cursor = 0;
+	
 	private int text_length = 0;
 	
+
   private SoundPool sp;
-	private ContactList contact_list;
-	private int cursor;
-		
 	private TextView output1;
-	
-	private TextView output2;
-	private TextView output3;
 	
 	int displayWidth, displayHeight;
 	
@@ -62,10 +59,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
   	output1 = (TextView) this.findViewById(R.id.textView_output1);
   	output1.setTypeface(font);
   	
-  	//output2 = (TextView) this.findViewById(R.id.textView_output2);
-  	//output3 = (TextView) this.findViewById(R.id.textView_output3);
-  
-  	 contact_list = new ContactList(context);
+
+  	contact_list = new ContactList(context);
+
   	
  
   }
@@ -156,8 +152,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
       	
   	output1.setText(phone_number);
-  	//output2.setText("");
-  	//output3.setText("");
   }
   
   private void call(String phone_number) 
@@ -289,23 +283,23 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
           
         Contact contact = contact_list.getContact(cursor);
         output1.setText(contact.getPhoneNumber());
-        //output2.setText(contact.getGivenName());
-        //output3.setText(contact.getFamilyName());     
-         
-        
+
+        if(contact != null)
+        	output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+
+             
       }
       else if (v.getId() == R.id.btn_up)
       {
-        sp.play(tastenton, 1, 1, 0, 0, 1); 
+
+          sp.play(tastenton, 1, 1, 0, 0, 1); 
         
-        if(cursor > 0)
-          cursor--;
+          if(cursor > 0)
+            cursor--;
         
-        Contact contact = contact_list.getContact(cursor);
-          output1.setText(contact.getPhoneNumber());
-          //output2.setText(contact.getGivenName());
-          //output3.setText(contact.getFamilyName());
-        
+          Contact contact = contact_list.getContact(cursor);
+          if(contact != null)
+        	  output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
       }
       
       
