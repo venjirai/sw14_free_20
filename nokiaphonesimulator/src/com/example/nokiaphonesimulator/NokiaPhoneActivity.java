@@ -59,7 +59,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         displayWidth = metrics.widthPixels;
         displayHeight = metrics.heightPixels;
 
-        sp = new SoundPool(99, AudioManager.STREAM_MUSIC, 0);
+        sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
 
         InitializeButtons();
