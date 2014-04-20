@@ -248,73 +248,73 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     text_length++;
                     digitButton("0");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_one:
                     text_length++;
                     digitButton("1");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_two:
                     text_length++;
                     digitButton("2");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_three:
                     text_length++;
                     digitButton("3");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_four:
                     text_length++;
                     digitButton("4");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_five:
                     text_length++;
                     digitButton("5");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_six:
                     text_length++;
                     digitButton("6");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_seven:
                     text_length++;
                     digitButton("7");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_eight:
                     text_length++;
                     digitButton("8");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_nine:
                     text_length++;
                     digitButton("9");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_star:
                     text_length++;
                     digitButton("*");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_pound:
                     text_length++;
                     digitButton("#");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    return true;
+                    break;
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
@@ -325,12 +325,12 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                         text_length--;
                         scaleTextview(output1, "CLEAR");
                     }
-                    return true;
+                    break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
                     call(phone_number);
-                    return true;
+                    break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
@@ -344,7 +344,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     if (contact != null)
                         output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
 
-                    return true;
+                    break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
@@ -356,10 +356,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     if (contact != null)
                         output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
 
-                    return true;
-
-                default:
-                    return false;
+                    break;
             }
         }
         return false;
