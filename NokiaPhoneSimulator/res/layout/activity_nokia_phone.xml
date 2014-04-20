@@ -14,16 +14,15 @@
         <TextView
             android:id="@+id/textView_output1"
             style="@style/NokiaTextView"
-            android:layout_width="160dp"
-            android:layout_height="105dp"
-            android:layout_marginLeft="55px"
-            android:layout_marginRight="48px"
-            android:layout_marginTop="20px"
+            android:layout_width="128dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="45px"
+            android:layout_marginTop="25px"
             android:maxLength="80"
             android:maxLines="5"
             android:gravity="bottom"
             android:singleLine="false"
-            android:text="@string/dummy"
+            android:text="@string/menu"
             android:textSize="17dip" />
         
         <Button
