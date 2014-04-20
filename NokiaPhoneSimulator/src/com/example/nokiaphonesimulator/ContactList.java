@@ -66,8 +66,7 @@ public class ContactList
 
                         String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE, id };
 
-                        Cursor name_cursor = content_resolver.query(ContactsContract.Data.CONTENT_URI, // query
-                                                                                                       // destination
+                        Cursor name_cursor = content_resolver.query(ContactsContract.Data.CONTENT_URI, // query destination
                                 null, whereName, // query
                                 whereNameParams, // query variables
                                 null);

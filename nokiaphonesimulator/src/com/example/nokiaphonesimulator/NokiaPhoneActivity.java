@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.media.SoundPool;
 import android.media.AudioManager;
 
@@ -70,6 +73,28 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // loads contacts from phone
         contact_list = new ContactList(context);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.nokia_phone, menu); // Menu Resource, Menu
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                Toast.makeText(context, "No Settings!", Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void textViewInitialize(TextView tv)
@@ -146,7 +171,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         Button btn_up = (Button) this.findViewById(R.id.btn_up);
 
         btn_zero.setOnTouchListener(this);
-
         btn_one.setOnTouchListener(this);
         btn_two.setOnTouchListener(this);
         btn_three.setOnTouchListener(this);
@@ -217,142 +241,127 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
-            if (v.getId() == R.id.btn_zero)
+
+            switch (v.getId())
             {
-                text_length++;
-                digitButton("0");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
+                case R.id.btn_zero:
+                    text_length++;
+                    digitButton("0");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_one:
+                    text_length++;
+                    digitButton("1");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_two:
+                    text_length++;
+                    digitButton("2");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_three:
+                    text_length++;
+                    digitButton("3");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_four:
+                    text_length++;
+                    digitButton("4");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_five:
+                    text_length++;
+                    digitButton("5");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_six:
+                    text_length++;
+                    digitButton("6");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_seven:
+                    text_length++;
+                    digitButton("7");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_eight:
+                    text_length++;
+                    digitButton("8");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_nine:
+                    text_length++;
+                    digitButton("9");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_star:
+                    text_length++;
+                    digitButton("*");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_pound:
+                    text_length++;
+                    digitButton("#");
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    return true;
+
+                case R.id.btn_clear:
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    if (phone_number.length() > 0)
+                    {
+                        phone_number = phone_number.substring(0, phone_number.length() - 1);
+                        output1.setText(phone_number);
+                        text_length--;
+                        scaleTextview(output1, "CLEAR");
+                    }
+                    return true;
+
+                case R.id.btn_enter:
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    call(phone_number);
+                    return true;
+
+                case R.id.btn_down:
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+
+                    if (cursor < contact_list.size() - 1)
+                        cursor++;
+
+                    Contact contact = contact_list.getContact(cursor);
+                    output1.setText(contact.getPhoneNumber());
+
+                    if (contact != null)
+                        output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+
+                    return true;
+
+                case R.id.btn_up:
+                    sp.play(tastenton, 1, 1, 0, 0, 1);
+
+                    if (cursor > 0)
+                        cursor--;
+
+                    contact = contact_list.getContact(cursor);
+                    if (contact != null)
+                        output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+
+                    return true;
+
+                default:
+                    return false;
             }
-            else if (v.getId() == R.id.btn_one)
-            {
-                text_length++;
-                digitButton("1");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_two)
-            {
-                text_length++;
-                digitButton("2");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-            }
-
-            else if (v.getId() == R.id.btn_three)
-            {
-                text_length++;
-                digitButton("3");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_four)
-            {
-                text_length++;
-                digitButton("4");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_five)
-            {
-                text_length++;
-                digitButton("5");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-            }
-
-            else if (v.getId() == R.id.btn_six)
-            {
-                text_length++;
-                digitButton("6");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-            }
-
-            else if (v.getId() == R.id.btn_seven)
-            {
-                text_length++;
-                digitButton("7");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_eight)
-            {
-                text_length++;
-                digitButton("8");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_nine)
-            {
-                text_length++;
-                digitButton("9");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-            }
-
-            else if (v.getId() == R.id.btn_star)
-            {
-                text_length++;
-                digitButton("*");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-            }
-
-            else if (v.getId() == R.id.btn_pound)
-            {
-                text_length++;
-                digitButton("#");
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-            }
-
-            else if (v.getId() == R.id.btn_clear)
-            {
-
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-                if (phone_number.length() > 0)
-                {
-                    phone_number = phone_number.substring(0, phone_number.length() - 1);
-                    output1.setText(phone_number);
-                    text_length--;
-                    scaleTextview(output1, "CLEAR");
-                }
-
-            }
-
-            else if (v.getId() == R.id.btn_enter)
-            {
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-                call(phone_number);
-            }
-            else if (v.getId() == R.id.btn_down)
-            {
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-                if (cursor < contact_list.size() - 1)
-                    cursor++;
-
-                Contact contact = contact_list.getContact(cursor);
-                output1.setText(contact.getPhoneNumber());
-
-                if (contact != null)
-                    output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
-
-            }
-            else if (v.getId() == R.id.btn_up)
-            {
-
-                sp.play(tastenton, 1, 1, 0, 0, 1);
-
-                if (cursor > 0)
-                    cursor--;
-
-                Contact contact = contact_list.getContact(cursor);
-                if (contact != null)
-                    output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
-            }
-
         }
-
         return false;
     }
 
