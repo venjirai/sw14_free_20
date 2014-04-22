@@ -1,8 +1,11 @@
 package com.example.nokiaphonesimulator;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,6 +44,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     int[] sounds = new int[10];
     int tastenton;
+  
+    boolean first_time_startup;
+    Calendar date;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,6 +59,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // get application context for certain method calls
         context = this.getApplicationContext();
 
+        // set Date
+        date.getInstance();
+        
         // set control stream for NokiaPhoneActivity to music
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
@@ -72,9 +82,32 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // loads contacts from phone
         contact_list = new ContactList(context);
-
+        
+        // Load preferences
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        first_time_startup = preferences.getBoolean("first_time_startup", true);
+ 
+        if (first_time_startup)
+        {
+            FirstTimeInitialize();
+        }
+        else
+        {
+            
+        }
+            
     }
 
+    private void FirstTimeInitialize()
+    {    
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("first_time_startup", false);
+        editor.commit(); 
+    }
+
+    
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -108,6 +141,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
          */
 
     }
+    
+
 
     private void scaleTextview(TextView tv, String digit)
     {
@@ -213,7 +248,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         if (hasFocus)
         {
             new LayoutScaler();
-            LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
+            LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));         
+            
         }
     }
 
@@ -342,7 +378,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     output1.setText(contact.getPhoneNumber());
 
                     if (contact != null)
-                        output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+                        output1.setText(contact.getPhoneNumber() + "\n" +
+                                contact.getGivenName() + "\n" + contact.getFamilyName());
 
                     break;
 
@@ -354,7 +391,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
                     contact = contact_list.getContact(cursor);
                     if (contact != null)
-                        output1.setText(contact.getPhoneNumber() + contact.getGivenName() + contact.getFamilyName());
+                        output1.setText(contact.getPhoneNumber() + "\n" +
+                                contact.getGivenName() + "\n" + contact.getFamilyName());
 
                     break;
             }
