@@ -33,6 +33,7 @@
             android:gravity="bottom"
             android:singleLine="false"
             android:text="@string/menu"
+            android:textColor="#2C2328"
             android:textSize="17dip" />
         
         <Button
