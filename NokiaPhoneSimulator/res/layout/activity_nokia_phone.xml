@@ -12,6 +12,15 @@
         android:layout_gravity="center"
         android:background="@drawable/nokia_phone">
         
+        <ImageView 
+            android:id="@+id/battery_indicator"
+            android:src="@drawable/battery_full"
+            android:layout_width="11px"
+            android:layout_height="115px" 
+            android:layout_marginLeft="237px"
+            android:layout_marginTop="25px"
+            android:scaleType="fitCenter" />
+        
         <TextView
             android:id="@+id/textView_output1"
             style="@style/NokiaTextView"

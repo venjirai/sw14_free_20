@@ -38,6 +38,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private TextView output1;
 
     int displayWidth, displayHeight;
+    
+    BatteryIndicator battery_indicator;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -72,6 +74,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // loads contacts from phone
         contact_list = new ContactList(context);
+        
+        battery_indicator = new BatteryIndicator(this);
 
     }
 
