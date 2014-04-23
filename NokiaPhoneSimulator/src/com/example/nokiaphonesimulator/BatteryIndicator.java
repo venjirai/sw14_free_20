@@ -6,17 +6,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
-import android.util.Log;
 import android.widget.ImageView;
 
 public class BatteryIndicator extends BroadcastReceiver
-{
-    
+{    
     ImageView battery_indicator;
     BatteryUpdate battery_update;
     
     BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
     {        
+        super();
+        
         battery_indicator = (ImageView) nokia_phone_activity.findViewById(R.id.battery_indicator);
         
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -45,7 +45,6 @@ public class BatteryIndicator extends BroadcastReceiver
             if (currentLevel >= 0 && scale > 0)
             {
                 level = (currentLevel * 100) / scale;
-                Log.d("battery", "battery: " + level);  
             }           
             
             if(level > 79)

@@ -66,29 +66,35 @@ public final class R {
         public static final int img_btn_zero=0x7f020034;
         public static final int img_btn_zero_pressed=0x7f020035;
         public static final int nokia_phone=0x7f020036;
+        public static final int signal_high=0x7f020037;
+        public static final int signal_low=0x7f020038;
+        public static final int signal_max=0x7f020039;
+        public static final int signal_medium=0x7f02003a;
+        public static final int signal_min=0x7f02003b;
     }
     public static final class id {
-        public static final int action_settings=0x7f080014;
-        public static final int battery_indicator=0x7f080002;
-        public static final int btn_clear=0x7f080004;
-        public static final int btn_down=0x7f080005;
-        public static final int btn_eight=0x7f08000f;
-        public static final int btn_enter=0x7f080006;
-        public static final int btn_five=0x7f08000c;
-        public static final int btn_four=0x7f08000b;
-        public static final int btn_nine=0x7f080010;
-        public static final int btn_one=0x7f080008;
-        public static final int btn_pound=0x7f080013;
-        public static final int btn_seven=0x7f08000e;
-        public static final int btn_six=0x7f08000d;
-        public static final int btn_star=0x7f080011;
-        public static final int btn_three=0x7f08000a;
-        public static final int btn_two=0x7f080009;
-        public static final int btn_up=0x7f080007;
-        public static final int btn_zero=0x7f080012;
+        public static final int action_settings=0x7f080015;
+        public static final int battery_indicator=0x7f080003;
+        public static final int btn_clear=0x7f080005;
+        public static final int btn_down=0x7f080006;
+        public static final int btn_eight=0x7f080010;
+        public static final int btn_enter=0x7f080007;
+        public static final int btn_five=0x7f08000d;
+        public static final int btn_four=0x7f08000c;
+        public static final int btn_nine=0x7f080011;
+        public static final int btn_one=0x7f080009;
+        public static final int btn_pound=0x7f080014;
+        public static final int btn_seven=0x7f08000f;
+        public static final int btn_six=0x7f08000e;
+        public static final int btn_star=0x7f080012;
+        public static final int btn_three=0x7f08000b;
+        public static final int btn_two=0x7f08000a;
+        public static final int btn_up=0x7f080008;
+        public static final int btn_zero=0x7f080013;
         public static final int container=0x7f080000;
         public static final int contents=0x7f080001;
-        public static final int textView_output1=0x7f080003;
+        public static final int signal_indicator=0x7f080002;
+        public static final int textView_output1=0x7f080004;
     }
     public static final class layout {
         public static final int activity_nokia_phone=0x7f030000;

@@ -43,6 +43,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     int displayWidth, displayHeight;
     
     BatteryIndicator battery_indicator;
+    SignalIndicator signal_indicator;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -86,6 +87,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         contact_list = new ContactList(context);
         
         battery_indicator = new BatteryIndicator(this);
+        signal_indicator = new SignalIndicator(this);
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);

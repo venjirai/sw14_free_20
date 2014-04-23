@@ -13,6 +13,15 @@
         android:background="@drawable/nokia_phone">
         
         <ImageView 
+            android:id="@+id/signal_indicator"
+            android:src="@drawable/signal_max"
+            android:layout_width="11px"
+            android:layout_height="115px" 
+            android:layout_marginLeft="34px"
+            android:layout_marginTop="25px"
+            android:scaleType="fitCenter" />
+        
+        <ImageView 
             android:id="@+id/battery_indicator"
             android:src="@drawable/battery_full"
             android:layout_width="11px"
