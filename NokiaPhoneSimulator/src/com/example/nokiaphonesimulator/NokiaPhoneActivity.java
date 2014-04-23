@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -38,12 +39,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private SoundPool sp;
 
-    private TextView output1;
+    private TextView action;
+    private TextView menu_titel;
 
     int displayWidth, displayHeight;
     
     BatteryIndicator battery_indicator;
     SignalIndicator signal_indicator;
+    DisplayIO display_io;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -78,16 +81,19 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         InitializeButtons();
 
         Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
-        output1 = (TextView) this.findViewById(R.id.textView_output1);
-        output1.setTypeface(font);
+        action = (TextView) this.findViewById(R.id.action);
+        action.setTypeface(font);
+        menu_titel = (TextView) this.findViewById(R.id.titel);
+        menu_titel.setTypeface(font);
 
-        textViewInitialize(output1);
+        textViewInitialize(action);
 
         // loads contacts from phone
         contact_list = new ContactList(context);
         
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
+        display_io = new DisplayIO(this);
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
@@ -155,6 +161,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // to do: what happens when app is minimized/hidden?
         // (stop services, threads, listeners)
+        
+        // pause BatteryIndicator
+        this.unregisterReceiver(battery_indicator);
     }
 
     @Override
@@ -164,6 +173,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // to do: what happens when app comes back in front?
         // (start services, threads, listeners)
+        
+        // resume BatteryIndicator
+        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        this.registerReceiver(battery_indicator, batteryLevelFilter);
     }
     
 
@@ -284,13 +297,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         else
             text_length--;
 
-        output1.setText(phone_number);
-        scaleTextview(output1, digit);
+        action.setText(phone_number);
+        scaleTextview(action, digit);
     }
 
     private void call(String phone_number)
     {
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + output1.getText()));
+        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + action.getText()));
         startActivity(callIntent);
     }
 
@@ -377,46 +390,22 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    if (phone_number.length() > 0)
-                    {
-                        phone_number = phone_number.substring(0, phone_number.length() - 1);
-                        output1.setText(phone_number);
-                        text_length--;
-                        scaleTextview(output1, "CLEAR");
-                    }
+                    display_io.clear();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    call(phone_number);
+                    display_io.enter();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-
-                    if (cursor < contact_list.size() - 1)
-                        cursor++;
-
-                    Contact contact = contact_list.getContact(cursor);
-                    output1.setText(contact.getPhoneNumber());
-
-                    if (contact != null)
-                        output1.setText(contact.getPhoneNumber() + "\n" +
-                                contact.getGivenName() + "\n" + contact.getFamilyName());
-
+                    display_io.down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-
-                    if (cursor > 0)
-                        cursor--;
-
-                    contact = contact_list.getContact(cursor);
-                    if (contact != null)
-                        output1.setText(contact.getPhoneNumber() + "\n" +
-                                contact.getGivenName() + "\n" + contact.getFamilyName());
-
+                    display_io.up();
                     break;
             }
         }

@@ -15,8 +15,7 @@ public class LayoutScaler
         LayoutScaler.scaleContents(rootView, container, rootView.getWidth(), rootView.getHeight());
     }
 
-    // Scales the contents of the given view so that it completely fills the
-    // given
+    // Scales the contents of the given view so that it completely fills the given
     // container on one axis (that is, we're scaling isotropically).
     public static void scaleContents(View rootView, View container, int width, int height)
     {
@@ -30,8 +29,7 @@ public class LayoutScaler
         scaleViewAndChildren(rootView, scale, 0);
     }
 
-    // Scale the given view, its contents, and all of its children by the given
-    // factor.
+    // Scale the given view, its contents, and all of its children by the given factor.
     public static void scaleViewAndChildren(View root, float scale, int canary)
     {
         // Retrieve the view's layout information

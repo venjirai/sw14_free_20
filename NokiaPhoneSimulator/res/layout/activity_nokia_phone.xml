@@ -30,20 +30,36 @@
             android:layout_marginTop="25px"
             android:scaleType="fitCenter" />
         
-        <TextView
-            android:id="@+id/textView_output1"
-            style="@style/NokiaTextView"
-            android:layout_width="128dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="45px"
-            android:layout_marginTop="25px"
-            android:maxLength="80"
-            android:maxLines="5"
-            android:gravity="bottom"
-            android:singleLine="false"
-            android:text="@string/menu"
-            android:textColor="#2C2328"
-            android:textSize="17dip" />
+        <RelativeLayout
+            android:id="@+id/display"
+		        android:layout_width="216px"
+		        android:layout_height="150px"
+		        android:layout_marginLeft="32px"
+            android:layout_marginTop="25px">
+        
+            <TextView
+                android:id="@+id/titel"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:gravity="center_horizontal"
+                android:layout_alignParentTop="true"
+                android:singleLine="true"
+                android:text="@string/menu"
+                android:textColor="#2C2328"
+                android:textSize="30dip"
+                android:visibility="invisible" />
+            
+	          <TextView
+		            android:id="@+id/action"
+		            android:layout_width="fill_parent"
+		            android:layout_height="30px"
+		            android:gravity="center_horizontal"
+		            android:layout_alignParentBottom="true"
+		            android:singleLine="true"
+		            android:text="@string/menu"
+		            android:textColor="#2C2328" />
+        
+        </RelativeLayout>
         
         <Button
 	        android:id="@+id/btn_clear"

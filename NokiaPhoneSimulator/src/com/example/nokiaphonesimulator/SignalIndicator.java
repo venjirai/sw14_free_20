@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 public class SignalIndicator extends PhoneStateListener
 {
-    ImageView signal_indicator;
+    private ImageView signal_indicator;
 
     SignalIndicator(NokiaPhoneActivity nokia_phone_activity)
     {

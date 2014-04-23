@@ -10,8 +10,8 @@ import android.widget.ImageView;
 
 public class BatteryIndicator extends BroadcastReceiver
 {
-    ImageView battery_indicator;
-    BatteryUpdate battery_update;
+    private ImageView battery_indicator;
+    private BatteryUpdate battery_update;
 
     BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
     {

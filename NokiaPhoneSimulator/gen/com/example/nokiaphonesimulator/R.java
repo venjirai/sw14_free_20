@@ -74,28 +74,30 @@ public final class R {
         public static final int signal_min=0x7f02003c;
     }
     public static final class id {
-        public static final int action_settings=0x7f080015;
+        public static final int action=0x7f080006;
+        public static final int action_settings=0x7f080017;
         public static final int battery_indicator=0x7f080003;
-        public static final int btn_clear=0x7f080005;
-        public static final int btn_down=0x7f080006;
-        public static final int btn_eight=0x7f080010;
-        public static final int btn_enter=0x7f080007;
-        public static final int btn_five=0x7f08000d;
-        public static final int btn_four=0x7f08000c;
-        public static final int btn_nine=0x7f080011;
-        public static final int btn_one=0x7f080009;
-        public static final int btn_pound=0x7f080014;
-        public static final int btn_seven=0x7f08000f;
-        public static final int btn_six=0x7f08000e;
-        public static final int btn_star=0x7f080012;
-        public static final int btn_three=0x7f08000b;
-        public static final int btn_two=0x7f08000a;
-        public static final int btn_up=0x7f080008;
-        public static final int btn_zero=0x7f080013;
+        public static final int btn_clear=0x7f080007;
+        public static final int btn_down=0x7f080008;
+        public static final int btn_eight=0x7f080012;
+        public static final int btn_enter=0x7f080009;
+        public static final int btn_five=0x7f08000f;
+        public static final int btn_four=0x7f08000e;
+        public static final int btn_nine=0x7f080013;
+        public static final int btn_one=0x7f08000b;
+        public static final int btn_pound=0x7f080016;
+        public static final int btn_seven=0x7f080011;
+        public static final int btn_six=0x7f080010;
+        public static final int btn_star=0x7f080014;
+        public static final int btn_three=0x7f08000d;
+        public static final int btn_two=0x7f08000c;
+        public static final int btn_up=0x7f08000a;
+        public static final int btn_zero=0x7f080015;
         public static final int container=0x7f080000;
         public static final int contents=0x7f080001;
+        public static final int display=0x7f080004;
         public static final int signal_indicator=0x7f080002;
-        public static final int textView_output1=0x7f080004;
+        public static final int titel=0x7f080005;
     }
     public static final class layout {
         public static final int activity_nokia_phone=0x7f030000;
@@ -119,7 +121,21 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int calculator=0x7f05000d;
+        public static final int call_divert=0x7f05000b;
+        public static final int call_register=0x7f050008;
+        public static final int chat=0x7f050007;
+        public static final int clock=0x7f05000f;
+        public static final int games=0x7f05000c;
         public static final int menu=0x7f050002;
+        public static final int messages=0x7f050006;
+        public static final int ok=0x7f050003;
+        public static final int phone_book=0x7f050005;
+        public static final int profiles=0x7f050010;
+        public static final int reminders=0x7f05000e;
+        public static final int select=0x7f050004;
+        public static final int settings=0x7f05000a;
+        public static final int tones=0x7f050009;
     }
     public static final class style {
         /** 
@@ -148,6 +164,5 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
-        public static final int NokiaTextView=0x7f060002;
     }
 }
