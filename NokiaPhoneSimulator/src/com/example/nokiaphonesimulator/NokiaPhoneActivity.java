@@ -57,7 +57,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     boolean first_time_startup;
     Calendar date;
     
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
