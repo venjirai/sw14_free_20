@@ -47,7 +47,7 @@
                 android:text="@string/menu"
                 android:textColor="#2C2328"
                 android:textSize="30dip"
-                android:visibility="invisible" />
+                android:visibility="gone" />
             
 	          <TextView
 		            android:id="@+id/action"

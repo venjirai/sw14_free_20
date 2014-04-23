@@ -2,6 +2,9 @@ package com.example.nokiaphonesimulator;
 
 import java.util.Calendar;
 
+import com.example.menu.NokiaScreen;
+import com.example.menu.StartScreen;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -42,11 +45,11 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private TextView action;
     private TextView menu_titel;
 
-    int displayWidth, displayHeight;
+    private int displayWidth, displayHeight;
     
-    BatteryIndicator battery_indicator;
-    SignalIndicator signal_indicator;
-    DisplayIO display_io;
+    private BatteryIndicator battery_indicator;
+    private SignalIndicator signal_indicator;
+    public NokiaScreen screen;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -93,7 +96,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
-        display_io = new DisplayIO(this);
+        screen = new StartScreen(this);
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
@@ -390,22 +393,22 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    display_io.clear();
+                    screen.clear();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    display_io.enter();
+                    screen.enter();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    display_io.down();
+                    screen.down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    display_io.up();
+                    screen.up();
                     break;
             }
         }
