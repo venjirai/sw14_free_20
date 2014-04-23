@@ -10,7 +10,7 @@
         android:layout_width="281px"
         android:layout_height="539px"
         android:layout_gravity="center"
-        android:background="@drawable/nokia_phone">
+        android:background="@drawable/nokia_phone_light">
         
         <ImageView 
             android:id="@+id/signal_indicator"
