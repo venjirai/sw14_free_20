@@ -148,7 +148,24 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     }
     
+    @Override
+    public void onPause()
+    {
+        super.onPause(); // Always call the superclass method first
 
+        // to do: what happens when app is minimized/hidden?
+        // (stop services, threads, listeners)
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume(); // Always call the superclass method first
+
+        // to do: what happens when app comes back in front?
+        // (start services, threads, listeners)
+    }
+    
 
     private void scaleTextview(TextView tv, String digit)
     {
