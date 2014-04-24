@@ -4,14 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
-import android.os.BatteryManager;
+import android.util.Log;
 import android.widget.ImageView;
 
 public class BatteryIndicator extends BroadcastReceiver
 {
     private ImageView battery_indicator;
-    private BatteryUpdate battery_update;
+    private int level_old = -1;
 
     BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
     {
@@ -21,66 +20,44 @@ public class BatteryIndicator extends BroadcastReceiver
 
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         nokia_phone_activity.registerReceiver(this, batteryLevelFilter);
-
-        battery_update = new BatteryUpdate();
     }
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        battery_update.doInBackground(intent);
-    }
-
-    private class BatteryUpdate extends AsyncTask<Intent, Void, Void>
-    {
-
-        @Override
-        protected Void doInBackground(Intent... intents)
+        if (intent.getAction().equalsIgnoreCase(Intent.ACTION_BATTERY_CHANGED))
         {
-            Intent intent = intents[0];
+            int level_new = intent.getIntExtra("level", 0) / 20;
 
-            int currentLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-            int level = -1;
-            if (currentLevel >= 0 && scale > 0)
+            Log.d("BatteryIndicator", "battery level changed: " + String.valueOf(level_new));
+
+            if (level_new != level_old)
             {
-                level = (currentLevel * 100) / scale;
+                if (level_new >= 4)
+                {
+                    battery_indicator.setImageResource(R.drawable.battery_full);
+                }
+                else if (level_new == 3)
+                {
+                    battery_indicator.setImageResource(R.drawable.battery_high);
+                }
+                else if (level_new == 2)
+                {
+                    battery_indicator.setImageResource(R.drawable.battery_medium);
+                }
+                else if (level_new == 1)
+                {
+                    battery_indicator.setImageResource(R.drawable.battery_low);
+                }
+                else
+                {
+                    battery_indicator.setImageResource(R.drawable.battery_empty);
+                }
+                
+                Log.d("BatteryIndicator", "new battery drawable set");
             }
 
-            if (level > 79)
-            {
-                battery_indicator.setImageResource(R.drawable.battery_full);
-            }
-            else if (level > 59)
-            {
-                battery_indicator.setImageResource(R.drawable.battery_high);
-            }
-            else if (level > 39)
-            {
-                battery_indicator.setImageResource(R.drawable.battery_medium);
-            }
-            else if (level > 19)
-            {
-                battery_indicator.setImageResource(R.drawable.battery_low);
-            }
-            else
-            {
-                battery_indicator.setImageResource(R.drawable.battery_empty);
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute()
-        {
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values)
-        {
-
+            level_old = level_new;
         }
     }
 }
