@@ -53,11 +53,11 @@ public class BatteryIndicator extends BroadcastReceiver
                 {
                     battery_indicator.setImageResource(R.drawable.battery_empty);
                 }
+
+                level_old = level_new;
                 
                 Log.d("BatteryIndicator", "new battery drawable set");
             }
-
-            level_old = level_new;
         }
     }
 }

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.ImageView;
 
 public class SignalIndicator extends PhoneStateListener
 {
     private ImageView signal_indicator;
+    private int strength_old = -1;
 
     SignalIndicator(NokiaPhoneActivity nokia_phone_activity)
     {
@@ -25,28 +27,36 @@ public class SignalIndicator extends PhoneStateListener
         super.onSignalStrengthsChanged(signalStrength);
 
         // get the signal strength (a value between 0 and 31 or 99 no signal / error)
-        int strengthAmplitude = signalStrength.getGsmSignalStrength();
+        int strength_new = signalStrength.getGsmSignalStrength() * 5 / 31;
 
-        if (strengthAmplitude > 25) // || strengthAmplitude == 99
+        Log.d("SignalIndicator", "signal strength changed: " + String.valueOf(strength_new));
+
+        if (strength_new != strength_old)
         {
-            signal_indicator.setImageResource(R.drawable.signal_max);
-        }
-        else if (strengthAmplitude > 18)
-        {
-            signal_indicator.setImageResource(R.drawable.signal_high);
-        }
-        else if (strengthAmplitude > 12)
-        {
-            signal_indicator.setImageResource(R.drawable.signal_medium);
-        }
-        else if (strengthAmplitude > 6)
-        {
-            signal_indicator.setImageResource(R.drawable.signal_low);
-        }
-        else
-        {
-            signal_indicator.setImageResource(R.drawable.signal_min);
+            if (strength_new >= 4)
+            {
+                signal_indicator.setImageResource(R.drawable.signal_max);
+            }
+            else if (strength_new == 3)
+            {
+                signal_indicator.setImageResource(R.drawable.signal_high);
+            }
+            else if (strength_new == 2)
+            {
+                signal_indicator.setImageResource(R.drawable.signal_medium);
+            }
+            else if (strength_new == 1)
+            {
+                signal_indicator.setImageResource(R.drawable.signal_low);
+            }
+            else
+            {
+                signal_indicator.setImageResource(R.drawable.signal_min);
+            }
+            
+            strength_old = strength_new;
+            
+            Log.d("SignalIndicator", "new signal drawable set");
         }
     }
-
 }
