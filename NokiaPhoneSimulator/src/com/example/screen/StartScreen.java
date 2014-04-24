@@ -100,16 +100,16 @@ public class StartScreen extends NokiaScreen
     }
 
     @Override
-    public int clear()
+    public void clear()
     {
-        return Screen.START_SCREEN;    
+        next_screen_id = ScreenIds.START_SCREEN;    
     }
 
     @Override
-    public int enter()
+    public void enter()
     {
         this.hide();
-        return Screen.MAIN_MENU;     
+        next_screen_id = ScreenIds.MAIN_MENU;     
     }
 
     @Override
@@ -142,9 +142,8 @@ public class StartScreen extends NokiaScreen
     
 
     @Override
-    public void show(int origin)
+    public void show()
     {
-        this.origin = origin;
         action.setText(action_text);
         battery_indicator.setVisibility(View.VISIBLE);
         signal_indicator.setVisibility(View.VISIBLE);

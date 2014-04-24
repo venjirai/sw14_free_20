@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
-import com.example.screen.Screen;
+import com.example.screen.ScreenIds;
 import com.example.screen.StartScreen;
 
 import android.app.Activity;
@@ -56,8 +56,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     
     
     private List <NokiaScreen> screen;
-    private int next_screen;
-    private int previous_screen;
+    private int next_screen_id;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -119,9 +118,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         initializeMenus();
         
         // Set screen
-        next_screen = Screen.START_SCREEN;
-        previous_screen = next_screen;
-        screen.get(next_screen).show(previous_screen);
+        next_screen_id = ScreenIds.START_SCREEN;
+        screen.get(next_screen_id).show();
         
         
         if (first_time_startup)
@@ -324,97 +322,97 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN)
-        {
+        {          
             
-            previous_screen = next_screen;
-
             switch (v.getId())
             {
                 case R.id.btn_zero:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).zero();
+                    screen.get(next_screen_id).zero();
                     break;
 
                 case R.id.btn_one:
-                    text_length++;
-                    digitButton("1");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).one();
                     break;
 
                 case R.id.btn_two:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).two();
+                    screen.get(next_screen_id).two();
                     break;
 
                 case R.id.btn_three:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).three();
+                    screen.get(next_screen_id).three();
                     break;
 
                 case R.id.btn_four:
-                    text_length++;
-                    digitButton("4");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).four();
                     break;
 
                 case R.id.btn_five:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).five();
+                    screen.get(next_screen_id).five();
                     break;
 
                 case R.id.btn_six:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).six();
+                    screen.get(next_screen_id).six();
                     break;
 
                 case R.id.btn_seven:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).seven();
+                    screen.get(next_screen_id).seven();
                     break;
 
                 case R.id.btn_eight:
                     text_length++;
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).eight();
+                    screen.get(next_screen_id).eight();
                     break;
 
                 case R.id.btn_nine:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).nine();
+                    screen.get(next_screen_id).nine();
                     break;
 
                 case R.id.btn_star:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).star();
+                    screen.get(next_screen_id).star();
                     break;
 
                 case R.id.btn_pound:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).pound();
+                    screen.get(next_screen_id).pound();
                     break;
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    next_screen = screen.get(next_screen).clear();
+                    screen.get(next_screen_id).clear();
+                    next_screen_id = screen.get(next_screen_id).getNextScreenId();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    next_screen = screen.get(next_screen).enter();
+                    screen.get(next_screen_id).enter();
+                    next_screen_id = screen.get(next_screen_id).getNextScreenId();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).down();
+                    screen.get(next_screen_id).down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.get(next_screen).up();
+                    screen.get(next_screen_id).up();
                     break;
             }
-                    
-                screen.get(next_screen).show(previous_screen);
+              
+                
+                screen.get(next_screen_id).show();  
+               
         }
         return false;
     }

@@ -1,15 +1,14 @@
 package com.example.screen;
 
 import java.util.ArrayList;
-
-import android.view.View;
+import java.util.List;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 
 public class MainMenu extends NokiaScreen
 {
-    private ArrayList<String> menu_titles;
+    private List<String> menu_titles;
     private int position = 0;
     
     public MainMenu(NokiaPhoneActivity nokia_phone)
@@ -114,17 +113,16 @@ public class MainMenu extends NokiaScreen
     }
 
     @Override
-    public int clear()
+    public void clear()
     {
         this.hide();
-        return Screen.START_SCREEN;
+        next_screen_id = ScreenIds.START_SCREEN;
     }
 
     @Override
-    public int enter()
+    public void enter()
     {
-        return 0;
-        
+        next_screen_id = ScreenIds.MAIN_MENU;
     }
 
     @Override
@@ -162,10 +160,8 @@ public class MainMenu extends NokiaScreen
     
 
     @Override
-    public void show(int origin)
-    {
-        this.origin = origin;
-        
+    public void show()
+    {        
         action.setText(action_text);
         title.setText(menu_titles.get(position));      
     }

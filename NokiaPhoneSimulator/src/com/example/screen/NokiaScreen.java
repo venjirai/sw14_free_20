@@ -11,6 +11,7 @@ public abstract class NokiaScreen
 {
     protected NokiaPhoneActivity nokia_phone;
     protected int origin;
+    protected int next_screen_id;
     
     protected TextView action;
     protected TextView title;
@@ -29,8 +30,8 @@ public abstract class NokiaScreen
     abstract public void eight();
     abstract public void nine();
     
-    abstract public int clear();
-    abstract public int enter();
+    abstract public void clear();
+    abstract public void enter();
     
     abstract public void pound();
     abstract public void star();
@@ -38,7 +39,7 @@ public abstract class NokiaScreen
     abstract public void down();
     abstract public void up();
      
-    abstract public void show(int origin);
+    abstract public void show();
     abstract public void hide();
 
     protected void init()
@@ -50,4 +51,11 @@ public abstract class NokiaScreen
         action.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
     }
+    
+    public int getNextScreenId()
+    {
+        return next_screen_id;
+    }
+        
+    
 }
