@@ -56,7 +56,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     
     
     private List <NokiaScreen> screen;
-    private int current_screen;
+    private int next_screen;
+    private int previous_screen;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -118,8 +119,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         initializeMenus();
         
         // Set screen
-        current_screen = Screen.START_SCREEN;
-        screen.get(current_screen).show();
+        next_screen = Screen.START_SCREEN;
+        previous_screen = next_screen;
+        screen.get(next_screen).show(previous_screen);
         
         
         if (first_time_startup)
@@ -323,13 +325,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {
+            
+            previous_screen = next_screen;
 
             switch (v.getId())
             {
                 case R.id.btn_zero:
-                    text_length++;
-                    digitButton("0");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).zero();
                     break;
 
                 case R.id.btn_one:
@@ -339,15 +342,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     break;
 
                 case R.id.btn_two:
-                    text_length++;
-                    digitButton("2");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).two();
                     break;
 
                 case R.id.btn_three:
-                    text_length++;
-                    digitButton("3");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).three();
                     break;
 
                 case R.id.btn_four:
@@ -357,68 +358,63 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     break;
 
                 case R.id.btn_five:
-                    text_length++;
-                    digitButton("5");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).five();
                     break;
 
                 case R.id.btn_six:
-                    text_length++;
-                    digitButton("6");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).six();
                     break;
 
                 case R.id.btn_seven:
-                    text_length++;
-                    digitButton("7");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).seven();
                     break;
 
                 case R.id.btn_eight:
                     text_length++;
-                    digitButton("8");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).eight();
                     break;
 
                 case R.id.btn_nine:
-                    text_length++;
-                    digitButton("9");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).nine();
                     break;
 
                 case R.id.btn_star:
-                    text_length++;
-                    digitButton("*");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).star();
                     break;
 
                 case R.id.btn_pound:
-                    text_length++;
-                    digitButton("#");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen).pound();
                     break;
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    //current_screen.clear();
+                    next_screen = screen.get(next_screen).clear();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    //start_screen.hide();
-                    //main_menu.show();
+                    next_screen = screen.get(next_screen).enter();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    //current_screen.down();
+                    screen.get(next_screen).down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    //current_screen.up();
+                    screen.get(next_screen).up();
                     break;
             }
+                    
+                screen.get(next_screen).show(previous_screen);
         }
         return false;
     }

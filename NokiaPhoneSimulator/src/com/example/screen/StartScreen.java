@@ -23,7 +23,7 @@ public class StartScreen extends NokiaScreen
     public void init()
     {
         super.init();
-             
+        action_text = "Menu";     
         this.battery_indicator = (ImageView) nokia_phone.findViewById(R.id.battery_indicator);
         this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
         
@@ -100,16 +100,16 @@ public class StartScreen extends NokiaScreen
     }
 
     @Override
-    public void clear()
+    public int clear()
     {
-        // TODO Auto-generated method stub
-        
+        return Screen.START_SCREEN;    
     }
 
     @Override
-    public void enter()
+    public int enter()
     {
-       // nokia_phone.screen = new MainMenu(nokia_phone);       
+        this.hide();
+        return Screen.MAIN_MENU;     
     }
 
     @Override
@@ -125,20 +125,39 @@ public class StartScreen extends NokiaScreen
         // TODO Auto-generated method stub
         
     }
+    
+    @Override
+    public void pound()
+    {
+        // TODO Auto-generated method stub
+        
+    }
 
     @Override
-    public void show()
+    public void star()
     {
-        action.setText("Menu");
+        // TODO Auto-generated method stub
+        
+    }
+    
+
+    @Override
+    public void show(int origin)
+    {
+        this.origin = origin;
+        action.setText(action_text);
         battery_indicator.setVisibility(View.VISIBLE);
         signal_indicator.setVisibility(View.VISIBLE);
     }
-
+    
     @Override
     public void hide()
-    {      
+    {
         battery_indicator.setVisibility(View.GONE);
         signal_indicator.setVisibility(View.GONE);
+       
     }
+
+
 
 }

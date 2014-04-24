@@ -10,9 +10,13 @@ import com.example.nokiaphonesimulator.R;
 public abstract class NokiaScreen
 {
     protected NokiaPhoneActivity nokia_phone;
+    protected int origin;
     
     protected TextView action;
     protected TextView title;
+    
+    protected String action_text;
+    protected String title_text;
     
     abstract public void zero();
     abstract public void one();
@@ -25,18 +29,20 @@ public abstract class NokiaScreen
     abstract public void eight();
     abstract public void nine();
     
-    abstract public void clear();
-    abstract public void enter();
+    abstract public int clear();
+    abstract public int enter();
+    
+    abstract public void pound();
+    abstract public void star();
     
     abstract public void down();
     abstract public void up();
-    
-    abstract public void show();
+     
+    abstract public void show(int origin);
     abstract public void hide();
-    
-    // needs update if layout changes!
+
     protected void init()
-    {
+    {      
         // get the display elements        
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.title = (TextView) nokia_phone.findViewById(R.id.title);
