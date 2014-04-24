@@ -155,15 +155,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         switch (item.getItemId())
         {
             case R.id.action_settings:
-                writeText(output1, "12345678123456781195");
-                //Toast.makeText(context, "No Settings!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "No Settings!", Toast.LENGTH_SHORT).show();
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-<<<<<<< HEAD
+
     
     @Override
     public void onPause()
@@ -181,8 +180,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     public void onResume()
     {
         super.onResume(); // Always call the superclass method first
-=======
-
+        // to do: what happens when app comes back in front?
+        // (start services, threads, listeners)
+        
+        // resume BatteryIndicator
+        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        this.registerReceiver(battery_indicator, batteryLevelFilter);
+    }
     
     private void writeText(TextView output, String text)
     {
@@ -197,27 +201,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         if (lines > 2)
             output.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);    
     }
-    
-    
-    private void textViewInitialize(TextView tv)
-    {
-        if (displayWidth == 480 && displayHeight == 800)
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-             
-        /*
-         * Add more resolutions here else if (displayWidth = && displayHeight ==
-         * ) tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
-         */
->>>>>>> 9a3344d13512700402a9abfe47361d81d1068850
-
-        // to do: what happens when app comes back in front?
-        // (start services, threads, listeners)
-        
-        // resume BatteryIndicator
-        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        this.registerReceiver(battery_indicator, batteryLevelFilter);
-    }
-    
+      
 
     private void scaleTextview(TextView tv, String digit)
     {
