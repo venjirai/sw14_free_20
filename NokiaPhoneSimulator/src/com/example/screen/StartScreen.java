@@ -1,10 +1,16 @@
 package com.example.screen;
 
 import android.view.View;
+import android.widget.ImageView;
+
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
+import com.example.nokiaphonesimulator.R;
 
 public class StartScreen extends NokiaScreen 
 {    
+    protected ImageView battery_indicator;
+    protected ImageView signal_indicator;
+    
     public StartScreen(NokiaPhoneActivity nokia_phone)
     {
         super();
@@ -17,14 +23,10 @@ public class StartScreen extends NokiaScreen
     public void init()
     {
         super.init();
+             
+        this.battery_indicator = (ImageView) nokia_phone.findViewById(R.id.battery_indicator);
+        this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
         
-        // set visible elements
-        battery_indicator.setVisibility(View.VISIBLE);
-        signal_indicator.setVisibility(View.VISIBLE);
-        action.setVisibility(View.VISIBLE);
-        
-        // set content
-        action.setText("Menu");
     }
     
     @Override
@@ -107,7 +109,7 @@ public class StartScreen extends NokiaScreen
     @Override
     public void enter()
     {
-        nokia_phone.screen = new MainMenu(nokia_phone);       
+       // nokia_phone.screen = new MainMenu(nokia_phone);       
     }
 
     @Override
@@ -122,6 +124,21 @@ public class StartScreen extends NokiaScreen
     {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public void show()
+    {
+        action.setText("Menu");
+        battery_indicator.setVisibility(View.VISIBLE);
+        signal_indicator.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hide()
+    {      
+        battery_indicator.setVisibility(View.GONE);
+        signal_indicator.setVisibility(View.GONE);
     }
 
 }

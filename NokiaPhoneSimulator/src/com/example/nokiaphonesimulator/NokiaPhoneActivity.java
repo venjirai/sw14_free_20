@@ -1,8 +1,12 @@
 package com.example.nokiaphonesimulator;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
+import com.example.screen.Screen;
 import com.example.screen.StartScreen;
 
 import android.app.Activity;
@@ -49,7 +53,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
-    public NokiaScreen screen;
+    
+    
+    private List <NokiaScreen> screen;
+    private int current_screen;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -101,14 +108,20 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
-        
-        // Set screen
-        screen = new StartScreen(this);
+
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         first_time_startup = preferences.getBoolean("first_time_startup", true);
- 
+        
+        // Initialize menus
+        initializeMenus();
+        
+        // Set screen
+        current_screen = Screen.START_SCREEN;
+        screen.get(current_screen).show();
+        
+        
         if (first_time_startup)
         {
             FirstTimeInitialize();
@@ -117,8 +130,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         {
             
         }
-            
-        
+    }
+
+    private void initializeMenus()
+    {
+        screen = new ArrayList<NokiaScreen>();
+        screen.add(new StartScreen(this));
+        screen.add(new MainMenu(this));
     }
 
     private void getFontSizes()
@@ -186,22 +204,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // resume BatteryIndicator
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         this.registerReceiver(battery_indicator, batteryLevelFilter);
-    }
-    
-    private void writeText(TextView output, String text)
-    {
-        output.setText(text);
-        output.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
-        output.invalidate();
-        
-        int lines = output.getLineCount();
-        
-        output.setText("lines=" + lines);
-        
-        if (lines > 2)
-            output.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);    
-    }
-      
+    }      
 
     private void scaleTextview(TextView tv, String digit)
     {
@@ -220,28 +223,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         {
             if (chars_over_small == 0)
                 chars_over_small = 1;
-
             text_big = false;
-
-            if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         }
-
         else if (lines <= 2 && digit == "CLEAR" && chars_over_small == 0)
         {
             text_big = true;
-
-            if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-
-            /*
-             * Add more resolutions here else if (displayWidth = &&
-             * displayHeight == )
-             * tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
-             */
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
         }
-
     }
 
     private void InitializeButtons()
@@ -411,22 +400,23 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.clear();
+                    //current_screen.clear();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.enter();
+                    //start_screen.hide();
+                    //main_menu.show();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.down();
+                    //current_screen.down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.up();
+                    //current_screen.up();
                     break;
             }
         }

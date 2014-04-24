@@ -39,13 +39,7 @@ public class MainMenu extends NokiaScreen
     {
         super.init();
         
-        // set visible elements
-        action.setVisibility(View.VISIBLE);
-        title.setVisibility(View.VISIBLE);
-        
-        // set content
-        action.setText("Select");
-        title.setText(menu_titles.get(0));
+
     }
 
     @Override
@@ -121,7 +115,7 @@ public class MainMenu extends NokiaScreen
     @Override
     public void clear()
     {
-        nokia_phone.screen = new StartScreen(nokia_phone);
+        //nokia_phone.screen = new StartScreen(nokia_phone);
     }
 
     @Override
@@ -164,6 +158,22 @@ public class MainMenu extends NokiaScreen
                 break;
             }
         }        
+    }
+
+    @Override
+    public void show()
+    {
+        action.setText("Select");
+        action.setText("Select");
+        title.setText(menu_titles.get(0));
+        
+    }
+
+    @Override
+    public void hide()
+    {
+        action.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);       
     }
 
 }
