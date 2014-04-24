@@ -56,7 +56,7 @@ public class BatteryIndicator extends BroadcastReceiver
                 }
 
                 level_old = level_new;
-                
+
                 Log.d("BatteryIndicator", "new battery drawable set");
             }
         }
