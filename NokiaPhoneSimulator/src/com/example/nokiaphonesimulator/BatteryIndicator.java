@@ -18,6 +18,7 @@ public class BatteryIndicator extends BroadcastReceiver
 
         battery_indicator = (ImageView) nokia_phone_activity.findViewById(R.id.battery_indicator);
 
+        // start BatteryIndicator
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         nokia_phone_activity.registerReceiver(this, batteryLevelFilter);
     }

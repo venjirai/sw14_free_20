@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 public class ContactList
 {
@@ -82,8 +83,9 @@ public class ContactList
                     }
                 }
             }
+            Log.d("ContactList", String.valueOf(contact_cursor.getCount()) + " contacts loaded");
             contact_cursor.close();
-
+                     
             return null;
         }
 
