@@ -53,9 +53,9 @@ public class SignalIndicator extends PhoneStateListener
             {
                 signal_indicator.setImageResource(R.drawable.signal_min);
             }
-            
+
             strength_old = strength_new;
-            
+
             Log.d("SignalIndicator", "new signal drawable set");
         }
     }

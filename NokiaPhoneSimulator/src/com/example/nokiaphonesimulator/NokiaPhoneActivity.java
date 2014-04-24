@@ -37,7 +37,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private String phone_number = "";
 
     private ContactList contact_list;
-    private int cursor = 0;
 
     private int text_length = 0;
 
