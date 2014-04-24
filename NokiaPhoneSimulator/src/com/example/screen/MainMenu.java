@@ -1,4 +1,4 @@
-package com.example.menu;
+package com.example.screen;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ public class MainMenu extends NokiaScreen
         super();
         this.nokia_phone = nokia_phone;
         
+        // get content
         this.menu_titles = new ArrayList<String>();
         menu_titles.add(nokia_phone.getString(R.string.phone_book));
         menu_titles.add(nokia_phone.getString(R.string.messages));

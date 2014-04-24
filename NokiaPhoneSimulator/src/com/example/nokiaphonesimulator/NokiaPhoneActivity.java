@@ -2,8 +2,8 @@ package com.example.nokiaphonesimulator;
 
 import java.util.Calendar;
 
-import com.example.menu.NokiaScreen;
-import com.example.menu.StartScreen;
+import com.example.screen.NokiaScreen;
+import com.example.screen.StartScreen;
 
 import android.app.Activity;
 import android.content.Context;
@@ -85,7 +85,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
         action = (TextView) this.findViewById(R.id.action);
         action.setTypeface(font);
-        menu_titel = (TextView) this.findViewById(R.id.titel);
+        menu_titel = (TextView) this.findViewById(R.id.title);
         menu_titel.setTypeface(font);
 
         textViewInitialize(action);

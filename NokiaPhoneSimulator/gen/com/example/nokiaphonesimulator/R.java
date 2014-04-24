@@ -97,7 +97,7 @@ public final class R {
         public static final int contents=0x7f080001;
         public static final int display=0x7f080004;
         public static final int signal_indicator=0x7f080002;
-        public static final int titel=0x7f080005;
+        public static final int title=0x7f080005;
     }
     public static final class layout {
         public static final int activity_nokia_phone=0x7f030000;
