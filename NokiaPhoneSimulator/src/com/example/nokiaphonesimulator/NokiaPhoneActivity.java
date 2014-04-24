@@ -266,7 +266,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         btn_enter.setOnTouchListener(this);
         btn_down.setOnTouchListener(this);
         btn_up.setOnTouchListener(this);
-
     }
 
     private void LoadSounds()
@@ -311,7 +310,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private void call(String phone_number)
     {
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + action.getText()));
+        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
         startActivity(callIntent);
     }
 
