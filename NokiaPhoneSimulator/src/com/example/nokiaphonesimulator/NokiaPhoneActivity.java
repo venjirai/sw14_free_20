@@ -56,45 +56,53 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
   
     boolean first_time_startup;
     Calendar date;
+    int font_big, font_small;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nokia_phone);
 
-        // get application context for certain method calls
+        // Get application context for certain method calls
         context = this.getApplicationContext();
 
-        // set Date
-        date.getInstance();
+        // Set Date
+        date = Calendar.getInstance();
         
-        // set control stream for NokiaPhoneActivity to music
+        // Set control stream for NokiaPhoneActivity to music
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
+        
+        // Get device resolution
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         displayWidth = metrics.widthPixels;
         displayHeight = metrics.heightPixels;
 
+        // Load sounds
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
 
         InitializeButtons();
 
+        // Initialize TextViews
         Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
         action = (TextView) this.findViewById(R.id.action);
         action.setTypeface(font);
         menu_titel = (TextView) this.findViewById(R.id.title);
         menu_titel.setTypeface(font);
 
-        textViewInitialize(action);
+        // Get and set font sizes
+        getFontSizes();
+        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
 
-        // loads contacts from phone
+        // Loads contacts from phone
         contact_list = new ContactList(context);
         
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
+        
+        // Set screen
         screen = new StartScreen(this);
 
         // Load preferences
@@ -110,6 +118,16 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             
         }
             
+    }
+
+    private void getFontSizes()
+    {
+        if (displayWidth == 480 && displayHeight == 800)
+        {
+            font_small = 20;
+            font_big = 30;            
+        }
+        
     }
 
     private void FirstTimeInitialize()
@@ -142,18 +160,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void textViewInitialize(TextView tv)
-    {
-        if (displayWidth == 480 && displayHeight == 800)
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
-
-        /*
-         * Add more resolutions here else if (displayWidth = && displayHeight ==
-         * ) tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
-         */
-
     }
     
     @Override
@@ -203,7 +209,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             text_big = false;
 
             if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
         }
 
@@ -212,7 +218,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             text_big = true;
 
             if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
 
             /*
              * Add more resolutions here else if (displayWidth = &&
