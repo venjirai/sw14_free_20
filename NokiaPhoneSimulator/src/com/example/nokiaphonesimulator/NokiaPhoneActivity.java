@@ -32,8 +32,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private String phone_number = "";
 
-    private ContactList contact_list;
-
     private int text_length = 0;
 
     private boolean text_big = true;
@@ -45,18 +43,19 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private TextView menu_titel;
 
     private int displayWidth, displayHeight;
-    
+
+    private ContactList contact_list;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     public NokiaScreen screen;
 
     int[] sounds = new int[10];
     int tastenton;
-  
+
     boolean first_time_startup;
     Calendar date;
     int font_big, font_small;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
