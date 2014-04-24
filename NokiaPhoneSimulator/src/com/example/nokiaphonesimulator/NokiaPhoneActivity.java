@@ -118,6 +118,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             
         }
             
+        
     }
 
     private void getFontSizes()
@@ -154,13 +155,15 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         switch (item.getItemId())
         {
             case R.id.action_settings:
-                Toast.makeText(context, "No Settings!", Toast.LENGTH_SHORT).show();
+                writeText(output1, "12345678123456781195");
+                //Toast.makeText(context, "No Settings!", Toast.LENGTH_SHORT).show();
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+<<<<<<< HEAD
     
     @Override
     public void onPause()
@@ -178,6 +181,34 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     public void onResume()
     {
         super.onResume(); // Always call the superclass method first
+=======
+
+    
+    private void writeText(TextView output, String text)
+    {
+        output.setText(text);
+        output.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
+        output.invalidate();
+        
+        int lines = output.getLineCount();
+        
+        output.setText("lines=" + lines);
+        
+        if (lines > 2)
+            output.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);    
+    }
+    
+    
+    private void textViewInitialize(TextView tv)
+    {
+        if (displayWidth == 480 && displayHeight == 800)
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+             
+        /*
+         * Add more resolutions here else if (displayWidth = && displayHeight ==
+         * ) tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
+         */
+>>>>>>> 9a3344d13512700402a9abfe47361d81d1068850
 
         // to do: what happens when app comes back in front?
         // (start services, threads, listeners)
@@ -292,7 +323,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         {
             new LayoutScaler();
             LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));         
-            
         }
     }
 
