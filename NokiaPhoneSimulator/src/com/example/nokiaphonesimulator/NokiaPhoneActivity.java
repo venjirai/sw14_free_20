@@ -100,8 +100,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Get and set font sizes
         getFontSizes();
-        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
         // Loads contacts from phone
         contact_list = new ContactList(context);
@@ -206,32 +206,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         this.registerReceiver(battery_indicator, batteryLevelFilter);
     }      
 
-    private void scaleTextview(TextView tv, String digit)
-    {
-        int lines = tv.getLineCount();
-
-        if (!text_big && digit != "CLEAR")
-            chars_over_small++;
-
-        else if (digit == "CLEAR")
-            chars_over_small--;
-
-        if (chars_over_small < 0)
-            chars_over_small = 0;
-
-        if (lines >= 3)
-        {
-            if (chars_over_small == 0)
-                chars_over_small = 1;
-            text_big = false;
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        }
-        else if (lines <= 2 && digit == "CLEAR" && chars_over_small == 0)
-        {
-            text_big = true;
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-        }
-    }
 
     private void InitializeButtons()
     {
@@ -299,28 +273,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         }
     }
 
-    private void digitButton(String digit)
-    {
-
-        if (text_length <= 80)
-            phone_number += digit;
-        else
-            text_length--;
-
-        action.setText(phone_number);
-        scaleTextview(action, digit);
-    }
-
-    private void call(String phone_number)
-    {
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
-        startActivity(callIntent);
-    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event)
     {
-
         if (event.getAction() == MotionEvent.ACTION_DOWN)
         {          
             
@@ -409,8 +365,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     screen.get(next_screen_id).up();
                     break;
             }
-              
-                
+                       
                 screen.get(next_screen_id).show();  
                
         }
