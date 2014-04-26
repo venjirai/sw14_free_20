@@ -80,10 +80,12 @@ public final class R {
     }
     public static final class id {
         public static final int action=0x7f080006;
-        public static final int action_settings=0x7f08001a;
-        public static final int battery_charging_2=0x7f080018;
-        public static final int battery_charging_3=0x7f080019;
+        public static final int action_settings=0x7f08001c;
         public static final int battery_charging_empty=0x7f080017;
+        public static final int battery_charging_full=0x7f080018;
+        public static final int battery_charging_high=0x7f080019;
+        public static final int battery_charging_low=0x7f08001a;
+        public static final int battery_charging_medium=0x7f08001b;
         public static final int battery_indicator=0x7f080003;
         public static final int btn_clear=0x7f080007;
         public static final int btn_down=0x7f080008;

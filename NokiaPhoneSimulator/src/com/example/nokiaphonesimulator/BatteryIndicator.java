@@ -13,7 +13,6 @@ public class BatteryIndicator extends BroadcastReceiver
 {
     private ImageView battery_indicator;
     private int level = -1;
-    private boolean isCharging;
     private AnimationDrawable charging_animation;
 
     BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
@@ -36,9 +35,6 @@ public class BatteryIndicator extends BroadcastReceiver
             int level_new = battery_status.getIntExtra("level", 0) / 20;
 
             Log.d("BatteryIndicator", "battery level changed: " + String.valueOf(level_new));
-
-            // Are we charging / charged?
-            isCharging = battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING;
 
             if (level_new != level)
             {
@@ -70,7 +66,9 @@ public class BatteryIndicator extends BroadcastReceiver
                 Log.d("BatteryIndicator", "new battery drawable set");
             }
             
-            if (isCharging)
+            // if device is charging and not full
+            int status = battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+            if (status == BatteryManager.BATTERY_STATUS_CHARGING && !(status == BatteryManager.BATTERY_STATUS_FULL))
             {
                 charging_animation.start();
             }
