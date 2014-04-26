@@ -44,87 +44,27 @@ public class StartScreen extends NokiaScreen
         }
     }
 
-
     @Override
-    public void zero()
+    public void refresh()
     {
-        digitButton("0");
+        battery_indicator.setVisibility(View.VISIBLE);
+        signal_indicator.setVisibility(View.VISIBLE);
+        action.setVisibility(View.VISIBLE);
 
+        if (phone_number_length == 0)
+            action.setText("Menu");
+        else
+            action.setText(action_text);
     }
 
     @Override
-    public void one()
+    public void hide()
     {
-        digitButton("1");
-
+        battery_indicator.setVisibility(View.GONE);
+        signal_indicator.setVisibility(View.GONE);
+        action.setVisibility(View.GONE);
     }
-
-    @Override
-    public void two()
-    {
-        digitButton("2");
-
-    }
-
-    @Override
-    public void three()
-    {
-        digitButton("3");
-
-    }
-
-    @Override
-    public void four()
-    {
-        digitButton("4");
-
-    }
-
-    @Override
-    public void five()
-    {
-        digitButton("5");
-
-    }
-
-    @Override
-    public void six()
-    {
-        digitButton("6");
-
-    }
-
-    @Override
-    public void seven()
-    {
-        digitButton("7");
-
-    }
-
-    @Override
-    public void eight()
-    {
-        digitButton("8");
-
-    }
-
-    @Override
-    public void nine()
-    {
-        digitButton("9");
-
-    }
-
-    @Override
-    public void clear()
-    {
-        if (phone_number_length > 0)
-        {
-            phone_number_length--;
-            action_text = action_text.substring(0, action_text.length() - 1);
-        }
-    }
-
+    
     @Override
     public void enter()
     {
@@ -136,6 +76,16 @@ public class StartScreen extends NokiaScreen
         else
         {
             call(action_text);
+        }
+    }    
+
+    @Override
+    public void clear()
+    {
+        if (phone_number_length > 0)
+        {
+            phone_number_length--;
+            action_text = action_text.substring(0, action_text.length() - 1);
         }
     }
 
@@ -151,6 +101,66 @@ public class StartScreen extends NokiaScreen
     {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void zero()
+    {
+        digitButton("0");
+    }
+
+    @Override
+    public void one()
+    {
+        digitButton("1");
+    }
+
+    @Override
+    public void two()
+    {
+        digitButton("2");
+    }
+
+    @Override
+    public void three()
+    {
+        digitButton("3");
+    }
+
+    @Override
+    public void four()
+    {
+        digitButton("4");
+    }
+
+    @Override
+    public void five()
+    {
+        digitButton("5");
+    }
+
+    @Override
+    public void six()
+    {
+        digitButton("6");
+    }
+
+    @Override
+    public void seven()
+    {
+        digitButton("7");
+    }
+
+    @Override
+    public void eight()
+    {
+        digitButton("8");
+    }
+
+    @Override
+    public void nine()
+    {
+        digitButton("9");
     }
 
     @Override
@@ -173,27 +183,5 @@ public class StartScreen extends NokiaScreen
         Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
         nokia_phone.startActivity(callIntent);
     }
-
-    @Override
-    public void refresh()
-    {
-        battery_indicator.setVisibility(View.VISIBLE);
-        signal_indicator.setVisibility(View.VISIBLE);
-        action.setVisibility(View.VISIBLE);
-
-        if (phone_number_length == 0)
-            action.setText("Menu");
-        else
-            action.setText(action_text);
-    }
-
-    @Override
-    public void hide()
-    {
-        battery_indicator.setVisibility(View.GONE);
-        signal_indicator.setVisibility(View.GONE);
-        action.setVisibility(View.GONE);
-    }
-
 
 }

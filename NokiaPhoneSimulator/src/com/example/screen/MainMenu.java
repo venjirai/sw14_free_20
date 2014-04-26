@@ -45,7 +45,55 @@ public class MainMenu extends NokiaScreen
 
         action_text = "Select";
     }
+    
+    @Override
+    public void refresh()
+    {
+        action.setVisibility(View.VISIBLE);
+        title.setVisibility(View.VISIBLE);
 
+        action.setText(action_text);
+        title.setText(menu_titles.get(position));
+    }
+
+    @Override
+    public void hide()
+    {
+        action.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);
+    }    
+
+    @Override
+    public void enter()
+    {
+
+    }
+
+    @Override
+    public void clear()
+    {
+        this.hide();
+        nokia_phone.setScreenId(ScreenId.START_SCREEN);
+    }
+
+    @Override
+    public void down()
+    {
+        position--;
+        if (position < 0)
+            position = menu_titles.size() - 1;
+    }
+
+
+    @Override
+    public void up()
+    {
+        position++;
+        if (position >= menu_titles.size())
+            position = 0;
+
+    }
+    
     @Override
     public void zero()
     {
@@ -117,38 +165,6 @@ public class MainMenu extends NokiaScreen
     }
 
     @Override
-    public void clear()
-    {
-        this.hide();
-        nokia_phone.setScreenId(ScreenId.START_SCREEN);
-    }
-
-    @Override
-    public void enter()
-    {
-
-    }
-
-    @Override
-    public void down()
-    {
-        position--;
-        if (position < 0)
-            position = menu_titles.size() - 1;
-    }
-
-
-    @Override
-    public void up()
-    {
-        position++;
-        if (position >= menu_titles.size())
-            position = 0;
-
-    }
-
-
-    @Override
     public void pound()
     {
         // TODO Auto-generated method stub
@@ -161,23 +177,5 @@ public class MainMenu extends NokiaScreen
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public void refresh()
-    {
-        action.setVisibility(View.VISIBLE);
-        title.setVisibility(View.VISIBLE);
-
-        action.setText(action_text);
-        title.setText(menu_titles.get(position));
-    }
-
-    @Override
-    public void hide()
-    {
-        action.setVisibility(View.GONE);
-        title.setVisibility(View.GONE);
-    }
-
 
 }
