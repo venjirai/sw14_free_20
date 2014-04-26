@@ -4,19 +4,24 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.BatteryManager;
 import android.util.Log;
 import android.widget.ImageView;
 
 public class BatteryIndicator extends BroadcastReceiver
 {
     private ImageView battery_indicator;
-    private int level_old = -1;
+    private int level = -1;
+    private boolean isCharging;
+    private AnimationDrawable charging_animation;
 
     BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
     {
         super();
 
         battery_indicator = (ImageView) nokia_phone_activity.findViewById(R.id.battery_indicator);
+        charging_animation = (AnimationDrawable) battery_indicator.getDrawable();
 
         // start BatteryIndicator
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -24,40 +29,54 @@ public class BatteryIndicator extends BroadcastReceiver
     }
 
     @Override
-    public void onReceive(Context context, Intent intent)
+    public void onReceive(Context context, Intent battery_status)
     {
-        if (intent.getAction().equalsIgnoreCase(Intent.ACTION_BATTERY_CHANGED))
+        if (battery_status.getAction().equalsIgnoreCase(Intent.ACTION_BATTERY_CHANGED))
         {
-            int level_new = intent.getIntExtra("level", 0) / 20;
+            int level_new = battery_status.getIntExtra("level", 0) / 20;
 
             Log.d("BatteryIndicator", "battery level changed: " + String.valueOf(level_new));
 
-            if (level_new != level_old)
+            // Are we charging / charged?
+            isCharging = battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING;
+
+            if (level_new != level)
             {
                 if (level_new >= 4)
                 {
-                    battery_indicator.setImageResource(R.drawable.battery_full);
+                    battery_indicator.setImageResource(R.drawable.battery_charging_full);
                 }
                 else if (level_new == 3)
                 {
-                    battery_indicator.setImageResource(R.drawable.battery_high);
+                    battery_indicator.setImageResource(R.drawable.battery_charging_high);
                 }
                 else if (level_new == 2)
                 {
-                    battery_indicator.setImageResource(R.drawable.battery_medium);
+                    battery_indicator.setImageResource(R.drawable.battery_charging_medium);
                 }
                 else if (level_new == 1)
                 {
-                    battery_indicator.setImageResource(R.drawable.battery_low);
+                    battery_indicator.setImageResource(R.drawable.battery_charging_low);
                 }
                 else
                 {
-                    battery_indicator.setImageResource(R.drawable.battery_empty);
+                    battery_indicator.setImageResource(R.drawable.battery_charging_empty);
                 }
 
-                level_old = level_new;
+                charging_animation = (AnimationDrawable) battery_indicator.getDrawable();
+                
+                level = level_new;
 
                 Log.d("BatteryIndicator", "new battery drawable set");
+            }
+            
+            if (isCharging)
+            {
+                charging_animation.start();
+            }
+            else
+            {
+                charging_animation.stop();
             }
         }
     }
