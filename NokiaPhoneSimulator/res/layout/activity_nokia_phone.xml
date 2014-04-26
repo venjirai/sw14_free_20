@@ -43,8 +43,7 @@
                 android:layout_height="60px"
                 android:gravity="center_horizontal"
                 android:layout_alignParentTop="true"
-                android:singleLine="true"
-                android:text="@string/menu"
+                android:singleLine="false"
                 android:textColor="#2C2328"
                 android:textSize="30dip"
                 android:visibility="gone" />
@@ -55,8 +54,7 @@
 		            android:layout_height="30px"
 		            android:gravity="center_horizontal"
 		            android:layout_alignParentBottom="true"
-		            android:singleLine="true"
-		            android:text="@string/menu"
+		            android:singleLine="false"
 		            android:textColor="#2C2328" />
         
         </RelativeLayout>

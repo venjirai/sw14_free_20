@@ -1,15 +1,15 @@
 package com.example.screen;
 
 import java.util.ArrayList;
-
-import android.view.View;
+import java.util.List;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 
 public class MainMenu extends NokiaScreen
 {
-    private ArrayList<String> menu_titles;
+    private List<String> menu_titles;
+    private int position = 0;
     
     public MainMenu(NokiaPhoneActivity nokia_phone)
     {
@@ -38,14 +38,8 @@ public class MainMenu extends NokiaScreen
     protected void init()
     {
         super.init();
-        
-        // set visible elements
-        action.setVisibility(View.VISIBLE);
-        title.setVisibility(View.VISIBLE);
-        
-        // set content
-        action.setText("Select");
-        title.setText(menu_titles.get(0));
+        action_text = "Select";
+
     }
 
     @Override
@@ -121,49 +115,63 @@ public class MainMenu extends NokiaScreen
     @Override
     public void clear()
     {
-        nokia_phone.screen = new StartScreen(nokia_phone);
+        this.hide();
+        next_screen_id = ScreenIds.START_SCREEN;
     }
 
     @Override
     public void enter()
+    {
+        next_screen_id = ScreenIds.MAIN_MENU;
+    }
+
+    @Override
+    public void down()
+    {
+        position--;
+        if (position < 0)
+            position = menu_titles.size() - 1;               
+    }
+
+    
+    @Override
+    public void up()
+    {
+        position++;
+        if (position >= menu_titles.size())
+            position = 0;    
+             
+    }
+    
+    
+    @Override
+    public void pound()
     {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void down()
+    public void star()
     {
-        String current_titel = (String) title.getText();
-        for (int i = 0; i < menu_titles.size(); i++)
-        {
-            if (current_titel.equals(menu_titles.get(i)))
-            {
-                i++;
-                i %= menu_titles.size();
+        // TODO Auto-generated method stub
+        
+    }
+    
 
-                title.setText(menu_titles.get(i));
-                break;
-            }
-        }        
+    @Override
+    public void show()
+    {        
+        action.setText(action_text);
+        title.setText(menu_titles.get(position));      
     }
 
     @Override
-    public void up()
+    public void hide()
     {
-        String current_titel = (String) title.getText();
-        for (int i = 0; i < menu_titles.size(); i++)
-        {
-            if (current_titel.equals(menu_titles.get(i)))
-            {
-                i--;
-                if (i < 0)
-                    i = menu_titles.size() - 1;
-
-                title.setText(menu_titles.get(i));
-                break;
-            }
-        }        
+        action.setText("");
+        title.setText("");     
     }
+
 
 }

@@ -1,8 +1,12 @@
 package com.example.nokiaphonesimulator;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
+import com.example.screen.ScreenIds;
 import com.example.screen.StartScreen;
 
 import android.app.Activity;
@@ -47,7 +51,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private ContactList contact_list;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
-    public NokiaScreen screen;
+    
+    
+    private List <NokiaScreen> screen;
+    private int next_screen_id;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -91,22 +98,28 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Get and set font sizes
         getFontSizes();
-        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
         // Loads contacts from phone
         contact_list = new ContactList(context);
         
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
-        
-        // Set screen
-        screen = new StartScreen(this);
+
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         first_time_startup = preferences.getBoolean("first_time_startup", true);
- 
+        
+        // Initialize menus
+        initializeMenus();
+        
+        // Set screen
+        next_screen_id = ScreenIds.START_SCREEN;
+        screen.get(next_screen_id).show();
+        
+        
         if (first_time_startup)
         {
             FirstTimeInitialize();
@@ -115,7 +128,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         {
             
         }
-            
+    }
+
+    private void initializeMenus()
+    {
+        screen = new ArrayList<NokiaScreen>();
+        screen.add(new StartScreen(this));
+        screen.add(new MainMenu(this));
     }
 
     private void getFontSizes()
@@ -159,6 +178,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                 return super.onOptionsItemSelected(item);
         }
     }
+
     
     @Override
     public void onPause()
@@ -176,56 +196,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     public void onResume()
     {
         super.onResume(); // Always call the superclass method first
-
         // to do: what happens when app comes back in front?
         // (start services, threads, listeners)
         
         // resume BatteryIndicator
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         this.registerReceiver(battery_indicator, batteryLevelFilter);
-    }
-    
+    }      
 
-    private void scaleTextview(TextView tv, String digit)
-    {
-        int lines = tv.getLineCount();
-
-        if (!text_big && digit != "CLEAR")
-            chars_over_small++;
-
-        else if (digit == "CLEAR")
-            chars_over_small--;
-
-        if (chars_over_small < 0)
-            chars_over_small = 0;
-
-        if (lines >= 3)
-        {
-            if (chars_over_small == 0)
-                chars_over_small = 1;
-
-            text_big = false;
-
-            if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-
-        }
-
-        else if (lines <= 2 && digit == "CLEAR" && chars_over_small == 0)
-        {
-            text_big = true;
-
-            if (displayWidth == 480 && displayHeight == 800)
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-
-            /*
-             * Add more resolutions here else if (displayWidth = &&
-             * displayHeight == )
-             * tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP,XX);
-             */
-        }
-
-    }
 
     private void InitializeButtons()
     {
@@ -290,129 +268,104 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         {
             new LayoutScaler();
             LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));         
-            
         }
     }
 
-    private void digitButton(String digit)
-    {
-
-        if (text_length <= 80)
-            phone_number += digit;
-        else
-            text_length--;
-
-        action.setText(phone_number);
-        scaleTextview(action, digit);
-    }
-
-    private void call(String phone_number)
-    {
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
-        startActivity(callIntent);
-    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event)
     {
-
         if (event.getAction() == MotionEvent.ACTION_DOWN)
-        {
-
+        {          
+            
             switch (v.getId())
             {
                 case R.id.btn_zero:
-                    text_length++;
-                    digitButton("0");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).zero();
                     break;
 
                 case R.id.btn_one:
-                    text_length++;
-                    digitButton("1");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).one();
                     break;
 
                 case R.id.btn_two:
-                    text_length++;
-                    digitButton("2");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).two();
                     break;
 
                 case R.id.btn_three:
-                    text_length++;
-                    digitButton("3");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).three();
                     break;
 
                 case R.id.btn_four:
-                    text_length++;
-                    digitButton("4");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).four();
                     break;
 
                 case R.id.btn_five:
-                    text_length++;
-                    digitButton("5");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).five();
                     break;
 
                 case R.id.btn_six:
-                    text_length++;
-                    digitButton("6");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).six();
                     break;
 
                 case R.id.btn_seven:
-                    text_length++;
-                    digitButton("7");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).seven();
                     break;
 
                 case R.id.btn_eight:
                     text_length++;
-                    digitButton("8");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).eight();
                     break;
 
                 case R.id.btn_nine:
-                    text_length++;
-                    digitButton("9");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).nine();
                     break;
 
                 case R.id.btn_star:
-                    text_length++;
-                    digitButton("*");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).star();
                     break;
 
                 case R.id.btn_pound:
-                    text_length++;
-                    digitButton("#");
                     sp.play(tastenton, 1, 1, 0, 0, 1);
+                    screen.get(next_screen_id).pound();
                     break;
 
                 case R.id.btn_clear:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.clear();
+                    screen.get(next_screen_id).clear();
+                    next_screen_id = screen.get(next_screen_id).getNextScreenId();
                     break;
 
                 case R.id.btn_enter:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.enter();
+                    screen.get(next_screen_id).enter();
+                    next_screen_id = screen.get(next_screen_id).getNextScreenId();
                     break;
 
                 case R.id.btn_down:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.down();
+                    screen.get(next_screen_id).down();
                     break;
 
                 case R.id.btn_up:
                     sp.play(tastenton, 1, 1, 0, 0, 1);
-                    screen.up();
+                    screen.get(next_screen_id).up();
                     break;
             }
+                       
+                screen.get(next_screen_id).show();  
+               
         }
         return false;
     }
