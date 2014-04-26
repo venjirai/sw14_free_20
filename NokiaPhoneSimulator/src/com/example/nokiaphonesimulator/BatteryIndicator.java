@@ -66,9 +66,8 @@ public class BatteryIndicator extends BroadcastReceiver
                 Log.d("BatteryIndicator", "new battery drawable set");
             }
             
-            // if device is charging and not full
-            int status = battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            if (status == BatteryManager.BATTERY_STATUS_CHARGING && !(status == BatteryManager.BATTERY_STATUS_FULL))
+            // if device is charging
+            if (battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING && level < 5)
             {
                 charging_animation.start();
             }
