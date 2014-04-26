@@ -20,6 +20,8 @@ public class BatteryIndicator extends BroadcastReceiver
         super();
 
         battery_indicator = (ImageView) nokia_phone_activity.findViewById(R.id.battery_indicator);
+        
+        // initiate the AnimationDrawable
         charging_animation = (AnimationDrawable) battery_indicator.getDrawable();
 
         // start BatteryIndicator
@@ -32,10 +34,12 @@ public class BatteryIndicator extends BroadcastReceiver
     {
         if (battery_status.getAction().equalsIgnoreCase(Intent.ACTION_BATTERY_CHANGED))
         {
+            // get battery level
             int level_new = battery_status.getIntExtra("level", 0) / 20;
 
             Log.d("BatteryIndicator", "battery level changed: " + String.valueOf(level_new));
 
+            // if the level has changed
             if (level_new != level)
             {
                 if (level_new >= 4)
@@ -59,21 +63,23 @@ public class BatteryIndicator extends BroadcastReceiver
                     battery_indicator.setImageResource(R.drawable.battery_charging_empty);
                 }
 
+                // update the AnimationDrawable
                 charging_animation = (AnimationDrawable) battery_indicator.getDrawable();
-                
+
+                // set new battery level
                 level = level_new;
 
                 Log.d("BatteryIndicator", "new battery drawable set");
             }
-            
-            // if device is charging
+
+            // if device is charging and not full
             if (battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING && level < 5)
             {
-                charging_animation.start();
+                charging_animation.start(); // does nothing if already running
             }
             else
             {
-                charging_animation.stop();
+                charging_animation.stop(); // does nothing if not running
             }
         }
     }
