@@ -1,23 +1,11 @@
 package com.example.screen;
 
-import android.view.View;
-import android.widget.TextView;
-
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
-import com.example.nokiaphonesimulator.R;
 
 
 public abstract class NokiaScreen
 {
     protected NokiaPhoneActivity nokia_phone;
-    protected int origin;
-    protected int next_screen_id;
-    
-    protected TextView action;
-    protected TextView title;
-    
-    protected String action_text;
-    protected String title_text;
     
     abstract public void zero();
     abstract public void one();
@@ -39,23 +27,13 @@ public abstract class NokiaScreen
     abstract public void down();
     abstract public void up();
      
-    abstract public void show();
+    abstract public void refresh();
     abstract public void hide();
 
-    protected void init()
-    {      
-        // get the display elements        
-        this.action = (TextView) nokia_phone.findViewById(R.id.action);
-        this.title = (TextView) nokia_phone.findViewById(R.id.title);
-
-        action.setVisibility(View.VISIBLE);
-        title.setVisibility(View.VISIBLE);
-    }
-    
-    public int getNextScreenId()
+    // add your screens number in List here
+    static class ScreenId
     {
-        return next_screen_id;
+        public static final int START_SCREEN = 0;
+        public static final int MAIN_MENU = 1;
     }
-        
-    
 }

@@ -3,19 +3,27 @@ package com.example.screen;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 
 public class MainMenu extends NokiaScreen
 {
+    private TextView action;
+    private TextView title;
+
+    private String action_text;
+
     private List<String> menu_titles;
     private int position = 0;
-    
+
     public MainMenu(NokiaPhoneActivity nokia_phone)
     {
         super();
         this.nokia_phone = nokia_phone;
-        
+
         // get content
         this.menu_titles = new ArrayList<String>();
         menu_titles.add(nokia_phone.getString(R.string.phone_book));
@@ -30,99 +38,95 @@ public class MainMenu extends NokiaScreen
         menu_titles.add(nokia_phone.getString(R.string.reminders));
         menu_titles.add(nokia_phone.getString(R.string.clock));
         menu_titles.add(nokia_phone.getString(R.string.profiles));
-        
-        this.init();
-    }
-    
-    @Override
-    protected void init()
-    {
-        super.init();
-        action_text = "Select";
 
+        // get display elements      
+        this.action = (TextView) nokia_phone.findViewById(R.id.action);
+        this.title = (TextView) nokia_phone.findViewById(R.id.title);
+
+        action_text = "Select";
     }
 
     @Override
     public void zero()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void one()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void two()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void three()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void four()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void five()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void six()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void seven()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void eight()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void nine()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void clear()
     {
         this.hide();
-        next_screen_id = ScreenIds.START_SCREEN;
+        nokia_phone.setScreenId(ScreenId.START_SCREEN);
     }
 
     @Override
     public void enter()
     {
-        next_screen_id = ScreenIds.MAIN_MENU;
+
     }
 
     @Override
@@ -130,47 +134,49 @@ public class MainMenu extends NokiaScreen
     {
         position--;
         if (position < 0)
-            position = menu_titles.size() - 1;               
+            position = menu_titles.size() - 1;
     }
 
-    
+
     @Override
     public void up()
     {
         position++;
         if (position >= menu_titles.size())
-            position = 0;    
-             
+            position = 0;
+
     }
-    
-    
+
+
     @Override
     public void pound()
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void star()
     {
         // TODO Auto-generated method stub
-        
+
     }
-    
 
     @Override
-    public void show()
-    {        
+    public void refresh()
+    {
+        action.setVisibility(View.VISIBLE);
+        title.setVisibility(View.VISIBLE);
+
         action.setText(action_text);
-        title.setText(menu_titles.get(position));      
+        title.setText(menu_titles.get(position));
     }
 
     @Override
     public void hide()
     {
-        action.setText("");
-        title.setText("");     
+        action.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);
     }
 
 
