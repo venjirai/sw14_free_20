@@ -36,6 +36,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private TextView action;
     private TextView menu_titel;
+    private TextView clock_view;
 
     private int displayWidth, displayHeight;
 
@@ -85,11 +86,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         action.setTypeface(font);
         menu_titel = (TextView) this.findViewById(R.id.title);
         menu_titel.setTypeface(font);
+        clock_view = (TextView) this.findViewById(R.id.clock_view);
+        clock_view.setTypeface(font);
 
         // Get and set font sizes
         getFontSizes();
         action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        clock_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
         // Loads contacts from phone
         contact_list = new ContactList(context);

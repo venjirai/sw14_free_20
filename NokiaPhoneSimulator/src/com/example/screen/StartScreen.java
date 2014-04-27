@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.nokiaphonesimulator.Clock;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 
@@ -14,7 +15,9 @@ public class StartScreen extends NokiaScreen
     private ImageView battery_indicator;
     private ImageView signal_indicator;
     private TextView action;
+    private TextView clock_view;
 
+    private Clock clock;
     private String action_text;
     private int phone_number_length = 0;
 
@@ -28,7 +31,9 @@ public class StartScreen extends NokiaScreen
         this.battery_indicator = (ImageView) nokia_phone.findViewById(R.id.battery_indicator);
         this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
+        this.clock_view = (TextView) nokia_phone.findViewById(R.id.clock_view);
 
+        clock = new Clock(clock_view);
         action_text = "Menu";
     }
 
@@ -50,6 +55,7 @@ public class StartScreen extends NokiaScreen
         battery_indicator.setVisibility(View.VISIBLE);
         signal_indicator.setVisibility(View.VISIBLE);
         action.setVisibility(View.VISIBLE);
+        clock_view.setVisibility(View.VISIBLE);
 
         if (phone_number_length == 0)
             action.setText("Menu");
@@ -63,8 +69,9 @@ public class StartScreen extends NokiaScreen
         battery_indicator.setVisibility(View.GONE);
         signal_indicator.setVisibility(View.GONE);
         action.setVisibility(View.GONE);
+        clock_view.setVisibility(View.GONE);
     }
-    
+
     @Override
     public void enter()
     {
@@ -77,7 +84,7 @@ public class StartScreen extends NokiaScreen
         {
             call(action_text);
         }
-    }    
+    }
 
     @Override
     public void clear()
