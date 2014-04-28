@@ -3,7 +3,6 @@ package com.example.nokiaphonesimulator;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.BatteryManager;
 import android.util.Log;
@@ -23,10 +22,6 @@ public class BatteryIndicator extends BroadcastReceiver
         
         // initiate the AnimationDrawable
         charging_animation = (AnimationDrawable) battery_indicator.getDrawable();
-
-        // start BatteryIndicator
-        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        nokia_phone_activity.registerReceiver(this, batteryLevelFilter);
     }
 
     @Override

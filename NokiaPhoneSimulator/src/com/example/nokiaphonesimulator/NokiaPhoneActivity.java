@@ -16,7 +16,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -173,37 +172,35 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         }
     }
 
-
-    @Override
-    public void onPause()
-    {
-        super.onPause(); // Always call the superclass method first
-        // to do: what happens when app is minimized/hidden?
-        // (stop services, threads, listeners)
-        
-        // pause BatteryIndicator
-        this.unregisterReceiver(battery_indicator);
-        
-        // stop the clock
-        this.clock.stop();
-    }
-
     // this is called on the app start!
     @Override
     public void onResume()
     {
-        super.onResume(); // Always call the superclass method first
-        // to do: what happens when app comes back in front?
-        // (start services, threads, listeners)
+        super.onResume();
+        // start services, threads, listeners, receivers!
 
-        // resume BatteryIndicator
-        IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        this.registerReceiver(battery_indicator, batteryLevelFilter);
+        // start updates for BatteryIndicator
+        IntentFilter battery_level_filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        this.registerReceiver(battery_indicator, battery_level_filter);
         
-        // start the clock
-        this.clock.start();
+        // start the Clock
+        IntentFilter time_filter = new IntentFilter(Intent.ACTION_TIME_TICK);
+        this.registerReceiver(clock, time_filter);
+        this.clock.refresh();
     }
-
+    
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        // stop services, threads, listeners, receivers!
+        
+        // stop updates for BatteryIndicator
+        this.unregisterReceiver(battery_indicator);
+        
+        // stop the clock
+        this.unregisterReceiver(clock);
+    }
 
     private void InitializeButtons()
     {

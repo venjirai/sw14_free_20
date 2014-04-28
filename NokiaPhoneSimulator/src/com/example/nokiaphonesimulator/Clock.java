@@ -1,53 +1,28 @@
 package com.example.nokiaphonesimulator;
 
-import android.os.Handler;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.text.format.Time;
 import android.util.Log;
 import android.widget.TextView;
 
-public class Clock
+public class Clock extends BroadcastReceiver
 {
     private String clock_text;
     private int hour, minute;
+    private int hour_offset = 0, minute_offset = 0;
     private TextView clock_view;
-
-    private Handler clock_handler;
-    private ClockUpdate clock_update;
 
     public Clock(TextView clock_view)
     {
         this.clock_view = clock_view;
-
-        this.clock_handler = new Handler();
-        this.clock_update = new ClockUpdate();
     }
 
-    public void start()
+    @Override
+    public void onReceive(Context context, Intent intent)
     {
-        Time time = new Time();
-        time.setToNow();
-
-        // set initial time
-        minute = time.minute;
-        hour = time.hour;
-
-        clock_text = String.format("%02d", hour) + ":" + String.format("%02d", minute);
-        clock_view.setText(clock_text);
-
-        clock_handler.postDelayed(clock_update, (60 - time.second) * 1000); // start sync with next minute
-        Log.d("Clock", "clock started");
-    }
-
-    public void stop()
-    {
-        clock_handler.removeCallbacks(clock_update);
-        Log.d("Clock", "clock stopped");
-    }
-
-    private class ClockUpdate implements Runnable
-    {
-        @Override
-        public void run()
+        if (intent.getAction().compareTo(Intent.ACTION_TIME_TICK) == 0)
         {
             minute++;
 
@@ -66,22 +41,48 @@ public class Clock
 
             clock_view.setText(clock_text);
             Log.d("Clock", "clock refreshed: " + clock_text);
-
-            clock_handler.postDelayed(this, 60000); // sync every 60 seconds
         }
     }
 
-    // set to custom hour
-    public void setHourOffset(int offset)
+    public void refresh()
     {
-        hour += offset;
+        Time time = new Time();
+        time.setToNow();
+
+        // set initial time
+        minute = time.minute + minute_offset;
+        hour = time.hour + hour_offset;
+        
+        if (minute > 59)
+        {
+            minute -= 60;
+            hour++;
+        }
+
+        if (hour > 23)
+        {
+            hour -= 24;
+        }
+
+        clock_text = String.format("%02d", hour) + ":" + String.format("%02d", minute);
+        clock_view.setText(clock_text);
+
+        Log.d("Clock", "clock initialised");
+    }
+
+    // set to custom hour
+    public void setHourOffset(int hour_offset)
+    {
+        this.hour_offset = hour_offset;
+        
+        this.refresh();
     }
 
     // set to custom minute
-    public void setMinuteOffset(int offset)
+    public void setMinuteOffset(int minute_offset)
     {
-        minute += offset;
+        this.minute_offset = minute_offset;
+        
+        this.refresh();
     }
-
-
 }
