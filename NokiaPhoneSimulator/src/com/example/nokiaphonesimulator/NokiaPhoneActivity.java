@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private ContactList contact_list;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
+    private Clock clock;
 
     private List<NokiaScreen> screens;
     private int screen_id;
@@ -100,7 +102,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
-
+        clock = new Clock(clock_view);
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
@@ -176,14 +178,17 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     public void onPause()
     {
         super.onPause(); // Always call the superclass method first
-
         // to do: what happens when app is minimized/hidden?
         // (stop services, threads, listeners)
-
+        
         // pause BatteryIndicator
         this.unregisterReceiver(battery_indicator);
+        
+        // stop the clock
+        this.clock.stop();
     }
 
+    // this is called on the app start!
     @Override
     public void onResume()
     {
@@ -194,6 +199,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // resume BatteryIndicator
         IntentFilter batteryLevelFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         this.registerReceiver(battery_indicator, batteryLevelFilter);
+        
+        // start the clock
+        this.clock.start();
     }
 
 
