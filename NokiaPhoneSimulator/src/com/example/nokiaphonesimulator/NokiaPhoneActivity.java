@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.layout.LayoutScaler;
 import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
 import com.example.screen.StartScreen;
@@ -82,13 +83,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         InitializeButtons();
 
         // Initialize TextViews
-        Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
         action = (TextView) this.findViewById(R.id.action);
-        action.setTypeface(font);
         menu_titel = (TextView) this.findViewById(R.id.title);
-        menu_titel.setTypeface(font);
         clock_view = (TextView) this.findViewById(R.id.clock_view);
-        clock_view.setTypeface(font);
 
         // Get and set font sizes
         getFontSizes();
