@@ -1,4 +1,4 @@
-package com.example.layout;
+package com.example.nokiaphonesimulator;
 
 import android.view.View;
 import android.view.ViewGroup;
