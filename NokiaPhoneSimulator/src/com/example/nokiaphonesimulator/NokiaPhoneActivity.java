@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.screen.Calculator;
 import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
 import com.example.screen.StartScreen;
+import com.example.screen.OptionsMenu;
 
 import android.app.Activity;
 import android.content.Context;
@@ -37,6 +39,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private TextView action;
     private TextView menu_titel;
     private TextView clock_view;
+    private TextView input;
+    private TextView options_menu_title_one;
+    private TextView options_menu_title_two;
+    private TextView options_menu_title_three;
 
     private int displayWidth, displayHeight;
 
@@ -44,8 +50,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
 
+    private List<String> options;
+    
     private List<NokiaScreen> screens;
-    private int screen_id;
+    private int screen_id = 1;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -78,22 +86,10 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
 
-        InitializeButtons();
-
-        // Initialize TextViews
-        Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
-        action = (TextView) this.findViewById(R.id.action);
-        action.setTypeface(font);
-        menu_titel = (TextView) this.findViewById(R.id.title);
-        menu_titel.setTypeface(font);
-        clock_view = (TextView) this.findViewById(R.id.clock_view);
-        clock_view.setTypeface(font);
-
-        // Get and set font sizes
-        getFontSizes();
-        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        clock_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        initializeButtons();
+        initializeTextViews();
+        
+          
 
         // Loads contacts from phone
         contact_list = new ContactList(context);
@@ -107,6 +103,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         first_time_startup = preferences.getBoolean("first_time_startup", true);
 
         // Initialize menus
+        options = new ArrayList<String>();
         initializeMenus();
 
         // Set screen
@@ -115,7 +112,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         if (first_time_startup)
         {
-            FirstTimeInitialize();
+            firstTimeInitialize();
         }
         else
         {
@@ -123,24 +120,68 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         }
     }
 
+    private void initializeTextViews()
+    {
+        Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
+        action = (TextView) this.findViewById(R.id.action);
+        action.setTypeface(font);
+        menu_titel = (TextView) this.findViewById(R.id.title);
+        menu_titel.setTypeface(font);
+        clock_view = (TextView) this.findViewById(R.id.clock_view);
+        clock_view.setTypeface(font);
+        input = (TextView) this.findViewById(R.id.input);
+        input.setTypeface(font);
+        
+        options_menu_title_one = (TextView) this.findViewById(R.id.options_menu_title_one);
+        options_menu_title_two = (TextView) this.findViewById(R.id.options_menu_title_two);
+        options_menu_title_three = (TextView) this.findViewById(R.id.options_menu_title_three);
+        
+        options_menu_title_one.setTypeface(font);
+        options_menu_title_two.setTypeface(font);
+        options_menu_title_three.setTypeface(font);
+        
+        options_menu_title_one.setVisibility(View.GONE);
+        options_menu_title_two.setVisibility(View.GONE);
+        options_menu_title_three.setVisibility(View.GONE);
+        
+        // Get and set font sizes
+        getFontSizes();
+        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        clock_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        input.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        options_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        options_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        options_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        
+    }
+
     private void initializeMenus()
     {
         screens = new ArrayList<NokiaScreen>();
+        screens.add(new OptionsMenu(this));
         screens.add(new StartScreen(this));
-        screens.add(new MainMenu(this));
+        screens.add(new MainMenu(this));    
+        screens.add(new Calculator(this));
     }
 
+    public OptionsMenu getOptionsMenu()
+    {
+        return (OptionsMenu) screens.get(0);
+    }
+    
+    
     private void getFontSizes()
     {
         if (displayWidth == 480 && displayHeight == 800)
         {
             font_small = 20;
-            font_big = 30;
+            font_big = 27;
         }
 
     }
 
-    private void FirstTimeInitialize()
+    private void firstTimeInitialize()
     {
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -197,7 +238,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     }
 
 
-    private void InitializeButtons()
+    private void initializeButtons()
     {
         Button btn_zero = (Button) this.findViewById(R.id.btn_zero);
         Button btn_one = (Button) this.findViewById(R.id.btn_one);
