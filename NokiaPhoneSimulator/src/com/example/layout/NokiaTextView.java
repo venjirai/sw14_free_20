@@ -11,26 +11,39 @@ public class NokiaTextView extends TextView
     public NokiaTextView(Context context)
     {
         super(context);
-        Typeface face = Typeface.createFromAsset(context.getAssets(), "NokiaBig.ttf");
-        this.setTypeface(face);
+        FontHelper.setTypeface(context, this);
     }
 
     public NokiaTextView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-        Typeface face = Typeface.createFromAsset(context.getAssets(), "NokiaBig.ttf");
-        this.setTypeface(face);
+        FontHelper.setTypeface(context, this);
     }
 
     public NokiaTextView(Context context, AttributeSet attrs, int defStyle)
     {
         super(context, attrs, defStyle);
-        Typeface face = Typeface.createFromAsset(context.getAssets(), "NokiaBig.ttf");
-        this.setTypeface(face);
+        FontHelper.setTypeface(context, this);
     }
 
     protected void onDraw(Canvas canvas)
-    {
+    { 
         super.onDraw(canvas);
+    }
+
+
+}
+
+class FontHelper
+{
+    private static Typeface typeface = null;
+
+    public static void setTypeface(Context context, TextView textview)
+    {
+        if (typeface == null)
+        {
+            typeface = Typeface.createFromAsset(context.getAssets(), "NokiaBig.ttf");
+        }
+        textview.setTypeface(typeface);
     }
 }
