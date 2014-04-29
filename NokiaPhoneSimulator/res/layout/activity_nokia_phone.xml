@@ -54,20 +54,65 @@
                 android:textSize="30dip"
                 android:visibility="gone" />
             
+             <TextView
+                android:id="@+id/action"
+                android:layout_width="fill_parent"
+                android:layout_height="30px"
+                android:gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:singleLine="false"
+                android:textColor="#2C2328" />
+
 	          <TextView
-		            android:id="@+id/action"
-		            android:layout_width="fill_parent"
-		            android:layout_height="30px"
-		            android:gravity="center_horizontal"
-		            android:layout_alignParentBottom="true"
-		            android:singleLine="false"
-		            android:textColor="#2C2328" />
+	              android:id="@+id/input"
+	              android:layout_width="fill_parent"
+                  android:layout_height="30px"
+                  android:gravity="right"
+                  android:layout_marginTop="90px"
+	              android:singleLine="false"
+	              android:textColor="#2C2328" />
+	          
+	          
+	            <TextView
+                  android:id="@+id/options_menu_title_one"
+                  android:layout_height="25px"
+                  android:layout_width="fill_parent"
+                  android:layout_marginLeft="7px"
+                  android:layout_marginRight="15px"
+                  android:layout_marginTop="20px"
+                  android:paddingLeft="5px"
+                  android:singleLine="false"
+                  android:textColor="#2C2328" />
+	            
+	             <TextView
+                  android:id="@+id/options_menu_title_two"
+                  android:layout_height="25px"
+                  android:layout_width="fill_parent"
+                  android:layout_marginLeft="7px"
+                  android:layout_marginRight="15px"
+                  android:layout_marginTop="45px"
+                  android:paddingLeft="5px"
+                  android:singleLine="false"
+                  android:textColor="#2C2328" />
+	                           
+	             <TextView
+                  android:id="@+id/options_menu_title_three"
+                  android:layout_height="25px"
+                  android:layout_width="fill_parent"
+                  android:layout_marginLeft="7px"
+                  android:layout_marginRight="15px"
+                  android:layout_marginTop="70px"
+                  android:paddingLeft="5px"
+                  android:singleLine="false"
+                  android:textColor="#2C2328" />             
+
+	          
         
         </RelativeLayout>
         
         <Button
 	        android:id="@+id/btn_clear"
-	        android:layout_width="67px"
+	        android:layout_width="67px"    
 	        android:layout_height="61px"
 	        android:layout_marginLeft="24px"
 	        android:layout_marginTop="232px"

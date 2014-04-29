@@ -34,7 +34,13 @@ public abstract class NokiaScreen
     // add your screens number in List here
     static class ScreenId
     {
-        public static final int START_SCREEN = 0;
-        public static final int MAIN_MENU = 1;
+        public static final int OPTIONS_MENU = 0;
+        public static final int START_SCREEN = 1;
+        public static final int MAIN_MENU = 2;
+       
+        
+        // menus
+        public static final int CALCULATOR = 3;  
+        
     }
 }
