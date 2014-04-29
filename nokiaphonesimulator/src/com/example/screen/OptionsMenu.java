@@ -34,8 +34,7 @@ public class OptionsMenu extends NokiaScreen
     
     public OptionsMenu(NokiaPhoneActivity nokia_phone)
     {
-        super();
-        this.nokia_phone = nokia_phone;
+        super(nokia_phone);
         
         action_text = "OK";
         
@@ -76,7 +75,7 @@ public class OptionsMenu extends NokiaScreen
     
 
     @Override
-    public void refresh()
+    public void update()
     {     
         option_selected = false;
         action.setVisibility(View.VISIBLE);
@@ -96,6 +95,13 @@ public class OptionsMenu extends NokiaScreen
         
     }
 
+    @Override
+    public void show()
+    {
+        // to do
+        
+    }
+    
     @Override
     public void hide()
     {

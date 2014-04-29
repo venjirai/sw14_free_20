@@ -22,14 +22,13 @@ public class StartScreen extends NokiaScreen
 
     public StartScreen(NokiaPhoneActivity nokia_phone)
     {
-        super();
-        this.nokia_phone = nokia_phone;
+        super(nokia_phone);
 
         // get display elements
         this.battery_indicator = (ImageView) nokia_phone.findViewById(R.id.battery_indicator);
         this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
-        this.clock_view = (TextView) nokia_phone.findViewById(R.id.action);
+        this.clock_view = (TextView) nokia_phone.findViewById(R.id.clock_view);
         
         action_text = "Menu";
     }
@@ -47,12 +46,9 @@ public class StartScreen extends NokiaScreen
     }
 
     @Override
-    public void refresh()
+    public void update()
     {
-        battery_indicator.setVisibility(View.VISIBLE);
-        signal_indicator.setVisibility(View.VISIBLE);
-        action.setVisibility(View.VISIBLE);
-        clock_view.setVisibility(View.VISIBLE);
+        this.show();
 
         if (phone_number_length == 0)
             action.setText("Menu");
@@ -60,6 +56,15 @@ public class StartScreen extends NokiaScreen
             action.setText(action_text);
     }
 
+    @Override
+    public void show()
+    {
+        battery_indicator.setVisibility(View.VISIBLE);
+        signal_indicator.setVisibility(View.VISIBLE);
+        action.setVisibility(View.VISIBLE);
+        clock_view.setVisibility(View.VISIBLE);
+    }
+    
     @Override
     public void hide()
     {
@@ -75,7 +80,7 @@ public class StartScreen extends NokiaScreen
         if (phone_number_length == 0)
         {
             this.hide();
-            nokia_phone.setScreenId(ScreenId.MAIN_MENU);
+            screens.get(ScreenId.MAIN_MENU).show();
         }
         else
         {

@@ -26,8 +26,7 @@ public class Calculator extends NokiaScreen
     
     public Calculator(NokiaPhoneActivity nokia_phone)
     {
-        super();
-        this.nokia_phone = nokia_phone;
+        super(nokia_phone);
         
         menu_options = new ArrayList<String>();
         menu_options.add("Equals");
@@ -42,7 +41,7 @@ public class Calculator extends NokiaScreen
         
     }
     @Override
-    public void refresh()
+    public void update()
     {
         
         option_selected = nokia_phone.getOptionsMenu().getPosition();
@@ -61,13 +60,19 @@ public class Calculator extends NokiaScreen
                 break;
         }
         
-        input.setVisibility(View.VISIBLE);
-        input.setText(input_text); 
+        this.show();
         
-        action.setVisibility(View.VISIBLE);
+        input.setText(input_text);        
         action.setText(action_text);     
     }
 
+    @Override
+    public void show()
+    {
+        input.setVisibility(View.VISIBLE);
+        action.setVisibility(View.VISIBLE);     
+    }
+    
     @Override
     public void hide()
     {
@@ -90,7 +95,7 @@ public class Calculator extends NokiaScreen
         else
         {    
           this.hide();
-          nokia_phone.setScreenId(ScreenId.MAIN_MENU);
+          screens.get(ScreenId.MAIN_MENU).show();
         }
     }
 

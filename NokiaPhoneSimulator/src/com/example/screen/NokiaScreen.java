@@ -1,13 +1,23 @@
 package com.example.screen;
 
+import java.util.List;
+
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 
 
 public abstract class NokiaScreen
 {
     protected NokiaPhoneActivity nokia_phone;
+    protected List<NokiaScreen> screens;
     
-    abstract public void refresh();
+    public NokiaScreen(NokiaPhoneActivity nokia_phone)
+    {
+        this.nokia_phone = nokia_phone;
+        this.screens = nokia_phone.getScreens();
+    }
+    
+    abstract public void update();
+    abstract public void show();
     abstract public void hide();
     
     abstract public void enter();
@@ -28,7 +38,7 @@ public abstract class NokiaScreen
     abstract public void nine();    
     
     abstract public void pound();
-    abstract public void star();
+    public abstract void star();
        
 
     // add your screens number in List here

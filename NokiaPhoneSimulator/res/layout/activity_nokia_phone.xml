@@ -76,12 +76,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginTop="20px"
+                android:layout_marginLeft="7px"
+                android:layout_marginRight="15px"
                 android:textColor="#2C2328" />
 	            
             <TextView
                 android:id="@+id/options_menu_title_two"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
+                android:layout_marginLeft="7px"
+                android:layout_marginRight="15px"
                 android:layout_below="@+id/options_menu_title_one"
                 android:textColor="#2C2328" />
 	                           
@@ -89,6 +93,8 @@
                 android:id="@+id/options_menu_title_three"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
+                android:layout_marginLeft="7px"
+                android:layout_marginRight="15px"
                 android:layout_below="@+id/options_menu_title_two"
                 android:textColor="#2C2328" />             	          
         

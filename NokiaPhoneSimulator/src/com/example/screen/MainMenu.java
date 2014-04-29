@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
+import com.example.screen.NokiaScreen.ScreenId;
 
 public class MainMenu extends NokiaScreen
 {
@@ -17,18 +18,14 @@ public class MainMenu extends NokiaScreen
     private String action_text;
 
     private List<String> menu_titles;
-    private int position_start;
-    private int position_end;
-    private int position;
+    private int position = 0;
 
     public MainMenu(NokiaPhoneActivity nokia_phone)
     {
-        super();
-        this.nokia_phone = nokia_phone;
+        super(nokia_phone);
 
         // get content
         this.menu_titles = new ArrayList<String>();
-        menu_titles.add(nokia_phone.getString(R.string.calculator));
         menu_titles.add(nokia_phone.getString(R.string.phone_book));
         menu_titles.add(nokia_phone.getString(R.string.messages));
         menu_titles.add(nokia_phone.getString(R.string.chat));
@@ -37,15 +34,10 @@ public class MainMenu extends NokiaScreen
         menu_titles.add(nokia_phone.getString(R.string.settings));
         menu_titles.add(nokia_phone.getString(R.string.call_divert));
         menu_titles.add(nokia_phone.getString(R.string.games));
-        //menu_titles.add(nokia_phone.getString(R.string.calculator));
+        menu_titles.add(nokia_phone.getString(R.string.calculator));
         menu_titles.add(nokia_phone.getString(R.string.reminders));
         menu_titles.add(nokia_phone.getString(R.string.clock));
-        menu_titles.add(nokia_phone.getString(R.string.profiles));
-        
-        position_start = ScreenId.CALCULATOR;
-        position_end = position_start + menu_titles.size() - 1;
-        position = position_start;
-        
+        menu_titles.add(nokia_phone.getString(R.string.profiles));              
 
         // get display elements      
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
@@ -55,14 +47,22 @@ public class MainMenu extends NokiaScreen
     }
     
     @Override
-    public void refresh()
+    public void update()
+    {
+        this.show();
+
+        action.setText(action_text);
+        title.setText(menu_titles.get(position));
+    }
+    
+    @Override
+    public void show()
     {
         action.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
 
-        action.setText(action_text);
-        title.setText(menu_titles.get(position - position_start));
-    }
+        nokia_phone.setScreenId(ScreenId.MAIN_MENU);
+    } 
 
     @Override
     public void hide()
@@ -76,7 +76,7 @@ public class MainMenu extends NokiaScreen
     {
         switch(position)
         {
-            case ScreenId.CALCULATOR:
+            case 8:
                 this.hide();
                 nokia_phone.setScreenId(ScreenId.CALCULATOR);
                 break;
@@ -95,8 +95,8 @@ public class MainMenu extends NokiaScreen
     public void down()
     {
         position--;
-        if (position < position_start)
-            position = position_end;
+        if (position < 0)
+            position = menu_titles.size() - 1;
     }
 
 
@@ -104,8 +104,8 @@ public class MainMenu extends NokiaScreen
     public void up()
     {
         position++;
-        if (position > position_end)
-            position = position_start;
+        if (position > menu_titles.size() - 1)
+            position = 0;
 
     }
     

@@ -108,7 +108,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         initializeMenus();
 
         // Set screen
-        screens.get(screen_id).refresh();
+        screens.get(screen_id).update();
 
 
         if (first_time_startup)
@@ -399,12 +399,17 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
                     break;
             }
 
-            screens.get(screen_id).refresh();
+            screens.get(screen_id).update();
         }
 
         return false;
     }
 
+    public List<NokiaScreen> getScreens()
+    {
+        return screens;
+    }
+    
     public void setScreenId(int screen_id)
     {
         this.screen_id = screen_id;
