@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.example.layout.LayoutScaler;
 import com.example.screen.Calculator;
 import com.example.screen.MainMenu;
 import com.example.screen.NokiaScreen;
@@ -123,27 +124,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private void initializeTextViews()
     {
-        Typeface font = Typeface.createFromAsset(getAssets(), "NokiaBig.ttf");
         action = (TextView) this.findViewById(R.id.action);
-        action.setTypeface(font);
         menu_titel = (TextView) this.findViewById(R.id.title);
-        menu_titel.setTypeface(font);
         clock_view = (TextView) this.findViewById(R.id.clock_view);
-        clock_view.setTypeface(font);
         input = (TextView) this.findViewById(R.id.input);
-        input.setTypeface(font);
         
         options_menu_title_one = (TextView) this.findViewById(R.id.options_menu_title_one);
         options_menu_title_two = (TextView) this.findViewById(R.id.options_menu_title_two);
         options_menu_title_three = (TextView) this.findViewById(R.id.options_menu_title_three);
-        
-        options_menu_title_one.setTypeface(font);
-        options_menu_title_two.setTypeface(font);
-        options_menu_title_three.setTypeface(font);
-        
-        options_menu_title_one.setVisibility(View.GONE);
-        options_menu_title_two.setVisibility(View.GONE);
-        options_menu_title_three.setVisibility(View.GONE);
         
         // Get and set font sizes
         getFontSizes();

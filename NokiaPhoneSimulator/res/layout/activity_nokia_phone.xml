@@ -34,7 +34,7 @@
 		            android:layout_alignParentRight="true"
 		            android:scaleType="fitCenter" />
         
-            <TextView
+            <com.example.layout.NokiaTextView
                 android:id="@+id/clock_view"
                 android:layout_width="wrap_content"
                 android:layout_height="30px"
@@ -43,7 +43,7 @@
                 android:layout_toLeftOf="@+id/battery_indicator"
                 android:textColor="#2C2328" />
             
-            <TextView
+            <com.example.layout.NokiaTextView
                 android:id="@+id/title"
                 android:layout_width="fill_parent"
                 android:layout_height="60px"
@@ -54,7 +54,7 @@
                 android:textSize="30dip"
                 android:visibility="gone" />
             
-            <TextView
+            <com.example.layout.NokiaTextView
                 android:id="@+id/action"
                 android:layout_width="fill_parent"
                 android:layout_height="30px"
@@ -63,7 +63,7 @@
                 android:singleLine="false"
                 android:textColor="#2C2328" />
 
-	          <TextView
+	          <com.example.layout.NokiaTextView
 	              android:id="@+id/input"
 	              android:layout_width="fill_parent"
                 android:layout_height="30px"
@@ -71,8 +71,9 @@
                 android:layout_above="@+id/action"
 	              android:textColor="#2C2328" />	          
 	          
-            <TextView
-                android:id="@+id/options_menu_title_one"                
+            <com.example.layout.NokiaTextView
+                android:id="@+id/options_menu_title_one"       
+                android:visibility="invisible"         
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginTop="20px"
@@ -80,8 +81,9 @@
                 android:layout_marginRight="15px"
                 android:textColor="#2C2328" />
 	            
-            <TextView
-                android:id="@+id/options_menu_title_two"
+            <com.example.layout.NokiaTextView
+                android:id="@+id/options_menu_title_two"       
+                android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginLeft="7px"
@@ -89,8 +91,9 @@
                 android:layout_below="@+id/options_menu_title_one"
                 android:textColor="#2C2328" />
 	                           
-            <TextView
-                android:id="@+id/options_menu_title_three"
+            <com.example.layout.NokiaTextView
+                android:id="@+id/options_menu_title_three"       
+                android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginLeft="7px"
