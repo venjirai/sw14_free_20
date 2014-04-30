@@ -7,16 +7,15 @@ import java.util.List;
 import com.example.layout.LayoutScaler;
 import com.example.screen.Calculator;
 import com.example.screen.MainMenu;
-import com.example.screen.NokiaScreen;
+import com.example.screen.Screen;
 import com.example.screen.StartScreen;
-import com.example.screen.OptionsMenu;
+import com.example.screen.SubMenu;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -52,10 +51,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private SignalIndicator signal_indicator;
     private Clock clock;
 
-    private List<String> options;
-    
-    private List<NokiaScreen> screens;
-    private int screen_id = 1;
+    private List<Screen> screens;
+    private int screen_id = 0;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -90,8 +87,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         initializeButtons();
         initializeTextViews();
-        
-          
+
 
         // Loads contacts from phone
         contact_list = new ContactList(context);
@@ -105,7 +101,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         first_time_startup = preferences.getBoolean("first_time_startup", true);
 
         // Initialize menus
-        options = new ArrayList<String>();
         initializeMenus();
 
         // Set screen
@@ -128,11 +123,11 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         menu_titel = (TextView) this.findViewById(R.id.title);
         clock_view = (TextView) this.findViewById(R.id.clock_view);
         input = (TextView) this.findViewById(R.id.input);
-        
+
         options_menu_title_one = (TextView) this.findViewById(R.id.options_menu_title_one);
         options_menu_title_two = (TextView) this.findViewById(R.id.options_menu_title_two);
         options_menu_title_three = (TextView) this.findViewById(R.id.options_menu_title_three);
-        
+
         // Get and set font sizes
         getFontSizes();
         action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
@@ -142,24 +137,18 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         options_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         options_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         options_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        
+
     }
 
     private void initializeMenus()
     {
-        screens = new ArrayList<NokiaScreen>();
-        screens.add(new OptionsMenu(this));
+        screens = new ArrayList<Screen>();
         screens.add(new StartScreen(this));
-        screens.add(new MainMenu(this));    
+        screens.add(new MainMenu(this));
+        screens.add(new SubMenu(this));
         screens.add(new Calculator(this));
     }
 
-    public OptionsMenu getOptionsMenu()
-    {
-        return (OptionsMenu) screens.get(0);
-    }
-    
-    
     private void getFontSizes()
     {
         if (displayWidth == 480 && displayHeight == 800)
@@ -211,22 +200,22 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // start updates for BatteryIndicator
         IntentFilter battery_level_filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         this.registerReceiver(battery_indicator, battery_level_filter);
-        
+
         // start the Clock
         IntentFilter time_filter = new IntentFilter(Intent.ACTION_TIME_TICK);
         this.registerReceiver(clock, time_filter);
         this.clock.refresh();
     }
-    
+
     @Override
     public void onPause()
     {
         super.onPause();
         // stop services, threads, listeners, receivers!
-        
+
         // stop updates for BatteryIndicator
         this.unregisterReceiver(battery_indicator);
-        
+
         // stop the clock
         this.unregisterReceiver(clock);
     }
@@ -393,11 +382,11 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         return false;
     }
 
-    public List<NokiaScreen> getScreens()
+    public List<Screen> getScreens()
     {
         return screens;
     }
-    
+
     public void setScreenId(int screen_id)
     {
         this.screen_id = screen_id;

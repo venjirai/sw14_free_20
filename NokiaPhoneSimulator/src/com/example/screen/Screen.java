@@ -5,12 +5,13 @@ import java.util.List;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 
 
-public abstract class NokiaScreen
+public abstract class Screen
 {
     protected NokiaPhoneActivity nokia_phone;
-    protected List<NokiaScreen> screens;
+    protected List<Screen> screens;
     
-    public NokiaScreen(NokiaPhoneActivity nokia_phone)
+    
+    public Screen(NokiaPhoneActivity nokia_phone)
     {
         this.nokia_phone = nokia_phone;
         this.screens = nokia_phone.getScreens();
@@ -38,18 +39,15 @@ public abstract class NokiaScreen
     abstract public void nine();    
     
     abstract public void pound();
-    public abstract void star();
+    abstract public void star();
        
 
     // add your screens number in List here
     static class ScreenId
     {
-        public static final int OPTIONS_MENU = 0;
-        public static final int START_SCREEN = 1;
-        public static final int MAIN_MENU = 2;
-       
-        
-        // menus
+        public static final int START_SCREEN = 0;
+        public static final int MAIN_MENU = 1;
+        public static final int SUB_MENU = 2;
         public static final int CALCULATOR = 3;  
         
     }

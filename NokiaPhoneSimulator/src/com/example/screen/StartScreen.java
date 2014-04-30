@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
+import com.example.screen.Screen.ScreenId;
 
-public class StartScreen extends NokiaScreen
+public class StartScreen extends Screen
 {
     private ImageView battery_indicator;
     private ImageView signal_indicator;
@@ -29,7 +30,7 @@ public class StartScreen extends NokiaScreen
         this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.clock_view = (TextView) nokia_phone.findViewById(R.id.clock_view);
-        
+
         action_text = "Menu";
     }
 
@@ -48,8 +49,6 @@ public class StartScreen extends NokiaScreen
     @Override
     public void update()
     {
-        this.show();
-
         if (phone_number_length == 0)
             action.setText("Menu");
         else
@@ -63,8 +62,10 @@ public class StartScreen extends NokiaScreen
         signal_indicator.setVisibility(View.VISIBLE);
         action.setVisibility(View.VISIBLE);
         clock_view.setVisibility(View.VISIBLE);
+
+        nokia_phone.setScreenId(ScreenId.START_SCREEN);
     }
-    
+
     @Override
     public void hide()
     {

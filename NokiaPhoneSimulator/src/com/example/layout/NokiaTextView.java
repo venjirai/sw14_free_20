@@ -27,11 +27,9 @@ public class NokiaTextView extends TextView
     }
 
     protected void onDraw(Canvas canvas)
-    { 
+    {
         super.onDraw(canvas);
     }
-
-
 }
 
 class FontHelper
