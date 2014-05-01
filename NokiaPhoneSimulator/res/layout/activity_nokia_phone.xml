@@ -3,7 +3,8 @@
     android:id="@+id/container"
     android:keepScreenOn="true"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="#000000">
     
     <RelativeLayout
         android:id="@+id/contents"

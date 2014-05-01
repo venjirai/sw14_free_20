@@ -77,6 +77,7 @@ public final class R {
         public static final int signal_max=0x7f02003f;
         public static final int signal_medium=0x7f020040;
         public static final int signal_min=0x7f020041;
+        public static final int splash_screen=0x7f020042;
     }
     public static final class id {
         public static final int action=0x7f080007;
@@ -116,6 +117,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_nokia_phone=0x7f030000;
+        public static final int splash_screen=0x7f030001;
     }
     public static final class menu {
         public static final int nokia_phone=0x7f070000;

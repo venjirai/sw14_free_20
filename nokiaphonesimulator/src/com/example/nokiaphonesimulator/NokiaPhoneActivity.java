@@ -66,7 +66,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nokia_phone);
-
+        
         // Get application context for certain method calls
         context = this.getApplicationContext();
 
@@ -190,7 +190,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         }
     }
 
-    // this is called on the app start!
     @Override
     public void onResume()
     {
@@ -281,7 +280,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         if (hasFocus)
         {
-            new LayoutScaler();
             LayoutScaler.scaleContents(findViewById(R.id.contents), findViewById(R.id.container));
         }
     }
