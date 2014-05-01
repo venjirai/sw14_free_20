@@ -13,11 +13,12 @@ public class SmsReader
     public SmsReader(Context context)
     {
         Uri sms_uri = Uri.parse("content://sms/inbox");
-        Cursor cursor = context.getContentResolver().query(sms_uri, null, null, null,null);
+        Cursor cursor = context.getContentResolver().query(sms_uri, null, null, null, null);
         cursor.moveToFirst();
-        
-        while (cursor.moveToNext()) {
-            sms.add("From: " + cursor.getString(2) + " : " + cursor.getString(11));         
+
+        while (cursor.moveToNext())
+        {
+            sms.add("From: " + cursor.getString(2) + " : " + cursor.getString(11));
         }
     }
 }

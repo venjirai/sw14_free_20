@@ -70,18 +70,13 @@ public final class R {
         public static final int img_btn_up_pressed=0x7f020038;
         public static final int img_btn_zero=0x7f020039;
         public static final int img_btn_zero_pressed=0x7f02003a;
-        public static final int loading_0=0x7f02003b;
-        public static final int loading_1=0x7f02003c;
-        public static final int loading_2=0x7f02003d;
-        public static final int loading_3=0x7f02003e;
-        public static final int nokia_phone=0x7f02003f;
-        public static final int nokia_phone_light=0x7f020040;
-        public static final int signal_high=0x7f020041;
-        public static final int signal_low=0x7f020042;
-        public static final int signal_max=0x7f020043;
-        public static final int signal_medium=0x7f020044;
-        public static final int signal_min=0x7f020045;
-        public static final int splash_screen=0x7f020046;
+        public static final int nokia_phone_light=0x7f02003b;
+        public static final int signal_high=0x7f02003c;
+        public static final int signal_low=0x7f02003d;
+        public static final int signal_max=0x7f02003e;
+        public static final int signal_medium=0x7f02003f;
+        public static final int signal_min=0x7f020040;
+        public static final int splash_screen=0x7f020041;
     }
     public static final class id {
         public static final int action=0x7f080007;
@@ -113,10 +108,10 @@ public final class R {
         public static final int contents=0x7f080001;
         public static final int display=0x7f080002;
         public static final int input=0x7f080008;
-        public static final int options_menu_title_one=0x7f080009;
-        public static final int options_menu_title_three=0x7f08000b;
-        public static final int options_menu_title_two=0x7f08000a;
         public static final int signal_indicator=0x7f080003;
+        public static final int sub_menu_title_one=0x7f080009;
+        public static final int sub_menu_title_three=0x7f08000b;
+        public static final int sub_menu_title_two=0x7f08000a;
         public static final int title=0x7f080006;
     }
     public static final class layout {

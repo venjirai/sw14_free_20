@@ -40,9 +40,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private TextView menu_titel;
     private TextView clock_view;
     private TextView input;
-    private TextView options_menu_title_one;
-    private TextView options_menu_title_two;
-    private TextView options_menu_title_three;
+    private TextView sub_menu_title_one;
+    private TextView sub_menu_title_two;
+    private TextView sub_menu_title_three;
 
     private int displayWidth, displayHeight;
 
@@ -124,9 +124,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         clock_view = (TextView) this.findViewById(R.id.clock_view);
         input = (TextView) this.findViewById(R.id.input);
 
-        options_menu_title_one = (TextView) this.findViewById(R.id.options_menu_title_one);
-        options_menu_title_two = (TextView) this.findViewById(R.id.options_menu_title_two);
-        options_menu_title_three = (TextView) this.findViewById(R.id.options_menu_title_three);
+        sub_menu_title_one = (TextView) this.findViewById(R.id.sub_menu_title_one);
+        sub_menu_title_two = (TextView) this.findViewById(R.id.sub_menu_title_two);
+        sub_menu_title_three = (TextView) this.findViewById(R.id.sub_menu_title_three);
 
         // Get and set font sizes
         getFontSizes();
@@ -134,9 +134,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
         clock_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         input.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        options_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        options_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        options_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        sub_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        sub_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        sub_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
     }
 

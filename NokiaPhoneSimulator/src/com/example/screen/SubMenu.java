@@ -20,8 +20,7 @@ public class SubMenu extends Screen
     private List<String> menu_titles;
 
     private TextView action;
-    private TextView options_menu_titles[];
-
+    private TextView sub_menu_titles[];
 
     private String action_text;
 
@@ -42,12 +41,12 @@ public class SubMenu extends Screen
 
         action_text = "OK";
 
-        options_menu_titles = new TextView[3];
+        sub_menu_titles = new TextView[3];
 
 
-        this.options_menu_titles[0] = (TextView) nokia_phone.findViewById(R.id.options_menu_title_one);
-        this.options_menu_titles[1] = (TextView) nokia_phone.findViewById(R.id.options_menu_title_two);
-        this.options_menu_titles[2] = (TextView) nokia_phone.findViewById(R.id.options_menu_title_three);
+        this.sub_menu_titles[0] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
+        this.sub_menu_titles[1] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
+        this.sub_menu_titles[2] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_three);
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
 
@@ -82,14 +81,14 @@ public class SubMenu extends Screen
 
         for (int i = 0; i < 3; i++)
         {
-            options_menu_titles[i].setVisibility(View.VISIBLE);
-            options_menu_titles[i].setText(menu_titles.get(i));
-            options_menu_titles[i].setBackgroundColor(Color.parseColor("#afc377"));
-            options_menu_titles[i].setTextColor(Color.BLACK);
+            sub_menu_titles[i].setVisibility(View.VISIBLE);
+            sub_menu_titles[i].setText(menu_titles.get(i));
+            sub_menu_titles[i].setBackgroundColor(Color.parseColor("#afc377"));
+            sub_menu_titles[i].setTextColor(Color.BLACK);
         }
 
-        options_menu_titles[position].setBackgroundColor(Color.BLACK);
-        options_menu_titles[position].setTextColor(Color.parseColor("#afc377"));
+        sub_menu_titles[position].setBackgroundColor(Color.BLACK);
+        sub_menu_titles[position].setTextColor(Color.parseColor("#afc377"));
 
         action.setText(action_text);
 
@@ -112,7 +111,7 @@ public class SubMenu extends Screen
         action.setVisibility(View.GONE);
         for (int i = 0; i < 3; i++)
         {
-            options_menu_titles[i].setVisibility(View.GONE);
+            sub_menu_titles[i].setVisibility(View.GONE);
         }
 
         if (!option_selected)

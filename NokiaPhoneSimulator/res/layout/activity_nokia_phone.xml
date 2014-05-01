@@ -73,7 +73,7 @@
 	              android:textColor="#2C2328" />	          
 	          
             <com.example.layout.NokiaTextView
-                android:id="@+id/options_menu_title_one"       
+                android:id="@+id/sub_menu_title_one"       
                 android:visibility="invisible"         
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
@@ -83,23 +83,23 @@
                 android:textColor="#2C2328" />
 	            
             <com.example.layout.NokiaTextView
-                android:id="@+id/options_menu_title_two"       
+                android:id="@+id/sub_menu_title_two"       
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginLeft="7px"
                 android:layout_marginRight="15px"
-                android:layout_below="@+id/options_menu_title_one"
+                android:layout_below="@+id/sub_menu_title_one"
                 android:textColor="#2C2328" />
 	                           
             <com.example.layout.NokiaTextView
-                android:id="@+id/options_menu_title_three"       
+                android:id="@+id/sub_menu_title_three"       
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="25px"
                 android:layout_marginLeft="7px"
                 android:layout_marginRight="15px"
-                android:layout_below="@+id/options_menu_title_two"
+                android:layout_below="@+id/sub_menu_title_two"
                 android:textColor="#2C2328" />             	          
         
         </RelativeLayout>
