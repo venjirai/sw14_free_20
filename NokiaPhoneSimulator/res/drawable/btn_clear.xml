@@ -7,5 +7,4 @@
 		android:state_focused="true" 
 		android:drawable="@drawable/img_btn_clear_pressed"> 
 	</item> 
-	<item  android:drawable="@drawable/img_btn_clear"></item> 
 </selector> 
