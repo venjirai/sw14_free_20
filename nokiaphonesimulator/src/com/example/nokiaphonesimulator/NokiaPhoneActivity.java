@@ -46,7 +46,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private int displayWidth, displayHeight;
 
-    private ContactList contact_list;
+    private ArrayList<Contact> contacts;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     private Clock clock;
@@ -84,13 +84,12 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // Load sounds
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
+        
+        Intent intent = getIntent();
+        contacts = intent.getParcelableArrayListExtra("contacts");
 
         initializeButtons();
         initializeTextViews();
-
-
-        // Loads contacts from phone
-        contact_list = new ContactList(context);
 
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
@@ -105,7 +104,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Set screen
         screens.get(screen_id).update();
-
 
         if (first_time_startup)
         {

@@ -7,8 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
    GUITest.class,
    SampleJUnitTest.class,
-   ContactTest.class,
-   ContactListTest.class
+   ContactTest.class
 })
 
 public class AllTests {   

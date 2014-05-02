@@ -55,21 +55,26 @@ public final class R {
         public static final int img_btn_two_pressed=0x7f020029;
         public static final int img_btn_up_pressed=0x7f02002a;
         public static final int img_btn_zero_pressed=0x7f02002b;
-        public static final int signal_high=0x7f02002c;
-        public static final int signal_low=0x7f02002d;
-        public static final int signal_max=0x7f02002e;
-        public static final int signal_medium=0x7f02002f;
-        public static final int signal_min=0x7f020030;
-        public static final int splash_screen=0x7f020031;
+        public static final int loading=0x7f02002c;
+        public static final int loading_0=0x7f02002d;
+        public static final int loading_1=0x7f02002e;
+        public static final int loading_2=0x7f02002f;
+        public static final int loading_3=0x7f020030;
+        public static final int signal_high=0x7f020031;
+        public static final int signal_low=0x7f020032;
+        public static final int signal_max=0x7f020033;
+        public static final int signal_medium=0x7f020034;
+        public static final int signal_min=0x7f020035;
+        public static final int splash_screen=0x7f020036;
     }
     public static final class id {
         public static final int action=0x7f080007;
-        public static final int action_settings=0x7f080021;
-        public static final int battery_charging_empty=0x7f08001c;
-        public static final int battery_charging_full=0x7f08001d;
-        public static final int battery_charging_high=0x7f08001e;
-        public static final int battery_charging_low=0x7f08001f;
-        public static final int battery_charging_medium=0x7f080020;
+        public static final int action_settings=0x7f080022;
+        public static final int battery_charging_empty=0x7f08001d;
+        public static final int battery_charging_full=0x7f08001e;
+        public static final int battery_charging_high=0x7f08001f;
+        public static final int battery_charging_low=0x7f080020;
+        public static final int battery_charging_medium=0x7f080021;
         public static final int battery_indicator=0x7f080004;
         public static final int btn_clear=0x7f08000c;
         public static final int btn_down=0x7f08000d;
@@ -92,6 +97,7 @@ public final class R {
         public static final int contents=0x7f080001;
         public static final int display=0x7f080002;
         public static final int input=0x7f080008;
+        public static final int loading=0x7f08001c;
         public static final int signal_indicator=0x7f080003;
         public static final int sub_menu_title_one=0x7f080009;
         public static final int sub_menu_title_three=0x7f08000b;
