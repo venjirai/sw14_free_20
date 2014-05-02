@@ -22,22 +22,12 @@ public class SplashScreen extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        
+        ((AnimationDrawable) ((ImageView) this.findViewById(R.id.loading)).getDrawable()).start();
+        this.context = this.getApplicationContext();
+        new LoadData().execute();
     }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus)
-    {
-        super.onWindowFocusChanged(hasFocus);
-
-        if (hasFocus)
-        {
-            ((AnimationDrawable) ((ImageView) this.findViewById(R.id.loading)).getDrawable()).start();
-            this.context = this.getApplicationContext();
-            new LoadData().execute();
-        }
-    }
-
-
+    
     private class LoadData extends AsyncTask<Void, Void, Void>
     {
         private ArrayList<Contact> contacts;
