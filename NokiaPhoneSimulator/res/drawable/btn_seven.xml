@@ -6,6 +6,5 @@
 	<item 
 		android:state_focused="true" 
 		android:drawable="@drawable/img_btn_seven_pressed"> 
-	</item> 
-	<item  android:drawable="@drawable/img_btn_seven"></item> 
+	</item>
 </selector> 

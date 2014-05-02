@@ -76,19 +76,19 @@
                 android:id="@+id/sub_menu_title_one"       
                 android:visibility="invisible"         
                 android:layout_width="fill_parent"
-                android:layout_height="25px"
+                android:layout_height="35px"
                 android:layout_marginTop="20px"
-                android:layout_marginLeft="7px"
                 android:layout_marginRight="15px"
+                android:paddingLeft="7px"
                 android:textColor="#2C2328" />
 	            
             <com.example.layout.NokiaTextView
                 android:id="@+id/sub_menu_title_two"       
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
-                android:layout_height="25px"
-                android:layout_marginLeft="7px"
+                android:layout_height="35px"
                 android:layout_marginRight="15px"
+                android:paddingLeft="7px"
                 android:layout_below="@+id/sub_menu_title_one"
                 android:textColor="#2C2328" />
 	                           
@@ -96,20 +96,20 @@
                 android:id="@+id/sub_menu_title_three"       
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
-                android:layout_height="25px"
-                android:layout_marginLeft="7px"
+                android:layout_height="35px"
                 android:layout_marginRight="15px"
+                android:paddingLeft="7px"
                 android:layout_below="@+id/sub_menu_title_two"
                 android:textColor="#2C2328" />             	          
         
         </RelativeLayout>
         
-        <ImageButton
+        <Button
 	        android:id="@+id/btn_clear"
 	        android:layout_width="92px"    
 	        android:layout_height="77px"
 	        android:layout_marginLeft="29px"
-	        android:layout_marginTop="278px"
+	        android:layout_marginTop="279px"
 	        android:background="@drawable/btn_clear"/>
         
         <Button
@@ -117,7 +117,7 @@
 	        android:layout_width="70px"
 	        android:layout_height="84px"
 	        android:layout_marginLeft="219px"
-	        android:layout_marginTop="300px"
+	        android:layout_marginTop="301px"
 	        android:background="@drawable/btn_down"/>
         
         <Button
@@ -125,7 +125,7 @@
 	        android:layout_width="185px"
 	        android:layout_height="49px"
 	        android:layout_marginLeft="101px"
-	        android:layout_marginTop="254px"
+	        android:layout_marginTop="255px"
 	        android:background="@drawable/btn_enter"/>
         
         <Button
@@ -133,106 +133,106 @@
 	        android:layout_width="70px"
 	        android:layout_height="87px"
 	        android:layout_marginLeft="289px"
-	        android:layout_marginTop="277px"
+	        android:layout_marginTop="278px"
 	        android:background="@drawable/btn_up"/>
         
         
         <Button
 	        android:id="@+id/btn_one"
-	        android:layout_width="64px"
-	        android:layout_height="43px"
-	        android:layout_marginLeft="14px"
-	        android:layout_marginTop="314px"
+	        android:layout_width="94px"
+	        android:layout_height="59px"
+	        android:layout_marginLeft="8px"
+	        android:layout_marginTop="386px"
 	        android:background="@drawable/btn_one"/>
 
         
         <Button
 	        android:id="@+id/btn_two"
-	        android:layout_width="68px"
-	        android:layout_height="39px"
-	        android:layout_marginLeft="107px"
-	        android:layout_marginTop="329px"
+	        android:layout_width="100px"
+	        android:layout_height="53px"
+	        android:layout_marginLeft="144px"
+	        android:layout_marginTop="408px"
 	        android:background="@drawable/btn_two"/>
 	        
         
         <Button
 	        android:id="@+id/btn_three"
-	        android:layout_width="67px"
-	        android:layout_height="43px"
-	        android:layout_marginLeft="203px"
-	        android:layout_marginTop="314px"
+	        android:layout_width="94px"
+	        android:layout_height="58px"
+	        android:layout_marginLeft="287px"
+	        android:layout_marginTop="387px"
 	        android:background="@drawable/btn_three"/>
         
         <Button
 	        android:id="@+id/btn_four"
-	        android:layout_width="66px"
-	        android:layout_height="43px"
-	        android:layout_marginLeft="16px"
-	        android:layout_marginTop="368px"
+	        android:layout_width="96px"
+	        android:layout_height="60px"
+	        android:layout_marginLeft="9px"
+	        android:layout_marginTop="462px"
 	        android:background="@drawable/btn_four"/>
         
         <Button
 	        android:id="@+id/btn_five"
-	        android:layout_width="71px"
-	        android:layout_height="40px"
-	        android:layout_marginLeft="105px"
-	        android:layout_marginTop="382px"
+	        android:layout_width="102px"
+	        android:layout_height="56px"
+	        android:layout_marginLeft="143px"
+	        android:layout_marginTop="484px"
 	        android:background="@drawable/btn_five"/>
         
         <Button
 	        android:id="@+id/btn_six"
-	        android:layout_width="66px"
-	        android:layout_height="44px"
-	        android:layout_marginLeft="200px"
-	        android:layout_marginTop="367px"
+	        android:layout_width="96px"
+	        android:layout_height="61px"
+	        android:layout_marginLeft="283px"
+	        android:layout_marginTop="461px"
 	        android:background="@drawable/btn_six"/>
         
         <Button
 	        android:id="@+id/btn_seven"
-	        android:layout_width="64px"
-	        android:layout_height="44px"
-	        android:layout_marginLeft="21px"
-	        android:layout_marginTop="421px"
+	        android:layout_width="97px"
+	        android:layout_height="62px"
+	        android:layout_marginLeft="11px"
+	        android:layout_marginTop="540px"
 	        android:background="@drawable/btn_seven"/>
         
         <Button
 	        android:id="@+id/btn_eight"
-	        android:layout_width="69px"
-	        android:layout_height="40px"
-	        android:layout_marginLeft="106px"
-	        android:layout_marginTop="436px"
+	        android:layout_width="105px"
+	        android:layout_height="58px"
+	        android:layout_marginLeft="142px"
+	        android:layout_marginTop="562px"
 	        android:background="@drawable/btn_eight"/>
         
         <Button
 	        android:id="@+id/btn_nine"
-	        android:layout_width="66px"
-	        android:layout_height="45px"
-	        android:layout_marginLeft="196px"
-	        android:layout_marginTop="421px"
+	        android:layout_width="97px"
+	        android:layout_height="63px"
+	        android:layout_marginLeft="280px"
+	        android:layout_marginTop="540px"
 	        android:background="@drawable/btn_nine"/>
         
         <Button
 	        android:id="@+id/btn_star"
-	        android:layout_width="66px"
-	        android:layout_height="43px"
-	        android:layout_marginLeft="23px"
-	        android:layout_marginTop="476px"
+	        android:layout_width="97px"
+	        android:layout_height="65px"
+	        android:layout_marginLeft="15px"
+	        android:layout_marginTop="620px"
 	        android:background="@drawable/btn_star"/>
         
         <Button
 	        android:id="@+id/btn_zero"
-	        android:layout_width="70px"
-	        android:layout_height="41px"
-	        android:layout_marginLeft="106px"
-	        android:layout_marginTop="490px"
+	        android:layout_width="106px"
+	        android:layout_height="60px"
+	        android:layout_marginLeft="141px"
+	        android:layout_marginTop="644px"
 	        android:background="@drawable/btn_zero"/>
         
         <Button
 	        android:id="@+id/btn_pound"
-	        android:layout_width="65px"
-	        android:layout_height="43px"
-	        android:layout_marginLeft="193px"
-	        android:layout_marginTop="476px"
+	        android:layout_width="98px"
+	        android:layout_height="64px"
+	        android:layout_marginLeft="278px"
+	        android:layout_marginTop="622px"
 	        android:background="@drawable/btn_pound"/>
         
     </RelativeLayout>
