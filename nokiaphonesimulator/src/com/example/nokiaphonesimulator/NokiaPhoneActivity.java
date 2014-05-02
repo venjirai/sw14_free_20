@@ -47,6 +47,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     private int displayWidth, displayHeight;
 
     private ArrayList<Contact> contacts;
+    private ArrayList<Sms> sms_inbox;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     private Clock clock;
@@ -87,6 +88,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         
         Intent intent = getIntent();
         contacts = intent.getParcelableArrayListExtra("contacts");
+        sms_inbox = intent.getParcelableArrayListExtra("sms_inbox");
 
         initializeButtons();
         initializeTextViews();

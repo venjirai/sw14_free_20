@@ -12,15 +12,6 @@ public class Contact implements Parcelable
     private String family_name;
     private String phone_number;
 
-    // default constructor
-    public Contact()
-    {
-        id = "";
-        given_name = "";
-        family_name = "";
-        phone_number = "";
-    }
-
     // constructor
     public Contact(String id, String given_name, String family_name, String phone_number)
     {
@@ -67,28 +58,7 @@ public class Contact implements Parcelable
             return new Contact[size];
         }
     };
-
-    // setter
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-
-    public void setGivenName(String first_name)
-    {
-        this.given_name = first_name;
-    }
-
-    public void setFamilyName(String last_name)
-    {
-        this.family_name = last_name;
-    }
-
-    public void setPhoneNumber(String phone_number)
-    {
-        this.phone_number = phone_number;
-    }
-
+    
     // getter
     public String getId()
     {
