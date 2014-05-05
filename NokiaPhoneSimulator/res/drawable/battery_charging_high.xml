@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/battery_charging_high" 
-    android:oneshot="false" >
-    
-    <item android:drawable="@drawable/battery_high" android:duration="700" />
-    <item android:drawable="@drawable/battery_full" android:duration="300" />
-
-</animation-list>

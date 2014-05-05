@@ -7,16 +7,14 @@ public class Sms implements Parcelable
 {
     private String id;
     private String address;
-    private String person;
-    private String date;
-    private String read;
+    private String date;          // stored in milliseconds
+    private String read;          // 1 read / 0 not read
     private String body;
 
-    public Sms(String id, String address, String person, String date, String read, String body)
+    public Sms(String id, String address, String date, String read, String body)
     {
         this.id = id;
         this.address = address;
-        this.person = person;
         this.date = date;
         this.read = read;
         this.body = body;
@@ -27,7 +25,6 @@ public class Sms implements Parcelable
     {
         this.id = in.readString();
         this.address = in.readString();
-        this.person = in.readString();
         this.date = in.readString();
         this.read = in.readString();
         this.body = in.readString();
@@ -44,7 +41,6 @@ public class Sms implements Parcelable
     {
         out.writeString(id);
         out.writeString(address);
-        out.writeString(person);
         out.writeString(date);
         out.writeString(read);
         out.writeString(body);
@@ -72,11 +68,6 @@ public class Sms implements Parcelable
     public String getAddress()
     {
         return address;
-    }
-
-    public String getPerson()
-    {
-        return person;
     }
 
     public String getDate()

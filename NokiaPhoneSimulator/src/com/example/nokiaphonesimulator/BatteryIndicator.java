@@ -34,29 +34,10 @@ public class BatteryIndicator extends BroadcastReceiver
 
             if (level_new != level || charging_new != charging)
             {
-                if (battery_status.getIntExtra(BatteryManager.EXTRA_STATUS, -1) == BatteryManager.BATTERY_STATUS_CHARGING)
+                if (charging_new)
                 {
-                    if (level_new >= 4)
-                    {
-                        battery_indicator.setImageResource(R.drawable.battery_charging_full);
-                    }
-                    else if (level_new == 3)
-                    {
-                        battery_indicator.setImageResource(R.drawable.battery_charging_high);
-                    }
-                    else if (level_new == 2)
-                    {
-                        battery_indicator.setImageResource(R.drawable.battery_charging_medium);
-                    }
-                    else if (level_new == 1)
-                    {
-                        battery_indicator.setImageResource(R.drawable.battery_charging_low);
-                    }
-                    else
-                    {
-                        battery_indicator.setImageResource(R.drawable.battery_charging_empty);
-                    }
-
+                    battery_indicator.setImageResource(R.drawable.battery_charging);                    
+                   
                     ((AnimationDrawable) battery_indicator.getDrawable()).start();
                 }
                 else

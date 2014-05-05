@@ -8,26 +8,23 @@ public class Contact implements Parcelable
 {
     // member
     private String id;
-    private String given_name;
-    private String family_name;
-    private String phone_number;
+    private String name;
+    private String number;
 
     // constructor
-    public Contact(String id, String given_name, String family_name, String phone_number)
+    public Contact(String id, String name, String number)
     {
         this.id = id;
-        this.given_name = given_name;
-        this.family_name = family_name;
-        this.phone_number = phone_number;
+        this.name = name;
+        this.number = number;
     }
 
     // constructor that takes a Parcel and gives you an object populated with it's values
     private Contact(Parcel in)
     {
         this.id = in.readString();
-        this.given_name = in.readString();
-        this.family_name = in.readString();
-        this.phone_number = in.readString();
+        this.name = in.readString();
+        this.number = in.readString();
     }
 
     @Override
@@ -40,9 +37,8 @@ public class Contact implements Parcelable
     public void writeToParcel(Parcel out, int flags)
     {
         out.writeString(id);
-        out.writeString(given_name);
-        out.writeString(family_name);
-        out.writeString(phone_number);
+        out.writeString(name);
+        out.writeString(number);
     }
 
     // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
@@ -65,19 +61,14 @@ public class Contact implements Parcelable
         return id;
     }
 
-    public String getGivenName()
+    public String getName()
     {
-        return given_name;
+        return name;
     }
 
-    public String getFamilyName()
+    public String getNumber()
     {
-        return family_name;
-    }
-
-    public String getPhoneNumber()
-    {
-        return phone_number;
+        return number;
     }
 
 }

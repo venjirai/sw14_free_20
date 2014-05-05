@@ -67,13 +67,12 @@ public class SplashScreen extends Activity
             contacts = new ArrayList<Contact>();
 
             String id;
-            String given_name = null;
-            String family_name = null;
+            String name = null;
             String phone_number = null;
 
             ContentResolver content_resolver = context.getContentResolver();
             Cursor contact_cursor = content_resolver.query(ContactsContract.Contacts.CONTENT_URI, // query destination
-                    new String[] { ContactsContract.Contacts._ID }, // requested columns
+                    new String[] { ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME }, // requested columns
                     ContactsContract.Contacts.HAS_PHONE_NUMBER + " != ?", // query
                     new String[] { "0" }, // query variables
                     null);
@@ -85,6 +84,7 @@ public class SplashScreen extends Activity
                 while (contact_cursor.moveToNext())
                 {
                     id = contact_cursor.getString(0);
+                    name = contact_cursor.getString(1);
 
                     // Using the contact ID we will get contact phone number
                     Cursor phone_cursor = content_resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, // query destination
@@ -99,22 +99,7 @@ public class SplashScreen extends Activity
                     }
                     phone_cursor.close();
 
-                    // Using the contact ID we will get contact name                    
-                    Cursor name_cursor = content_resolver.query(ContactsContract.Data.CONTENT_URI, // query destination
-                            new String[] { ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME }, // requested columns
-                            ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?", // query
-                            new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE, id }, // query variables
-                            null);
-
-                    if (name_cursor.moveToFirst())
-                    {
-                        given_name = name_cursor.getString(0);
-                        family_name = name_cursor.getString(1);
-                    }
-                    name_cursor.close();
-
-                    contacts.add(new Contact(id, given_name, family_name, phone_number));
-
+                    contacts.add(new Contact(id, name, phone_number));
                 }
             }
             contact_cursor.close();
@@ -131,7 +116,7 @@ public class SplashScreen extends Activity
              *  1 : thread_id          *
              *  2 : address            *
              *  3 : person             *
-             *  4 : date               *
+             *  4 : date (in ms)       *
              *  5 : protocol           *
              *  6 : read               *
              *  7 : status             *
@@ -144,7 +129,7 @@ public class SplashScreen extends Activity
              * * * * * * * * * * * * * */
 
             Cursor cursor = context.getContentResolver().query(Uri.parse("content://sms/inbox"), // query destination
-                    new String[] { "_id", "address", "person", "date", "read", "body" }, // requested columns
+                    new String[] { "_id", "address", "date", "read", "body" }, // requested columns
                     null, null, null);
             cursor.moveToFirst();
 
@@ -152,7 +137,7 @@ public class SplashScreen extends Activity
             {
                 while (cursor.moveToNext())
                 {
-                    sms_inbox.add(new Sms(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+                    sms_inbox.add(new Sms(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
                 }
                 cursor.close();
             }
