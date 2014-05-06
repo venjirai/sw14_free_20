@@ -101,8 +101,8 @@ public class StartScreen extends Screen
     @Override
     public void down()
     {
-        // TODO Auto-generated method stub
-
+        this.hide();
+        screens.get(ScreenId.CONTACT_SCREEN).show();
     }
 
     @Override

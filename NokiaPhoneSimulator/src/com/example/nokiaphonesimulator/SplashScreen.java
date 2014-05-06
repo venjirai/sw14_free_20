@@ -33,6 +33,7 @@ public class SplashScreen extends Activity
     {
         private ArrayList<Contact> contacts;
         private ArrayList<Sms> sms_inbox;
+        private ArrayList<Sms> sms_sent;
 
         @Override
         protected void onPreExecute()
@@ -43,8 +44,9 @@ public class SplashScreen extends Activity
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            getContacts();
-            getSmsInbox();
+            this.contacts = getContacts();
+            this.sms_inbox = getSmsInbox();
+            this.sms_sent = getSmsSent();
 
             return null;
         }
@@ -56,15 +58,16 @@ public class SplashScreen extends Activity
             Intent nokia_phone = new Intent(SplashScreen.this, NokiaPhoneActivity.class);
             nokia_phone.putParcelableArrayListExtra("contacts", contacts);
             nokia_phone.putParcelableArrayListExtra("sms_inbox", sms_inbox);
+            nokia_phone.putParcelableArrayListExtra("sms_sent", sms_sent);
             startActivity(nokia_phone);
 
             // close this activity
             finish();
         }
 
-        private void getContacts()
+        private ArrayList<Contact> getContacts()
         {
-            contacts = new ArrayList<Contact>();
+            ArrayList<Contact> contacts = new ArrayList<Contact>();
 
             String id;
             String name = null;
@@ -103,11 +106,13 @@ public class SplashScreen extends Activity
                 }
             }
             contact_cursor.close();
+            
+            return contacts;
         }
 
-        private void getSmsInbox()
+        private ArrayList<Sms> getSmsInbox()
         {
-            sms_inbox = new ArrayList<Sms>();
+            ArrayList<Sms> sms_inbox = new ArrayList<Sms>();
             
             /* * * * * * * * * * * * * *
              * Column ID - Column Name *
@@ -141,6 +146,29 @@ public class SplashScreen extends Activity
                 }
                 cursor.close();
             }
+            
+            return sms_inbox;
+        }
+        
+        private ArrayList<Sms> getSmsSent()
+        {
+            ArrayList<Sms> sms_sent = new ArrayList<Sms>();
+
+            Cursor cursor = context.getContentResolver().query(Uri.parse("content://sms/sent"), // query destination
+                    new String[] { "_id", "address", "date", "read", "body" }, // requested columns
+                    null, null, null);
+            cursor.moveToFirst();
+
+            if (cursor.getCount() > 0)
+            {
+                while (cursor.moveToNext())
+                {
+                    sms_sent.add(new Sms(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                }
+                cursor.close();
+            }
+            
+            return sms_sent;
         }
 
     }

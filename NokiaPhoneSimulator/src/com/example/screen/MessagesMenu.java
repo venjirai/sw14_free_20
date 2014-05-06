@@ -9,188 +9,170 @@ import android.widget.TextView;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 
-public class MainMenu extends Screen
+public class MessagesMenu extends Screen
 {
-    private TextView action;
-    private TextView title;
 
-    private String action_text;
+    private TextView action;
+    private TextView line1;
+    private TextView line2;
 
     private List<String> menu_titles;
-    private int position = 0;
-
-    public MainMenu(NokiaPhoneActivity nokia_phone)
+    private int cursor = 0;    
+    
+    public MessagesMenu(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
-
-        // get content
+        
         this.menu_titles = new ArrayList<String>();
-        // menu_titles.add(nokia_phone.getString(R.string.phone_book));
-        menu_titles.add(nokia_phone.getString(R.string.messages));
-        // menu_titles.add(nokia_phone.getString(R.string.chat));
-        // menu_titles.add(nokia_phone.getString(R.string.call_register));
-        // menu_titles.add(nokia_phone.getString(R.string.tones));
-        // menu_titles.add(nokia_phone.getString(R.string.settings));
-        // menu_titles.add(nokia_phone.getString(R.string.call_divert));
-        // menu_titles.add(nokia_phone.getString(R.string.games));
-        menu_titles.add(nokia_phone.getString(R.string.calculator));
-        // menu_titles.add(nokia_phone.getString(R.string.reminders));
-        // menu_titles.add(nokia_phone.getString(R.string.clock));
-        // menu_titles.add(nokia_phone.getString(R.string.profiles));
-
-        // get display elements      
+        this.menu_titles.add("Inbox");
+        this.menu_titles.add("Outbox");
+        
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
-        this.title = (TextView) nokia_phone.findViewById(R.id.title);
-
-        action_text = "Select";
+        this.line1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
+        this.line2 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
     }
 
     @Override
     public void update()
     {
-        action.setText(action_text);
-        title.setText(menu_titles.get(position));
+        line1.setText(menu_titles.get(cursor));
+        
     }
 
     @Override
     public void show()
     {
         action.setVisibility(View.VISIBLE);
-        title.setVisibility(View.VISIBLE);
+        line1.setVisibility(View.VISIBLE);
+        // line2.setVisibility(View.VISIBLE);
 
-        nokia_phone.setScreenId(ScreenId.MAIN_MENU);
+        action.setText("Select");
+        
+        nokia_phone.setScreenId(ScreenId.MESSAGES_MENU);        
     }
 
     @Override
     public void hide()
     {
         action.setVisibility(View.GONE);
-        title.setVisibility(View.GONE);
+        line1.setVisibility(View.GONE);
+        line2.setVisibility(View.GONE);
+        
     }
 
     @Override
     public void enter()
     {
-        switch (position)
-        {
-            case 0:
-                this.hide();
-                screens.get(ScreenId.MESSAGES_MENU).show();
-                break;
-            case 1:
-                this.hide();
-                screens.get(ScreenId.CALCULATOR).show();
-                break;
-        }
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public void clear()
     {
         this.hide();
-        screens.get(ScreenId.START_SCREEN).show();
+        screens.get(ScreenId.MAIN_MENU).show();
+        
     }
 
     @Override
     public void down()
     {
-        position++;
-        if (position > menu_titles.size() - 1)
-            position = 0;
+        cursor++;
+        if (cursor >= menu_titles.size())
+            cursor = 0;        
     }
-
 
     @Override
     public void up()
     {
-        position--;
-        if (position < 0)
-            position = menu_titles.size() - 1;
+        cursor--;
+        if (cursor < 0)
+            cursor = menu_titles.size() - 1;        
     }
 
     @Override
     public void zero()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void one()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void two()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void three()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void four()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void five()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void six()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void seven()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void eight()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void nine()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void pound()
     {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void star()
     {
         // TODO Auto-generated method stub
-
+        
     }
-
 
 }

@@ -5,11 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.example.layout.LayoutScaler;
-import com.example.screen.Calculator;
-import com.example.screen.MainMenu;
-import com.example.screen.Screen;
-import com.example.screen.StartScreen;
-import com.example.screen.SubMenu;
+import com.example.screen.*;
 
 import android.app.Activity;
 import android.content.Context;
@@ -48,6 +44,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private ArrayList<Contact> contacts;
     private ArrayList<Sms> sms_inbox;
+    private ArrayList<Sms> sms_sent;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     private Clock clock;
@@ -89,6 +86,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         Intent intent = getIntent();
         contacts = intent.getParcelableArrayListExtra("contacts");
         sms_inbox = intent.getParcelableArrayListExtra("sms_inbox");
+        sms_sent = intent.getParcelableArrayListExtra("sms_sent");
 
         initializeButtons();
         initializeTextViews();
@@ -106,7 +104,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Set screen
         screens.get(screen_id).update();
-
+        
         if (first_time_startup)
         {
             firstTimeInitialize();
@@ -147,6 +145,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens.add(new MainMenu(this));
         screens.add(new SubMenu(this));
         screens.add(new Calculator(this));
+        screens.add(new ContactScreen(this));
+        screens.add(new MessagesMenu(this));
     }
 
     private void getFontSizes()

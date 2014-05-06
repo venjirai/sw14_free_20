@@ -83,11 +83,11 @@ public class SubMenu extends Screen
         {
             sub_menu_titles[i].setVisibility(View.VISIBLE);
             sub_menu_titles[i].setText(menu_titles.get(i));
-            sub_menu_titles[i].setBackgroundColor(Color.parseColor("#afc377"));
-            sub_menu_titles[i].setTextColor(Color.BLACK);
+            sub_menu_titles[i].setBackgroundColor(Color.TRANSPARENT);
+            sub_menu_titles[i].setTextColor(Color.parseColor("#2C2328"));
         }
 
-        sub_menu_titles[position].setBackgroundColor(Color.BLACK);
+        sub_menu_titles[position].setBackgroundColor(Color.parseColor("#2C2328"));
         sub_menu_titles[position].setTextColor(Color.parseColor("#afc377"));
 
         action.setText(action_text);
@@ -112,6 +112,8 @@ public class SubMenu extends Screen
         for (int i = 0; i < 3; i++)
         {
             sub_menu_titles[i].setVisibility(View.GONE);
+            sub_menu_titles[i].setBackgroundColor(Color.TRANSPARENT);
+            sub_menu_titles[i].setTextColor(Color.parseColor("#2C2328"));
         }
 
         if (!option_selected)

@@ -49,6 +49,8 @@ public abstract class Screen
         public static final int MAIN_MENU = 1;
         public static final int SUB_MENU = 2;
         public static final int CALCULATOR = 3;  
+        public static final int CONTACT_SCREEN = 4;  
+        public static final int MESSAGES_MENU = 5;
         
     }
 }
