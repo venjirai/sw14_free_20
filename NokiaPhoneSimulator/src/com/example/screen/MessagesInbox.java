@@ -24,7 +24,8 @@ public class MessagesInbox extends Screen
         super(nokia_phone);
 
         this.sms_inbox = nokia_phone.getIntent().getParcelableArrayListExtra("sms_inbox");
-
+        
+        this.menu_textview = new TextView[3];
         this.menu_textview[0] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
         this.menu_textview[1] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
         this.menu_textview[2] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_three);
@@ -73,7 +74,7 @@ public class MessagesInbox extends Screen
 
         action.setVisibility(View.VISIBLE);
 
-        //nokia_phone.setScreenId(ScreenId.MESSAGES_INBOX);        
+        nokia_phone.setScreenId(ScreenId.MESSAGES_INBOX);        
     }
 
     @Override
@@ -92,28 +93,43 @@ public class MessagesInbox extends Screen
     @Override
     public void enter()
     {
-        // TODO Auto-generated method stub
+        this.hide();
+        
+        ((ReadMessage) screens.get(ScreenId.READ_MESSAGE)).setText(sms_inbox.get(cursor_list).getBody());
+        screens.get(ScreenId.READ_MESSAGE).show();
 
     }
 
     @Override
     public void clear()
     {
-        // TODO Auto-generated method stub
-
+        this.hide();
+        screens.get(ScreenId.MESSAGES_MENU).show();
     }
 
     @Override
     public void down()
     {
-        // TODO Auto-generated method stub
+        cursor_list++;
+        if (cursor_list >= sms_inbox.size())
+            cursor_list = 0;
+        
+        cursor_screen++;
+        if(cursor_screen > 2)
+            cursor_screen = 2;
 
     }
 
     @Override
     public void up()
     {
-        // TODO Auto-generated method stub
+        cursor_list--;
+        if (cursor_list < 0)
+            cursor_list = sms_inbox.size() - 1;
+        
+        cursor_screen--;
+        if(cursor_screen < 0)
+            cursor_screen = 0;
 
     }
 

@@ -1,76 +1,60 @@
 package com.example.screen;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
-import com.example.screen.Screen.ScreenId;
 
-public class MessagesMenu extends Screen
+public class ReadMessage extends Screen
 {
-
-    private TextView action;
-    private TextView line1;
-    private TextView line2;
-
-    private List<String> menu_titles;
-    private int cursor = 0;    
     
-    public MessagesMenu(NokiaPhoneActivity nokia_phone)
+    private TextView action;
+    private TextView output;
+    
+    private String text;
+
+    public ReadMessage(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
-        
-        this.menu_titles = new ArrayList<String>();
-        this.menu_titles.add("Inbox");
-        this.menu_titles.add("Outbox");
-        
+
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
-        this.line1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
-        this.line2 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
+        this.output = (TextView) nokia_phone.findViewById(R.id.text_io);
+    }
+    
+    public void setText(String text)
+    {
+        this.text = text;
     }
 
     @Override
     public void update()
     {
-        line1.setText(menu_titles.get(cursor));
-        
+        output.setText(text);
     }
 
     @Override
     public void show()
     {
         action.setVisibility(View.VISIBLE);
-        line1.setVisibility(View.VISIBLE);
-        // line2.setVisibility(View.VISIBLE);
-
-        action.setText("Select");
+        output.setVisibility(View.VISIBLE);
         
-        nokia_phone.setScreenId(ScreenId.MESSAGES_MENU);        
+        nokia_phone.setScreenId(ScreenId.READ_MESSAGE);
     }
 
     @Override
     public void hide()
     {
         action.setVisibility(View.GONE);
-        line1.setVisibility(View.GONE);
-        line2.setVisibility(View.GONE);
+        output.setVisibility(View.GONE);
         
     }
 
     @Override
     public void enter()
     {
-        switch (cursor)
-        {
-            case 0:
-                this.hide();
-                screens.get(ScreenId.MESSAGES_INBOX).show();
-                break;
-        }
+        // TODO Auto-generated method stub
         
     }
 
@@ -78,24 +62,22 @@ public class MessagesMenu extends Screen
     public void clear()
     {
         this.hide();
-        screens.get(ScreenId.MAIN_MENU).show();
+        screens.get(ScreenId.MESSAGES_INBOX).show();
         
     }
 
     @Override
     public void down()
     {
-        cursor++;
-        if (cursor >= menu_titles.size())
-            cursor = 0;        
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public void up()
     {
-        cursor--;
-        if (cursor < 0)
-            cursor = menu_titles.size() - 1;        
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
