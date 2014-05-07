@@ -21,6 +21,9 @@ public class CalculatorMenu extends Screen
     
     private int position = 0;
     private int position_end;
+    private int cursor = 0;
+    
+    private int selected_option = -1;
     
     public CalculatorMenu(NokiaPhoneActivity nokia_phone)
     {
@@ -50,23 +53,32 @@ public class CalculatorMenu extends Screen
     public void update()
     {
         action_textview.setVisibility(View.VISIBLE);
-        
-        
-        
+                  
         for (int i = 0; i < 3; i++)
         {
             menu_textview[i].setVisibility(View.VISIBLE);
-            menu_textview[i].setText(menu_title.get((position + i) % position_end + i));
             menu_textview[i].setBackgroundColor(Color.TRANSPARENT);
             menu_textview[i].setTextColor(Color.parseColor("#2C2328"));
         }
-
+              
+        int position_start = position - cursor;
         
-        //menu_textview[position].setBackgroundColor(Color.parseColor("#2C2328"));
-        //menu_textview[position].setTextColor(Color.parseColor("#afc377"));
+        menu_textview[0].setText(menu_title.get(calcPosition(position_start)));
+        menu_textview[1].setText(menu_title.get(calcPosition(position_start + 1)));
+        menu_textview[2].setText(menu_title.get(calcPosition(position_start + 2)));
+        menu_textview[cursor].setBackgroundColor(Color.parseColor("#2C2328"));
+        menu_textview[cursor].setTextColor(Color.parseColor("#afc377"));
 
         action_textview.setText(action_text);
         
+    }
+    
+    
+    public int calcPosition(int offset_position)
+    {
+        int calculated_position = offset_position + position_end + 1;
+        calculated_position %= (position_end + 1);
+        return calculated_position;
     }
     
     @Override
@@ -88,17 +100,28 @@ public class CalculatorMenu extends Screen
         }       
     }
     
+    public int getOptionSelected()
+    {
+        return selected_option;      
+    }
+    
+    
     @Override
     public void enter()
     {
         this.hide();  
+        selected_option = position;
+        position = 0;
+        cursor = 0;
         screens.get(ScreenId.CALCULATOR).show();
     }
     
     @Override
     public void clear()
     {
-        this.hide();  
+        this.hide(); 
+        position = 0;
+        cursor = 0;
         screens.get(ScreenId.CALCULATOR).show();        
     }
     
@@ -108,6 +131,9 @@ public class CalculatorMenu extends Screen
         position--;
         if (position < 0)
             position = position_end;
+        
+        if (cursor != 0)
+            cursor--;
     }
 
     @Override
@@ -117,6 +143,9 @@ public class CalculatorMenu extends Screen
         if (position > position_end)
             position = 0;
 
+        if (cursor != 2)
+            cursor++;
+        
     }
     
     @Override
