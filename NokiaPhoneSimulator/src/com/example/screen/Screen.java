@@ -52,5 +52,7 @@ public abstract class Screen
         public static final int CONTACT_SCREEN = 4;  
         public static final int MESSAGES_MENU = 5;
         public static final int CALCULATOR_MENU = 6;
+        public static final int MESSAGES_INBOX = 7;
+        public static final int READ_MESSAGE = 8;
     }
 }

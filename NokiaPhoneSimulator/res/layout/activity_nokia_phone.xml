@@ -49,9 +49,9 @@
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:paddingTop="1dip"
                 android:layout_above="@+id/action"
-                android:textColor="#2C2328"
-                android:textSize="30dip" />
+                android:textColor="#2C2328" />
             
             <com.example.layout.NokiaTextView
                 android:id="@+id/title"
@@ -59,8 +59,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="60px"
                 android:gravity="center_horizontal"
-                android:textColor="#2C2328"
-                android:textSize="30dip" />
+                android:textColor="#2C2328" />
             
             <com.example.layout.NokiaTextView
                 android:id="@+id/action"
