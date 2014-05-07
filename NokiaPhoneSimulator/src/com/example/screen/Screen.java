@@ -43,7 +43,7 @@ public abstract class Screen
        
 
     // add your screens number in List here
-    static class ScreenId
+    public static class ScreenId
     {
         public static final int START_SCREEN = 0;
         public static final int MAIN_MENU = 1;
@@ -54,5 +54,6 @@ public abstract class Screen
         public static final int CALCULATOR_MENU = 6;
         public static final int MESSAGES_INBOX = 7;
         public static final int READ_MESSAGE = 8;
+        public static final int MESSAGES_OUTBOX = 9;
     }
 }

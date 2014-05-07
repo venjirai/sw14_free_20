@@ -53,11 +53,13 @@ public class Sms implements Parcelable
     // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
     public static final Parcelable.Creator<Sms> CREATOR = new Parcelable.Creator<Sms>()
     {
+        @Override
         public Sms createFromParcel(Parcel in)
         {
             return new Sms(in);
         }
 
+        @Override
         public Sms[] newArray(int size)
         {
             return new Sms[size];

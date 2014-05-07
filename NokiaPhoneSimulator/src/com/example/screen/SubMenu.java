@@ -108,10 +108,10 @@ public class SubMenu extends Screen
     @Override
     public void hide()
     {
-        action.setVisibility(View.GONE);
+        action.setVisibility(View.INVISIBLE);
         for (int i = 0; i < 3; i++)
         {
-            sub_menu_titles[i].setVisibility(View.GONE);
+            sub_menu_titles[i].setVisibility(View.INVISIBLE);
             sub_menu_titles[i].setBackgroundColor(Color.TRANSPARENT);
             sub_menu_titles[i].setTextColor(Color.parseColor("#2C2328"));
         }

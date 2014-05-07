@@ -70,8 +70,8 @@ public class Calculator extends Screen
     @Override
     public void hide()
     {
-        input.setVisibility(View.GONE);
-        action.setVisibility(View.GONE);
+        input.setVisibility(View.INVISIBLE);
+        action.setVisibility(View.INVISIBLE);
     }
 
     @Override

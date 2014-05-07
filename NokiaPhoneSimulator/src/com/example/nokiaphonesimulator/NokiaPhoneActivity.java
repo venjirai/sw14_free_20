@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.example.layout.LayoutScaler;
 import com.example.screen.*;
+import com.example.screen.Screen.ScreenId;
+import com.example.screen.messages.MessagesInbox;
+import com.example.screen.messages.MessagesMenu;
+import com.example.screen.messages.MessagesOutbox;
+import com.example.screen.messages.ReadMessage;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,14 +39,12 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private int displayWidth, displayHeight;
 
-    private ArrayList<Sms> sms_inbox;
-    private ArrayList<Sms> sms_sent;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     private Clock clock;
 
     private List<Screen> screens;
-    private int screen_id = 0;
+    private int screen_id = ScreenId.START_SCREEN;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -55,7 +58,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nokia_phone);
-        
+
         // Get application context for certain method calls
         context = this.getApplicationContext();
 
@@ -73,10 +76,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // Load sounds
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
-        
-        Intent intent = getIntent();
-        sms_inbox = intent.getParcelableArrayListExtra("sms_inbox");
-        sms_sent = intent.getParcelableArrayListExtra("sms_sent");
 
         initializeButtons();
         initializeTextViews();
@@ -94,7 +93,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Set screen
         screens.get(screen_id).update();
-        
+
         if (first_time_startup)
         {
             firstTimeInitialize();
@@ -107,14 +106,15 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private void initializeTextViews()
     {
-     // Get and set font sizes
+        // Get and set font sizes
         getFontSizes();
-        
+
         ((TextView) this.findViewById(R.id.action)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.title)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
         ((TextView) this.findViewById(R.id.clock_view)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.input)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        ((TextView) this.findViewById(R.id.text_io)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.text_output)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.header_right)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
         ((TextView) this.findViewById(R.id.sub_menu_title_one)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.sub_menu_title_two)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
@@ -133,6 +133,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens.add(new CalculatorMenu(this));
         screens.add(new MessagesInbox(this));
         screens.add(new ReadMessage(this));
+        screens.add(new MessagesOutbox(this));
     }
 
     private void getFontSizes()

@@ -54,9 +54,9 @@ public class ContactScreen extends Screen
     @Override
     public void hide()
     {
-        action.setVisibility(View.GONE);
-        number.setVisibility(View.GONE);
-        name.setVisibility(View.GONE);
+        action.setVisibility(View.INVISIBLE);
+        number.setVisibility(View.INVISIBLE);
+        name.setVisibility(View.INVISIBLE);
     }
 
     @Override

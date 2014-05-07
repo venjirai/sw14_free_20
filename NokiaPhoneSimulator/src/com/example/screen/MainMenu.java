@@ -13,11 +13,12 @@ public class MainMenu extends Screen
 {
     private TextView action;
     private TextView title;
+    private TextView menu_number;
 
     private String action_text;
 
     private List<String> menu_titles;
-    private int position = 0;
+    private int cursor = 0;
 
     public MainMenu(NokiaPhoneActivity nokia_phone)
     {
@@ -41,6 +42,7 @@ public class MainMenu extends Screen
         // get display elements      
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.title = (TextView) nokia_phone.findViewById(R.id.title);
+        this.menu_number = (TextView) nokia_phone.findViewById(R.id.header_right);
 
         action_text = "Select";
     }
@@ -49,7 +51,8 @@ public class MainMenu extends Screen
     public void update()
     {
         action.setText(action_text);
-        title.setText(menu_titles.get(position));
+        title.setText(menu_titles.get(cursor));
+        menu_number.setText(String.valueOf(cursor + 1));
     }
 
     @Override
@@ -57,6 +60,7 @@ public class MainMenu extends Screen
     {
         action.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
+        menu_number.setVisibility(View.VISIBLE);
 
         nokia_phone.setScreenId(ScreenId.MAIN_MENU);
     }
@@ -64,14 +68,15 @@ public class MainMenu extends Screen
     @Override
     public void hide()
     {
-        action.setVisibility(View.GONE);
-        title.setVisibility(View.GONE);
+        action.setVisibility(View.INVISIBLE);
+        title.setVisibility(View.INVISIBLE);
+        menu_number.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void enter()
     {
-        switch (position)
+        switch (cursor)
         {
             case 0:
                 this.hide();
@@ -94,18 +99,18 @@ public class MainMenu extends Screen
     @Override
     public void down()
     {
-        position++;
-        if (position > menu_titles.size() - 1)
-            position = 0;
+        cursor++;
+        if (cursor > menu_titles.size() - 1)
+            cursor = 0;
     }
 
 
     @Override
     public void up()
     {
-        position--;
-        if (position < 0)
-            position = menu_titles.size() - 1;
+        cursor--;
+        if (cursor < 0)
+            cursor = menu_titles.size() - 1;
     }
 
     @Override

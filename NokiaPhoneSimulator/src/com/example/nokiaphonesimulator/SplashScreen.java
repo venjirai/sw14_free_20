@@ -13,6 +13,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.widget.ImageView;
 
@@ -80,7 +81,7 @@ public class SplashScreen extends Activity
 
             ContentResolver content_resolver = context.getContentResolver();
             Cursor contact_cursor = content_resolver.query(ContactsContract.Contacts.CONTENT_URI, // query destination
-                    new String[] { ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME }, // requested columns
+                    new String[] { BaseColumns._ID, ContactsContract.Contacts.DISPLAY_NAME }, // requested columns
                     ContactsContract.Contacts.HAS_PHONE_NUMBER + " != ?", // query
                     new String[] { "0" }, // query variables
                     null);

@@ -1,4 +1,4 @@
-package com.example.screen;
+package com.example.screen.messages;
 
 import java.util.ArrayList;
 
@@ -9,57 +9,61 @@ import android.widget.TextView;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 import com.example.nokiaphonesimulator.Sms;
+import com.example.screen.Screen;
 
-public class MessagesInbox extends Screen
+public class MessagesOutbox extends Screen
 {
     private TextView menu_textview[];
     private TextView action;
+    private TextView menu_number;
 
-    private ArrayList<Sms> sms_inbox;
+    private ArrayList<Sms> sms_outbox;
     private int cursor_screen = 0;
     private int cursor_list = 0;
 
-    public MessagesInbox(NokiaPhoneActivity nokia_phone)
+    public MessagesOutbox(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
 
-        this.sms_inbox = nokia_phone.getIntent().getParcelableArrayListExtra("sms_inbox");
-        
+        this.sms_outbox = nokia_phone.getIntent().getParcelableArrayListExtra("sms_sent");
+
         this.menu_textview = new TextView[3];
         this.menu_textview[0] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
         this.menu_textview[1] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
         this.menu_textview[2] = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_three);
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
+        this.menu_number = (TextView) nokia_phone.findViewById(R.id.header_right);
     }
-    
+
     private int getCursor(int pos)
     {
         pos += cursor_list - cursor_screen;
-        
-        if(pos >= sms_inbox.size())
-            pos -= sms_inbox.size();
-        else if(pos < 0)
-            pos += sms_inbox.size();
-               
-        return pos;        
+
+        if (pos >= sms_outbox.size())
+            pos -= sms_outbox.size();
+        else if (pos < 0)
+            pos += sms_outbox.size();
+
+        return pos;
     }
 
     @Override
     public void update()
     {
         action.setText("Read");
+        menu_number.setText("2-3-" + String.valueOf(cursor_list + 1));
 
-        menu_textview[0].setText(sms_inbox.get(getCursor(0)).getContact());
-        menu_textview[1].setText(sms_inbox.get(getCursor(1)).getContact());
-        menu_textview[2].setText(sms_inbox.get(getCursor(2)).getContact());
-        
+        menu_textview[0].setText(sms_outbox.get(getCursor(0)).getContact());
+        menu_textview[1].setText(sms_outbox.get(getCursor(1)).getContact());
+        menu_textview[2].setText(sms_outbox.get(getCursor(2)).getContact());
+
         for (int i = 0; i < 3; i++)
         {
             menu_textview[i].setBackgroundColor(Color.TRANSPARENT);
             menu_textview[i].setTextColor(Color.parseColor("#2C2328"));
         }
-        
+
         menu_textview[cursor_screen].setBackgroundColor(Color.parseColor("#2C2328"));
         menu_textview[cursor_screen].setTextColor(Color.parseColor("#afc377"));
     }
@@ -73,8 +77,9 @@ public class MessagesInbox extends Screen
         }
 
         action.setVisibility(View.VISIBLE);
+        menu_number.setVisibility(View.VISIBLE);
 
-        nokia_phone.setScreenId(ScreenId.MESSAGES_INBOX);        
+        nokia_phone.setScreenId(ScreenId.MESSAGES_OUTBOX);
     }
 
     @Override
@@ -82,20 +87,21 @@ public class MessagesInbox extends Screen
     {
         for (int i = 0; i < 3; i++)
         {
-            menu_textview[i].setVisibility(View.GONE);
+            menu_textview[i].setVisibility(View.INVISIBLE);
             menu_textview[i].setBackgroundColor(Color.TRANSPARENT);
             menu_textview[i].setTextColor(Color.parseColor("#2C2328"));
         }
 
-        action.setVisibility(View.GONE);
+        action.setVisibility(View.INVISIBLE);
+        menu_number.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void enter()
     {
         this.hide();
-        
-        ((ReadMessage) screens.get(ScreenId.READ_MESSAGE)).setText(sms_inbox.get(cursor_list).getBody());
+
+        ((ReadMessage) screens.get(ScreenId.READ_MESSAGE)).setCursor(cursor_list, ReadMessage.OUTBOX);
         screens.get(ScreenId.READ_MESSAGE).show();
 
     }
@@ -111,11 +117,11 @@ public class MessagesInbox extends Screen
     public void down()
     {
         cursor_list++;
-        if (cursor_list >= sms_inbox.size())
+        if (cursor_list >= sms_outbox.size())
             cursor_list = 0;
-        
+
         cursor_screen++;
-        if(cursor_screen > 2)
+        if (cursor_screen > 2)
             cursor_screen = 2;
 
     }
@@ -125,10 +131,10 @@ public class MessagesInbox extends Screen
     {
         cursor_list--;
         if (cursor_list < 0)
-            cursor_list = sms_inbox.size() - 1;
-        
+            cursor_list = sms_outbox.size() - 1;
+
         cursor_screen--;
-        if(cursor_screen < 0)
+        if (cursor_screen < 0)
             cursor_screen = 0;
 
     }
