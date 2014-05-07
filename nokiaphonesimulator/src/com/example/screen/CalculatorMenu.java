@@ -105,6 +105,10 @@ public class CalculatorMenu extends Screen
         return selected_option;      
     }
     
+    public void setOptionSelected(int option)
+    {
+        selected_option = option;
+    }
     
     @Override
     public void enter()
