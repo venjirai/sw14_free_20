@@ -42,7 +42,8 @@ public class Calculator extends Screen
     public void update()
     {
         option_selected = ((CalculatorMenu) screens.get(ScreenId.CALCULATOR_MENU)).getOptionSelected();
-
+        ((CalculatorMenu) screens.get(ScreenId.CALCULATOR_MENU)).setOptionSelected(-1);
+        
         switch (option_selected)
         {
             case 0:
@@ -50,6 +51,7 @@ public class Calculator extends Screen
                 break;
             case 1:
                 operator = "+";
+                number_string[index] += "\n+\n";
                 break;
             case 2:
                 operator = "-";
