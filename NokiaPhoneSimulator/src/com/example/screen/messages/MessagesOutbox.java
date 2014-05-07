@@ -52,7 +52,7 @@ public class MessagesOutbox extends Screen
     public void update()
     {
         action.setText("Read");
-        menu_number.setText("2-3-" + String.valueOf(cursor_list + 1));
+        menu_number.setText("1-2-" + String.valueOf(cursor_list + 1));
 
         menu_textview[0].setText(sms_outbox.get(getCursor(0)).getContact());
         menu_textview[1].setText(sms_outbox.get(getCursor(1)).getContact());
@@ -109,6 +109,9 @@ public class MessagesOutbox extends Screen
     @Override
     public void clear()
     {
+        cursor_screen = 0;
+        cursor_list = 0;
+        
         this.hide();
         screens.get(ScreenId.MESSAGES_MENU).show();
     }

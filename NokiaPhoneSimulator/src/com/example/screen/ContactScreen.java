@@ -17,6 +17,7 @@ public class ContactScreen extends Screen
     private TextView action;
     private TextView number;
     private TextView name;
+    private TextView menu_number;
 
     private ArrayList<Contact> contacts;
     private int cursor = 0;
@@ -28,6 +29,7 @@ public class ContactScreen extends Screen
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.number = (TextView) nokia_phone.findViewById(R.id.input);
         this.name = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
+        this.menu_number = (TextView) nokia_phone.findViewById(R.id.header_right);
 
         this.contacts = nokia_phone.getIntent().getParcelableArrayListExtra("contacts");
     }
@@ -37,6 +39,7 @@ public class ContactScreen extends Screen
     {
         name.setText(contacts.get(cursor).getName());
         number.setText(contacts.get(cursor).getNumber());
+        menu_number.setText(String.valueOf(cursor + 1));
     }
 
     @Override
@@ -45,6 +48,7 @@ public class ContactScreen extends Screen
         action.setVisibility(View.VISIBLE);
         number.setVisibility(View.VISIBLE);
         name.setVisibility(View.VISIBLE);
+        menu_number.setVisibility(View.VISIBLE);
 
         action.setText("Call");
 
@@ -57,6 +61,7 @@ public class ContactScreen extends Screen
         action.setVisibility(View.INVISIBLE);
         number.setVisibility(View.INVISIBLE);
         name.setVisibility(View.INVISIBLE);
+        menu_number.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -68,6 +73,8 @@ public class ContactScreen extends Screen
     @Override
     public void clear()
     {
+        menu_number.setText("");
+        
         this.hide();
         screens.get(ScreenId.START_SCREEN).show();
     }

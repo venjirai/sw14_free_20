@@ -16,6 +16,7 @@ public class MessagesMenu extends Screen
     private TextView action;
     private TextView line1;
     private TextView line2;
+    private TextView menu_number;
 
     private List<String> menu_titles;
     private int cursor = 0;
@@ -31,12 +32,14 @@ public class MessagesMenu extends Screen
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.line1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
         this.line2 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
+        this.menu_number = (TextView) nokia_phone.findViewById(R.id.header_right);
     }
 
     @Override
     public void update()
     {
         line1.setText(menu_titles.get(cursor));
+        menu_number.setText("1-" + String.valueOf(cursor + 1));
 
     }
 
@@ -46,6 +49,7 @@ public class MessagesMenu extends Screen
         action.setVisibility(View.VISIBLE);
         line1.setVisibility(View.VISIBLE);
         // line2.setVisibility(View.VISIBLE);
+        menu_number.setVisibility(View.VISIBLE);
 
         action.setText("Select");
 
@@ -58,6 +62,7 @@ public class MessagesMenu extends Screen
         action.setVisibility(View.INVISIBLE);
         line1.setVisibility(View.INVISIBLE);
         line2.setVisibility(View.INVISIBLE);
+        menu_number.setVisibility(View.INVISIBLE);
 
     }
 
@@ -81,6 +86,8 @@ public class MessagesMenu extends Screen
     @Override
     public void clear()
     {
+        cursor = 0;
+        
         this.hide();
         screens.get(ScreenId.MAIN_MENU).show();
 

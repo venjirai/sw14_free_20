@@ -102,9 +102,17 @@ public class ReadMessage extends Screen
     @Override
     public void clear()
     {
-        this.hide();
-        screens.get(ScreenId.MESSAGES_INBOX).show();
-
+        switch (cursor_content)
+        {
+            case INBOX:
+                this.hide();
+                screens.get(ScreenId.MESSAGES_INBOX).show();
+                break;
+            case OUTBOX:
+                this.hide();
+                screens.get(ScreenId.MESSAGES_OUTBOX).show();
+                break;
+        }
     }
 
     @Override

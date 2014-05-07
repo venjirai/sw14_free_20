@@ -70,7 +70,7 @@ public class MainMenu extends Screen
     {
         action.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
-        menu_number.setVisibility(View.INVISIBLE);
+        menu_number.setVisibility(View.INVISIBLE);        
     }
 
     @Override
@@ -92,6 +92,8 @@ public class MainMenu extends Screen
     @Override
     public void clear()
     {
+        menu_number.setText("");
+        
         this.hide();
         screens.get(ScreenId.START_SCREEN).show();
     }
