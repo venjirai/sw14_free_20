@@ -78,7 +78,7 @@ public class Calculator extends Screen
     public void enter()
     {
         this.hide();
-        screens.get(ScreenId.SUB_MENU).show();
+        screens.get(ScreenId.CALCULATOR_MENU).show();
     }
 
     @Override
