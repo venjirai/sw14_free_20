@@ -39,8 +39,15 @@ public class BatteryIndicator extends BroadcastReceiver
                     if (level_new < 5)
                     {
                         battery_indicator.setImageResource(R.drawable.battery_charging);
-
-                        ((AnimationDrawable) battery_indicator.getDrawable()).start();
+                        
+                        battery_indicator.post(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                ((AnimationDrawable) battery_indicator.getDrawable()).start();
+                            }
+                        });
                     }
                     else
                     {
