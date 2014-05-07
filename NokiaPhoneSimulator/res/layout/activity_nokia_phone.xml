@@ -15,32 +15,38 @@
         
         <RelativeLayout
             android:id="@+id/display"
-		        android:layout_width="290px"
-		        android:layout_height="175px"
-		        android:layout_marginLeft="50px"
+		    android:layout_width="290px"
+		    android:layout_height="175px"
+		    android:layout_marginLeft="50px"
             android:layout_marginTop="30px">
             
             <ImageView 
-		            android:id="@+id/signal_indicator"
-		            android:src="@drawable/signal_max"
-		            android:layout_width="14px"
-		            android:layout_height="120px" 
-		            android:scaleType="fitCenter" />
+	            android:id="@+id/signal_indicator"
+	            android:src="@drawable/signal_max"
+	            android:layout_width="14px"
+	            android:layout_height="120px" 
+	            android:scaleType="fitCenter" />
             
             <ImageView 
-		            android:id="@+id/battery_indicator"            
-		            android:src="@drawable/battery_full"
-		            android:layout_width="14px"
-		            android:layout_height="120px" 
-		            android:layout_alignParentRight="true"
-		            android:scaleType="fitCenter" />
-        
+	            android:id="@+id/battery_indicator"            
+	            android:src="@drawable/battery_full"
+	            android:layout_width="14px"
+	            android:layout_height="120px" 
+	            android:layout_alignParentRight="true"
+	            android:scaleType="fitCenter" />
+            
+            <com.example.layout.NokiaTextView
+                android:id="@+id/header_left"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:textColor="#2C2328" />
+            
             <com.example.layout.NokiaTextView
                 android:id="@+id/header_right"
                 android:layout_width="wrap_content"
                 android:layout_height="30px"
                 android:layout_alignParentRight="true"
-                android:textColor="#2C2328" />   
+                android:textColor="#2C2328" />              
             
             <com.example.layout.NokiaTextView
                 android:id="@+id/clock_view"
@@ -92,14 +98,14 @@
                 </LinearLayout>
             </com.example.layout.NokiaScrollView>
 
-	          <com.example.layout.NokiaTextView
-	              android:id="@+id/input"
+	        <com.example.layout.NokiaTextView
+	            android:id="@+id/input"
                 android:visibility="invisible"
-	              android:layout_width="fill_parent"
+	            android:layout_width="fill_parent"
                 android:layout_height="35px"
                 android:gravity="right"
                 android:layout_above="@+id/action"
-	              android:textColor="#2C2328" />	          
+	            android:textColor="#2C2328" />	          
 	          
             <com.example.layout.NokiaTextView
                 android:id="@+id/sub_menu_title_one"       

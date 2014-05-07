@@ -18,16 +18,23 @@ public class MessagesMenu extends Screen
     private TextView line2;
     private TextView menu_number;
 
-    private List<String> menu_titles;
+    private List<String> menu_titles_line1;
+    private List<String> menu_titles_line2;
     private int cursor = 0;
 
     public MessagesMenu(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
 
-        this.menu_titles = new ArrayList<String>();
-        this.menu_titles.add("Inbox");
-        this.menu_titles.add("Outbox");
+        this.menu_titles_line1 = new ArrayList<String>();
+        this.menu_titles_line1.add("Write");
+        this.menu_titles_line1.add("Inbox");
+        this.menu_titles_line1.add("Outbox");
+        
+        this.menu_titles_line2 = new ArrayList<String>();
+        this.menu_titles_line2.add("messages");
+        this.menu_titles_line2.add("");
+        this.menu_titles_line2.add("");
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.line1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
@@ -38,7 +45,8 @@ public class MessagesMenu extends Screen
     @Override
     public void update()
     {
-        line1.setText(menu_titles.get(cursor));
+        line1.setText(menu_titles_line1.get(cursor));
+        line2.setText(menu_titles_line2.get(cursor));
         menu_number.setText("1-" + String.valueOf(cursor + 1));
 
     }
@@ -48,7 +56,7 @@ public class MessagesMenu extends Screen
     {
         action.setVisibility(View.VISIBLE);
         line1.setVisibility(View.VISIBLE);
-        // line2.setVisibility(View.VISIBLE);
+        line2.setVisibility(View.VISIBLE);
         menu_number.setVisibility(View.VISIBLE);
 
         action.setText("Select");
@@ -73,9 +81,13 @@ public class MessagesMenu extends Screen
         {
             case 0:
                 this.hide();
-                screens.get(ScreenId.MESSAGES_INBOX).show();
+                screens.get(ScreenId.WRITE_MESSAGE).show();
                 break;
             case 1:
+                this.hide();
+                screens.get(ScreenId.MESSAGES_INBOX).show();
+                break;
+            case 2:
                 this.hide();
                 screens.get(ScreenId.MESSAGES_OUTBOX).show();
                 break;
@@ -97,7 +109,7 @@ public class MessagesMenu extends Screen
     public void down()
     {
         cursor++;
-        if (cursor >= menu_titles.size())
+        if (cursor >= menu_titles_line1.size())
             cursor = 0;
     }
 
@@ -106,7 +118,7 @@ public class MessagesMenu extends Screen
     {
         cursor--;
         if (cursor < 0)
-            cursor = menu_titles.size() - 1;
+            cursor = menu_titles_line1.size() - 1;
     }
 
     @Override

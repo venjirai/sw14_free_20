@@ -28,6 +28,16 @@ public class SplashScreen extends Activity
         setContentView(R.layout.splash_screen);
 
         ((AnimationDrawable) ((ImageView) this.findViewById(R.id.loading)).getDrawable()).start();
+        final ImageView loading = (ImageView) this.findViewById(R.id.loading);
+        loading.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                ((AnimationDrawable) loading.getDrawable()).start();
+            }
+        });
+        
         this.context = this.getApplicationContext();
         new LoadData().execute();
     }

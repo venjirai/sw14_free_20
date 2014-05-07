@@ -6,11 +6,8 @@ import java.util.List;
 
 import com.example.layout.LayoutScaler;
 import com.example.screen.*;
+import com.example.screen.messages.*;
 import com.example.screen.Screen.ScreenId;
-import com.example.screen.messages.MessagesInbox;
-import com.example.screen.messages.MessagesMenu;
-import com.example.screen.messages.MessagesOutbox;
-import com.example.screen.messages.ReadMessage;
 
 import android.app.Activity;
 import android.content.Context;
@@ -133,6 +130,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens.add(new MessagesInbox(this));
         screens.add(new ReadMessage(this));
         screens.add(new MessagesOutbox(this));
+        screens.add(new WriteMessage(this));
     }
 
     private void getFontSizes()
@@ -142,7 +140,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             font_small = 20;
             font_big = 27;
         }
-
     }
 
     private void firstTimeInitialize()
