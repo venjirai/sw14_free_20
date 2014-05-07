@@ -126,7 +126,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens = new ArrayList<Screen>();
         screens.add(new StartScreen(this));
         screens.add(new MainMenu(this));
-        screens.add(new SubMenu(this));
         screens.add(new Calculator(this));
         screens.add(new ContactScreen(this));
         screens.add(new MessagesMenu(this));

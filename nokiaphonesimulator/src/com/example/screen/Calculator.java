@@ -67,8 +67,6 @@ public class Calculator extends Screen
         action.setVisibility(View.VISIBLE);
 
         nokia_phone.setScreenId(ScreenId.CALCULATOR);
-
-        ((SubMenu) screens.get(ScreenId.SUB_MENU)).selectMenu(ScreenId.CALCULATOR);
     }
 
     @Override
