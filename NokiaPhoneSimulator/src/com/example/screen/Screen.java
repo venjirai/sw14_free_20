@@ -47,13 +47,12 @@ public abstract class Screen
     {
         public static final int START_SCREEN = 0;
         public static final int MAIN_MENU = 1;
-        public static final int SUB_MENU = 2;
-        public static final int CALCULATOR = 3;  
-        public static final int CONTACT_SCREEN = 4;  
-        public static final int MESSAGES_MENU = 5;
-        public static final int CALCULATOR_MENU = 6;
-        public static final int MESSAGES_INBOX = 7;
-        public static final int READ_MESSAGE = 8;
-        public static final int MESSAGES_OUTBOX = 9;
+        public static final int CALCULATOR = 2;  
+        public static final int CONTACT_SCREEN = 3;  
+        public static final int MESSAGES_MENU = 4;
+        public static final int CALCULATOR_MENU = 5;
+        public static final int MESSAGES_INBOX = 6;
+        public static final int READ_MESSAGE = 7;
+        public static final int MESSAGES_OUTBOX = 8;
     }
 }
