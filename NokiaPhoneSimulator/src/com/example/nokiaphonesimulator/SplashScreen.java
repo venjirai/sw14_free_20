@@ -1,6 +1,8 @@
 package com.example.nokiaphonesimulator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -35,6 +37,9 @@ public class SplashScreen extends Activity
         private ArrayList<Sms> sms_inbox;
         private ArrayList<Sms> sms_sent;
 
+        private Map<String, String> sms_contacts = new HashMap<String, String>();
+
+
         @Override
         protected void onPreExecute()
         {
@@ -44,9 +49,9 @@ public class SplashScreen extends Activity
         @Override
         protected Void doInBackground(Void... arg0)
         {
-            this.contacts = getContacts();
-            this.sms_inbox = getSmsInbox();
-            this.sms_sent = getSmsSent();
+            getContacts();
+            getSmsInbox();
+            getSmsSent();
 
             return null;
         }
@@ -65,9 +70,9 @@ public class SplashScreen extends Activity
             finish();
         }
 
-        private ArrayList<Contact> getContacts()
+        private void getContacts()
         {
-            ArrayList<Contact> contacts = new ArrayList<Contact>();
+            contacts = new ArrayList<Contact>();
 
             String id;
             String name = null;
@@ -102,18 +107,18 @@ public class SplashScreen extends Activity
                     }
                     phone_cursor.close();
 
+                    phone_number = phone_number.replaceAll(" ", "");
+
                     contacts.add(new Contact(id, name, phone_number));
                 }
             }
             contact_cursor.close();
-            
-            return contacts;
         }
 
-        private ArrayList<Sms> getSmsInbox()
+        private void getSmsInbox()
         {
-            ArrayList<Sms> sms_inbox = new ArrayList<Sms>();
-            
+            sms_inbox = new ArrayList<Sms>();
+
             /* * * * * * * * * * * * * *
              * Column ID - Column Name *
              *                         *
@@ -142,17 +147,15 @@ public class SplashScreen extends Activity
             {
                 while (cursor.moveToNext())
                 {
-                    sms_inbox.add(new Sms(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                    sms_inbox.add(new Sms(cursor.getString(0), cursor.getString(1), getNameByNumber(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
                 }
                 cursor.close();
             }
-            
-            return sms_inbox;
         }
-        
-        private ArrayList<Sms> getSmsSent()
+
+        private void getSmsSent()
         {
-            ArrayList<Sms> sms_sent = new ArrayList<Sms>();
+            sms_sent = new ArrayList<Sms>();
 
             Cursor cursor = context.getContentResolver().query(Uri.parse("content://sms/sent"), // query destination
                     new String[] { "_id", "address", "date", "read", "body" }, // requested columns
@@ -163,12 +166,35 @@ public class SplashScreen extends Activity
             {
                 while (cursor.moveToNext())
                 {
-                    sms_sent.add(new Sms(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                    sms_sent.add(new Sms(cursor.getString(0), cursor.getString(1), getNameByNumber(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
                 }
                 cursor.close();
             }
-            
-            return sms_sent;
+        }
+
+        private String getNameByNumber(String number)
+        {
+            String name = null;
+
+            if (sms_contacts.containsKey(number))
+            {
+                name =  sms_contacts.get(number);
+            }
+            else
+            {
+
+                for (int i = 0; i < contacts.size(); i++)
+                {
+                    if (number.contains(contacts.get(i).getNumber().replaceFirst("^0*", "")))
+                    {
+                        name = contacts.get(i).getName();
+                        sms_contacts.put(number, name);
+                        break;
+                    }
+                }
+            }
+
+            return name;
         }
 
     }

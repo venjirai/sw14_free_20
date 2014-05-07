@@ -45,13 +45,20 @@
                 android:textColor="#2C2328" />
             
             <com.example.layout.NokiaTextView
+                android:id="@+id/text_io"
+                android:visibility="invisible"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/action"
+                android:textColor="#2C2328"
+                android:textSize="30dip" />
+            
+            <com.example.layout.NokiaTextView
                 android:id="@+id/title"
                 android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="60px"
                 android:gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:singleLine="false"
                 android:textColor="#2C2328"
                 android:textSize="30dip" />
             
@@ -61,7 +68,6 @@
                 android:layout_height="35px"
                 android:gravity="center_horizontal"
                 android:layout_alignParentBottom="true"
-                android:singleLine="false"
                 android:textColor="#2C2328" />
 
 	          <com.example.layout.NokiaTextView

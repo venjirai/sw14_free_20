@@ -42,7 +42,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private int displayWidth, displayHeight;
 
-    private ArrayList<Contact> contacts;
     private ArrayList<Sms> sms_inbox;
     private ArrayList<Sms> sms_sent;
     private BatteryIndicator battery_indicator;
@@ -84,7 +83,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         LoadSounds();
         
         Intent intent = getIntent();
-        contacts = intent.getParcelableArrayListExtra("contacts");
         sms_inbox = intent.getParcelableArrayListExtra("sms_inbox");
         sms_sent = intent.getParcelableArrayListExtra("sms_sent");
 
@@ -135,7 +133,6 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         sub_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         sub_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         sub_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-
     }
 
     private void initializeMenus()
