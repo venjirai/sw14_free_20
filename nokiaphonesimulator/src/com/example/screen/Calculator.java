@@ -14,30 +14,34 @@ public class Calculator extends Screen
     private TextView action;
     private TextView input;
     private String action_text;
-    private String input_text;
-
-    private int number_one = 0, number_two;
     private String operator;
-
     private int option_selected;
     private List<String> menu_options;
-
+    private String[] number_string;
+    private float[] number;
+    private int index = 0;
+        
     public Calculator(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
+        
+        number_string = new String[2];
+        number = new float[2];
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.input = (TextView) nokia_phone.findViewById(R.id.input);
+        
         action_text = "Options";
-        input_text = "0";
+        number_string[0] = "0";
+        number_string[1] = "";
+        operator = "NONE_SELECTED";
 
     }
 
     @Override
     public void update()
     {
-        option_selected = ((SubMenu) screens.get(ScreenId.SUB_MENU)).getPosition();
-        ((SubMenu) screens.get(ScreenId.SUB_MENU)).setPosition(0);
+        option_selected = ((CalculatorMenu) screens.get(ScreenId.CALCULATOR_MENU)).getOptionSelected();
 
         switch (option_selected)
         {
@@ -52,7 +56,7 @@ public class Calculator extends Screen
                 break;
         }
 
-        input.setText(input_text);
+        input.setText(number_string[index]);
         action.setText(action_text);
     }
 
@@ -84,8 +88,13 @@ public class Calculator extends Screen
     @Override
     public void clear()
     {
-        if (input_text != "0")
-            input_text = "0";
+        if (number_string[index] != "0")
+        {
+            number_string[index] = number_string[index].substring(0, number_string[index].length() - 1);
+            if (index == 0 && number_string[index].length() == 0)
+                number_string[index] = "0";
+            
+        }
         else
         {
             this.hide();
@@ -110,10 +119,13 @@ public class Calculator extends Screen
 
     private void digitButton(String digit)
     {
-        if (input_text != "0")
-            input_text += digit;
-        else
-            input_text = digit;
+        if (number_string[index].length() < 9)
+        {       
+          if (number_string[index] != "0")
+              number_string[index] += digit;
+          else
+              number_string[index] = digit;
+        }
     }
 
     @Override
