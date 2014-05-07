@@ -1,6 +1,9 @@
 package com.example.screen.messages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.view.View;
 import android.widget.ScrollView;
@@ -18,13 +21,15 @@ public class ReadMessage extends Screen
     private TextView output;
 
     private ScrollView output_scroll;
-    private int cursor_scroll = 0;
+    private int scroll_cursor = 0;
 
-    private ArrayList<Sms> sms_inbox;
-    private ArrayList<Sms> sms_outbox;
+    private ArrayList<Sms> sms_box;
 
-    private int cursor;
-    private int cursor_content;
+    private int sms_cursor;
+    private int box_cursor;
+    private int content_cursor;
+    
+    private String sms_action;
 
     public static final int INBOX = 0;
     public static final int OUTBOX = 1;
@@ -33,50 +38,68 @@ public class ReadMessage extends Screen
     {
         super(nokia_phone);
 
-        this.sms_inbox = nokia_phone.getIntent().getParcelableArrayListExtra("sms_inbox");
-        this.sms_outbox = nokia_phone.getIntent().getParcelableArrayListExtra("sms_sent");
-
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.output = (TextView) nokia_phone.findViewById(R.id.text_output);
         this.output_scroll = (ScrollView) nokia_phone.findViewById(R.id.text_io_scroll);
     }
 
-    public void setCursor(int cursor, int cursor_content)
+    public void setCursor(int cursor, int box_cursor)
     {
-        this.cursor = cursor;
-        this.cursor_content = cursor_content;
+        this.sms_cursor = cursor;
+        this.box_cursor = box_cursor;
+
+        switch (box_cursor)
+        {
+            case INBOX:
+                sms_action = "Sender";
+                this.sms_box = nokia_phone.getIntent().getParcelableArrayListExtra("sms_inbox");
+                break;
+            case OUTBOX:
+                sms_action = "Receiver";
+                this.sms_box = nokia_phone.getIntent().getParcelableArrayListExtra("sms_sent");
+                break;
+        }
     }
 
     @Override
     public void update()
     {
-        action.setText("Options");
-
-        switch (cursor_content)
+        switch (content_cursor)
         {
-            case INBOX:
-                output.setText(sms_inbox.get(cursor).getBody());
+            case 0:
+                output.setText(sms_box.get(sms_cursor).getBody());
+                output_scroll.post(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        int y = output.getLayout().getLineTop(scroll_cursor);
+                        output_scroll.scrollTo(0, y);
+                    }
+                });
                 break;
-            case OUTBOX:
-                output.setText(sms_outbox.get(cursor).getBody());
+            case 1:
+                if (sms_box.get(sms_cursor).getAddress() != sms_box.get(sms_cursor).getContact())
+                    output.setText(sms_action + ":\n" + sms_box.get(sms_cursor).getContact() + "\n" + sms_box.get(sms_cursor).getAddress());
+                else
+                    output.setText(sms_action + ":\n" + sms_box.get(sms_cursor).getAddress());
                 break;
-        }
-
-        output_scroll.post(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                int y = output.getLayout().getLineTop(cursor_scroll);
-                output_scroll.scrollTo(0, y);
-            }
-        });
+            case 2:
+                DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy\nhh:mm:ss");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(Long.valueOf(sms_box.get(sms_cursor).getDate()));
+                output.setText("Sent:\n" + formatter.format(calendar.getTime()));
+                break;
+        }        
     }
 
     @Override
     public void show()
     {
-        cursor_scroll = 0;
+        action.setText("Options");
+        
+        scroll_cursor = 0;
+        content_cursor = 0;
 
         action.setVisibility(View.VISIBLE);
         output.setVisibility(View.VISIBLE);
@@ -102,7 +125,7 @@ public class ReadMessage extends Screen
     @Override
     public void clear()
     {
-        switch (cursor_content)
+        switch (box_cursor)
         {
             case INBOX:
                 this.hide();
@@ -118,19 +141,49 @@ public class ReadMessage extends Screen
     @Override
     public void down()
     {
-        cursor_scroll += 4;
-        if (cursor_scroll > output.getLineCount())
-            cursor_scroll -= 4;
+        if (content_cursor == 0)
+        {
+            scroll_cursor += 4;
+            if (scroll_cursor > output.getLineCount())
+            {
+                scroll_cursor = 0;
+                content_cursor = 1;
+            }
+        }
+        else if (content_cursor == 1)
+        {
+            content_cursor = 2;
+        }
+        else if (content_cursor == 2)
+        {
+            content_cursor = 0;
+        }
 
     }
 
     @Override
     public void up()
     {
-        cursor_scroll -= 4;
-        if (cursor_scroll < 0)
-            cursor_scroll += 4;
-
+        if (content_cursor == 0)
+        {
+            scroll_cursor -= 4;
+            if (scroll_cursor < 0)
+            {
+                scroll_cursor = 0;
+                while(scroll_cursor < output.getLineCount())
+                    scroll_cursor += 4;
+                scroll_cursor -= 4;
+                content_cursor = 2;
+            }
+        }
+        else if (content_cursor == 2)
+        {
+            content_cursor = 1;
+        }
+        else if (content_cursor == 1)
+        {
+            content_cursor = 0;
+        }
     }
 
     @Override
