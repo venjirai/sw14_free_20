@@ -128,7 +128,6 @@ public class SubMenu extends Screen
         option_selected = true;
         this.hide();
         screens.get(selected_menu).show();
-
     }
 
     @Override
