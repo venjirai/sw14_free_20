@@ -68,10 +68,10 @@ public class StartScreen extends Screen
     @Override
     public void hide()
     {
-        battery_indicator.setVisibility(View.GONE);
-        signal_indicator.setVisibility(View.GONE);
-        action.setVisibility(View.GONE);
-        clock_view.setVisibility(View.GONE);
+        battery_indicator.setVisibility(View.INVISIBLE);
+        signal_indicator.setVisibility(View.INVISIBLE);
+        action.setVisibility(View.INVISIBLE);
+        clock_view.setVisibility(View.INVISIBLE);
     }
 
     @Override

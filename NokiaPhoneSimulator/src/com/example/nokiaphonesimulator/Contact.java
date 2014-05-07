@@ -44,11 +44,13 @@ public class Contact implements Parcelable
     // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
     public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>()
     {
+        @Override
         public Contact createFromParcel(Parcel in)
         {
             return new Contact(in);
         }
 
+        @Override
         public Contact[] newArray(int size)
         {
             return new Contact[size];

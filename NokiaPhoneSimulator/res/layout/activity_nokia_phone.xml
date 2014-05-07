@@ -36,24 +36,29 @@
 		            android:scaleType="fitCenter" />
         
             <com.example.layout.NokiaTextView
+                android:id="@+id/header_right"
+                android:layout_width="wrap_content"
+                android:layout_height="30px"
+                android:layout_alignParentRight="true"
+                android:textColor="#2C2328" />   
+            
+            <com.example.layout.NokiaTextView
                 android:id="@+id/clock_view"
                 android:layout_width="wrap_content"
                 android:layout_height="35px"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="10px"
                 android:layout_toLeftOf="@+id/battery_indicator"
-                android:textColor="#2C2328" />
+                android:textColor="#2C2328" />            
             
             <com.example.layout.NokiaTextView
                 android:id="@+id/title"
-                android:visibility="invisible"
                 android:layout_width="fill_parent"
                 android:layout_height="60px"
+                android:layout_below="@+id/header_right"
                 android:gravity="center_horizontal"
-                android:layout_alignParentTop="true"
-                android:singleLine="false"
                 android:textColor="#2C2328"
-                android:textSize="30dip" />
+                android:visibility="invisible" />
             
             <com.example.layout.NokiaTextView
                 android:id="@+id/action"
@@ -61,8 +66,31 @@
                 android:layout_height="35px"
                 android:gravity="center_horizontal"
                 android:layout_alignParentBottom="true"
-                android:singleLine="false"
                 android:textColor="#2C2328" />
+            
+            <com.example.layout.NokiaScrollView
+                android:id="@+id/text_io_scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/action"
+                android:paddingTop="1dip"
+                android:scrollbars="none"
+                android:textColor="#2C2328" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <com.example.layout.NokiaTextView
+                        android:id="@+id/text_output"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#2C2328"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+            </com.example.layout.NokiaScrollView>
 
 	          <com.example.layout.NokiaTextView
 	              android:id="@+id/input"
@@ -78,7 +106,7 @@
                 android:visibility="invisible"         
                 android:layout_width="fill_parent"
                 android:layout_height="35px"
-                android:layout_marginTop="20px"
+                android:layout_below="@+id/header_right"
                 android:layout_marginRight="15px"
                 android:paddingLeft="7px"
                 android:textColor="#2C2328" />
@@ -101,7 +129,7 @@
                 android:layout_marginRight="15px"
                 android:paddingLeft="7px"
                 android:layout_below="@+id/sub_menu_title_two"
-                android:textColor="#2C2328" />             	          
+                android:textColor="#2C2328" />
         
         </RelativeLayout>
         

@@ -26,6 +26,7 @@ public class NokiaTextView extends TextView
         FontHelper.setTypeface(context, this);
     }
 
+    @Override
     protected void onDraw(Canvas canvas)
     {
         super.onDraw(canvas);

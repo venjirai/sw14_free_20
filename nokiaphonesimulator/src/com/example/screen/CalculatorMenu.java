@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
-import com.example.screen.Screen.ScreenId;
 
 public class CalculatorMenu extends Screen
 {
@@ -92,10 +91,10 @@ public class CalculatorMenu extends Screen
     @Override
     public void hide()
     {
-        action_textview.setVisibility(View.GONE);
+        action_textview.setVisibility(View.INVISIBLE);
         for (int i = 0; i < 3; i++)
         {
-            menu_textview[i].setVisibility(View.GONE);
+            menu_textview[i].setVisibility(View.INVISIBLE);
             menu_textview[i].setBackgroundColor(Color.TRANSPARENT);
             menu_textview[i].setTextColor(Color.parseColor("#2C2328"));
         }       

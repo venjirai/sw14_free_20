@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.example.layout.LayoutScaler;
 import com.example.screen.*;
+import com.example.screen.Screen.ScreenId;
+import com.example.screen.messages.MessagesInbox;
+import com.example.screen.messages.MessagesMenu;
+import com.example.screen.messages.MessagesOutbox;
+import com.example.screen.messages.ReadMessage;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,25 +37,14 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private SoundPool sp;
 
-    private TextView action;
-    private TextView menu_titel;
-    private TextView clock_view;
-    private TextView input;
-    private TextView sub_menu_title_one;
-    private TextView sub_menu_title_two;
-    private TextView sub_menu_title_three;
-
     private int displayWidth, displayHeight;
 
-    private ArrayList<Contact> contacts;
-    private ArrayList<Sms> sms_inbox;
-    private ArrayList<Sms> sms_sent;
     private BatteryIndicator battery_indicator;
     private SignalIndicator signal_indicator;
     private Clock clock;
 
     private List<Screen> screens;
-    private int screen_id = 0;
+    private int screen_id = ScreenId.START_SCREEN;
 
     int[] sounds = new int[10];
     int tastenton;
@@ -64,7 +58,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nokia_phone);
-        
+
         // Get application context for certain method calls
         context = this.getApplicationContext();
 
@@ -82,18 +76,13 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         // Load sounds
         sp = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         LoadSounds();
-        
-        Intent intent = getIntent();
-        contacts = intent.getParcelableArrayListExtra("contacts");
-        sms_inbox = intent.getParcelableArrayListExtra("sms_inbox");
-        sms_sent = intent.getParcelableArrayListExtra("sms_sent");
 
         initializeButtons();
         initializeTextViews();
 
         battery_indicator = new BatteryIndicator(this);
         signal_indicator = new SignalIndicator(this);
-        clock = new Clock(clock_view);
+        clock = new Clock((TextView) this.findViewById(R.id.clock_view));
 
         // Load preferences
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
@@ -104,7 +93,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
         // Set screen
         screens.get(screen_id).update();
-        
+
         if (first_time_startup)
         {
             firstTimeInitialize();
@@ -117,25 +106,19 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
 
     private void initializeTextViews()
     {
-        action = (TextView) this.findViewById(R.id.action);
-        menu_titel = (TextView) this.findViewById(R.id.title);
-        clock_view = (TextView) this.findViewById(R.id.clock_view);
-        input = (TextView) this.findViewById(R.id.input);
-
-        sub_menu_title_one = (TextView) this.findViewById(R.id.sub_menu_title_one);
-        sub_menu_title_two = (TextView) this.findViewById(R.id.sub_menu_title_two);
-        sub_menu_title_three = (TextView) this.findViewById(R.id.sub_menu_title_three);
-
         // Get and set font sizes
         getFontSizes();
-        action.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        menu_titel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
-        clock_view.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        input.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        sub_menu_title_one.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        sub_menu_title_two.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
-        sub_menu_title_three.setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
 
+        ((TextView) this.findViewById(R.id.action)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.title)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        ((TextView) this.findViewById(R.id.clock_view)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.input)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.text_output)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.header_right)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+
+        ((TextView) this.findViewById(R.id.sub_menu_title_one)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.sub_menu_title_two)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.sub_menu_title_three)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
     }
 
     private void initializeMenus()
@@ -148,6 +131,9 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens.add(new ContactScreen(this));
         screens.add(new MessagesMenu(this));
         screens.add(new CalculatorMenu(this));
+        screens.add(new MessagesInbox(this));
+        screens.add(new ReadMessage(this));
+        screens.add(new MessagesOutbox(this));
     }
 
     private void getFontSizes()
