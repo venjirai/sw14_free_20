@@ -1,6 +1,5 @@
 package com.example.screen;
 
-import java.util.List;
 
 import android.view.View;
 import android.widget.TextView;
@@ -14,28 +13,31 @@ public class Calculator extends Screen
     private TextView action;
     private TextView input;
     private String action_text;
-    private String operator;
+    private char operator = 0;
     private int option_selected;
-    private List<String> menu_options;
+    private char mode = 0;
+    
+    private float result;
+    
+    private String input_text = "";
+    private String operator_string = "";
+    
+    private Boolean additional_calculations = false;
+    
     private String[] number_string;
     private float[] number;
-    private int index = 0;
         
     public Calculator(NokiaPhoneActivity nokia_phone)
     {
-        super(nokia_phone);
-        
-        number_string = new String[2];
+        super(nokia_phone);     
         number = new float[2];
-
-        this.action = (TextView) nokia_phone.findViewById(R.id.action);
-        this.input = (TextView) nokia_phone.findViewById(R.id.input);
-        
-        action_text = "Options";
+        number_string = new String[2];       
         number_string[0] = "0";
-        number_string[1] = "";
-        operator = "NONE_SELECTED";
-
+        number_string[1] = "";       
+        this.action = (TextView) nokia_phone.findViewById(R.id.action);
+        this.input = (TextView) nokia_phone.findViewById(R.id.input);       
+        input_text = "0";
+        action_text = "Options";       
     }
 
     @Override
@@ -47,21 +49,138 @@ public class Calculator extends Screen
         switch (option_selected)
         {
             case 0:
-                operator = "=";
+                if (mode == 2)
+                {
+                   number[0] = Float.valueOf(number_string[0]);
+                   number[1] = Float.valueOf(number_string[1]);  
+                   result = getResult(number[0], number[1], operator);
+                   mode = 3;
+                }
                 break;
             case 1:
-                operator = "+";
-                number_string[index] += "\n+\n";
+                if (mode == 0)
+                {
+                    operator = '+';
+                    operator_string = "\n" + operator;  
+                    mode = 1;
+                }
+                else if (mode == 2)
+                {
+                    number[0] = Float.valueOf(number_string[0]);
+                    number[1] = Float.valueOf(number_string[1]);  
+                    result = getResult(number[0], number[1], operator);    
+                    operator = '+';
+                    additional_calculations = true;
+                    mode = 3;                   
+                }
+                
                 break;
             case 2:
-                operator = "-";
+                if (mode == 0)
+                {
+                    operator = '-';
+                    operator_string = "\n" + operator;  
+                    mode = 1;
+                }
+                else if (mode == 2)
+                {
+                    number[0] = Float.valueOf(number_string[0]);
+                    number[1] = Float.valueOf(number_string[1]);                   
+                    result = getResult(number[0], number[1], operator);                  
+                    operator = '-';
+                    additional_calculations = true;                 
+                    mode = 3;                   
+                }
                 break;
+            case 3:
+                if (mode == 0)
+                {
+                    operator = '*';
+                    operator_string = "\n" + operator;  
+                    mode = 1;
+                }
+                else if (mode == 2)
+                {
+                    number[0] = Float.valueOf(number_string[0]);
+                    number[1] = Float.valueOf(number_string[1]);
+                    result = getResult(number[0], number[1], operator);    
+                    operator = '*';
+                    additional_calculations = true;
+                    mode = 3;                   
+                }
+                break;
+            case 4:
+                if (mode == 0)
+                {
+                    operator = '/';
+                    operator_string = "\n" + operator;  
+                    mode = 1;
+                }
+                else if (mode == 2)
+                {
+                    number[0] = Float.valueOf(number_string[0]);
+                    number[1] = Float.valueOf(number_string[1]);        
+                    result = getResult(number[0], number[1], operator);    
+                    operator = '/';              
+                    additional_calculations = true;
+                    mode = 3;                   
+                }
+                break;                               
         }
-
-        input.setText(number_string[index]);
+        
+        
+        if (mode == 3)
+        {       
+            number_string[0] = String.valueOf(result);
+            
+            if (result % 1 == 0)
+                number_string[0] = number_string[0].substring(0, number_string[0].length() - 2);  
+            
+            number_string[1] = "";
+            operator_string = "";
+            
+            if (additional_calculations)
+            {
+                additional_calculations = false;
+                operator_string = "\n" + operator;
+                mode = 1;
+            }
+            else                
+                mode = 0;
+        }
+        
+        
+        input_text = number_string[0] + operator_string + number_string[1];
+        
+        input.setText(input_text);        
         action.setText(action_text);
+        
     }
 
+    
+    float getResult(float number_1, float number_2, char operator)
+    {
+        float result = 0;
+        switch (operator)
+        {
+            case '+':
+                result = number_1 + number_2;
+                break;
+            case '-':
+                result = number_1 - number_2;
+                break;
+            case '*':
+                result = number_1 * number_2;
+                break;
+            case '/':
+                result = number_1 / number_2;
+                break;
+        }              
+        return result;
+    }
+    
+    
+    
     @Override
     public void show()
     {
@@ -88,17 +207,46 @@ public class Calculator extends Screen
     @Override
     public void clear()
     {
-        if (number_string[index] != "0")
+        switch (mode)
         {
-            number_string[index] = number_string[index].substring(0, number_string[index].length() - 1);
-            if (index == 0 && number_string[index].length() == 0)
-                number_string[index] = "0";
-            
-        }
-        else
-        {
-            this.hide();
-            screens.get(ScreenId.MAIN_MENU).show();
+            case 0:
+                if (number_string[0].length() > 1)
+                {
+                    number_string[0] = number_string[0].substring(0, number_string[0].length() - 1);                      
+                }                  
+                else if (number_string[0] == "0")
+                {
+                    this.hide();
+                    screens.get(ScreenId.MAIN_MENU).show();
+                }            
+                else if (number_string[0].length() == 1)
+                {
+                    number_string[0] = "0";
+                }   
+                break;     
+                
+            case 1:
+                operator_string = "";               
+                mode = 0;
+                break;
+                
+            case 2:
+                if (number_string[1].length() > 1)
+                {
+                    number_string[1] = number_string[1].substring(0, number_string[1].length() - 1);                      
+                }                  
+                else
+                {
+                    mode = 1;
+                    operator_string = operator_string.substring(0, operator_string.length() - 1); 
+                    number_string[1] = number_string[1].substring(0, number_string[1].length() - 1); 
+                }            
+
+                break;     
+                
+            case 3:
+                mode = 0; 
+                break;
         }
     }
 
@@ -119,13 +267,38 @@ public class Calculator extends Screen
 
     private void digitButton(String digit)
     {
-        if (number_string[index].length() < 9)
-        {       
-          if (number_string[index] != "0")
-              number_string[index] += digit;
-          else
-              number_string[index] = digit;
+        switch (mode)
+        {
+            case 0:
+                if (number_string[0].length() < 9)
+                {
+                  if (number_string[0] == "0")
+                      number_string[0] = digit;
+                  else
+                      number_string[0] += digit;
+                }   
+                break;
+            case 1:
+                mode = 2;
+                operator_string += "\n";
+                number_string[1] = digit;
+                break;          
+            case 2:
+                if (number_string[1].length() < 9)
+                {
+                  if (number_string[1] == "0")
+                      number_string[1] = digit;
+                  else
+                      number_string[1] += digit;
+                }   
+                break;           
+                
+            case 3:
+                number_string[0] = digit;
+                break;
         }
+        
+        
     }
 
     @Override
