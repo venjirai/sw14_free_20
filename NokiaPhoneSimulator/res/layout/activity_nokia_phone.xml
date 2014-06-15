@@ -20,6 +20,27 @@
 		    android:layout_marginLeft="50px"
             android:layout_marginTop="30px">
             
+            
+           <ImageView 
+                android:id="@+id/calculator"
+                android:src="@drawable/calculator"
+                android:layout_marginLeft="90px"
+                android:layout_marginTop = "40px"
+                android:layout_width="130px"
+                android:layout_height="300px" 
+                android:scaleType="fitCenter" />
+            
+             <ImageView 
+                android:id="@+id/messages"
+                android:src="@drawable/messages"
+                android:layout_marginLeft="90px"
+                android:layout_marginTop = "40px"
+                android:layout_width="130px"
+                android:layout_height="300px" 
+                android:scaleType="fitCenter" />
+           
+           
+            
             <ImageView 
 	            android:id="@+id/signal_indicator"
 	            android:src="@drawable/signal_max"
