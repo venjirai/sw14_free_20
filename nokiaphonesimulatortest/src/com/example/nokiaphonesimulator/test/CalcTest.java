@@ -51,6 +51,5 @@ public class CalcTest extends ActivityInstrumentationTestCase2<NokiaPhoneActivit
     // check result 1 + 2 must be 3
     TextView output = (TextView) solo.getView(R.id.input);
     assertEquals("3", output.getText().toString());
-    
   }
 }

@@ -2,6 +2,7 @@ package com.example.screen.messages;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.telephony.SmsManager;
@@ -69,7 +70,8 @@ public class SendMessage extends Screen
         String message = ((WriteMessage)screens.get(ScreenId.WRITE_MESSAGE)).getMessage();
 
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+        ArrayList<String> parts = smsManager.divideMessage(message);
+        smsManager.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
         
         ((WriteMessage)screens.get(ScreenId.WRITE_MESSAGE)).setMessage("");
         
