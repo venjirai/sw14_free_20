@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
+import com.example.screen.Screen.ScreenId;
 
 public class MainMenu extends Screen
 {
@@ -224,6 +225,14 @@ public class MainMenu extends Screen
     @Override
     public void star()
     {
+        Boolean lock_time_passed = (((StartScreen) screens.get(ScreenId.START_SCREEN)).getLockTimePassed());
+        
+        if (!lock_time_passed)
+        {
+            this.hide();
+            screens.get(ScreenId.START_SCREEN).show();
+        }
+        
         // TODO Auto-generated method stub
 
     }
