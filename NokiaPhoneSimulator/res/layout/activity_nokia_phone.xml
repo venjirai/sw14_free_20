@@ -129,6 +129,19 @@
                 android:layout_height="35px"
                 android:gravity="bottom|right"
                 android:textColor="#2C2328" />
+	        
+	          <com.example.layout.NokiaTextView
+                android:id="@+id/number_input"
+                android:layout_below="@+id/header_right"
+                android:layout_above="@+id/action"
+                android:layout_toLeftOf="@+id/battery_indicator"
+                android:layout_toRightOf="@+id/signal_indicator"
+                android:visibility="visible"
+                android:layout_width="fill_parent"
+                android:layout_marginBottom="10px"
+                android:layout_height="35px"
+                android:gravity="bottom|right"
+                android:textColor="#2C2328" />
 	          
             <com.example.layout.NokiaTextView
                 android:id="@+id/sub_menu_title_one"       

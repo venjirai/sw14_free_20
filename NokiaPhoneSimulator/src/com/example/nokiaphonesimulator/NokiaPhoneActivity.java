@@ -112,6 +112,8 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         ((TextView) this.findViewById(R.id.input)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.text_output)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.header_right)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
+        ((TextView) this.findViewById(R.id.number_input)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_big);
+        
 
         ((TextView) this.findViewById(R.id.sub_menu_title_one)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
         ((TextView) this.findViewById(R.id.sub_menu_title_two)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, font_small);
@@ -139,7 +141,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         if (displayWidth == 480 && displayHeight == 800)
         {
             font_small = 20;
-            font_big = 27;
+            font_big = 26;
         }
     }
 
