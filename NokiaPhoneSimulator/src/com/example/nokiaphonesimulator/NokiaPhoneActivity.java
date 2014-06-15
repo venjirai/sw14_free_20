@@ -131,6 +131,7 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
         screens.add(new ReadMessage(this));
         screens.add(new MessagesOutbox(this));
         screens.add(new WriteMessage(this));
+        screens.add(new SendMessage(this));
     }
 
     private void getFontSizes()

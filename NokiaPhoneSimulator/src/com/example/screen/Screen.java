@@ -55,5 +55,6 @@ public abstract class Screen
         public static final int READ_MESSAGE = 7;
         public static final int MESSAGES_OUTBOX = 8;
         public static final int WRITE_MESSAGE = 9;
+        public static final int SEND_MESSAGE = 10;
     }
 }

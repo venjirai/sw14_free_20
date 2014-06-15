@@ -13,10 +13,10 @@ public class WriteMessage extends Screen
     private TextView action;
     private TextView output;
 
-    private String message;
+    protected String message = "";
 
-    private int writing = -1;
-    private int pressed_count = 0;
+    private int writing;
+    private int pressed_count;
 
     private int wait_time = 1500;
 
@@ -39,9 +39,7 @@ public class WriteMessage extends Screen
     @Override
     public void show()
     {
-        message = "";
         writing = -1;
-        pressed_count = 0;
 
         action.setText("Send");
 
@@ -54,6 +52,7 @@ public class WriteMessage extends Screen
     @Override
     public void hide()
     {
+        message = "";
         action.setVisibility(View.INVISIBLE);
         output.setVisibility(View.INVISIBLE);
     }
@@ -61,8 +60,8 @@ public class WriteMessage extends Screen
     @Override
     public void enter()
     {
-        // TODO Auto-generated method stub
-
+        this.hide();
+        screens.get(ScreenId.SEND_MESSAGE).show();
     }
 
     @Override
