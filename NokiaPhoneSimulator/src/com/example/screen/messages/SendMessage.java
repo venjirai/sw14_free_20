@@ -12,6 +12,7 @@ import com.example.nokiaphonesimulator.Contact;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 import com.example.screen.Screen;
+import com.example.screen.Screen.ScreenId;
 
 public class SendMessage extends Screen
 {
@@ -65,10 +66,15 @@ public class SendMessage extends Screen
     public void enter()
     {        
         String phoneNumber = contacts.get(cursor).getNumber();
-        String message = ((WriteMessage)screens.get(ScreenId.WRITE_MESSAGE)).message;
+        String message = ((WriteMessage)screens.get(ScreenId.WRITE_MESSAGE)).getMessage();
 
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+        
+        ((WriteMessage)screens.get(ScreenId.WRITE_MESSAGE)).setMessage("");
+        
+        this.hide();
+        screens.get(ScreenId.MESSAGES_MENU).show();
     }
 
     @Override

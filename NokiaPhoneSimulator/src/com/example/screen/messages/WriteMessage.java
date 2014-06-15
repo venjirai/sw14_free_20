@@ -13,7 +13,7 @@ public class WriteMessage extends Screen
     private TextView action;
     private TextView output;
 
-    protected String message = "";
+    private String message = "";
 
     private int writing;
     private int pressed_count;
@@ -28,6 +28,16 @@ public class WriteMessage extends Screen
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.output = (TextView) nokia_phone.findViewById(R.id.text_output);
+    }
+
+    String getMessage()
+    {
+        return message;
+    }
+    
+    void setMessage(String message)
+    {
+        this.message = message;
     }
 
     @Override
@@ -52,7 +62,6 @@ public class WriteMessage extends Screen
     @Override
     public void hide()
     {
-        message = "";
         action.setVisibility(View.INVISIBLE);
         output.setVisibility(View.INVISIBLE);
     }
@@ -60,8 +69,11 @@ public class WriteMessage extends Screen
     @Override
     public void enter()
     {
-        this.hide();
-        screens.get(ScreenId.SEND_MESSAGE).show();
+        if (message != "")
+        {
+            this.hide();
+            screens.get(ScreenId.SEND_MESSAGE).show();
+        }
     }
 
     @Override
