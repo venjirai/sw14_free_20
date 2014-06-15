@@ -1,6 +1,7 @@
 package com.example.screen.messages;
 
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
@@ -12,11 +13,14 @@ public class WriteMessage extends Screen
 
     private TextView action;
     private TextView output;
+    
+    private ScrollView output_scroll;
 
     private String message = "";
 
     private int writing;
     private int pressed_count;
+    private int scroll_cursor = 0;
 
     private int wait_time = 1500;
 
@@ -28,6 +32,7 @@ public class WriteMessage extends Screen
 
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.output = (TextView) nokia_phone.findViewById(R.id.text_output);
+        this.output_scroll = (ScrollView) nokia_phone.findViewById(R.id.text_io_scroll);
     }
 
     String getMessage()
@@ -44,6 +49,21 @@ public class WriteMessage extends Screen
     public void update()
     {
         output.setText(message);
+        scroll_cursor = output.getLineCount();
+        if(scroll_cursor > 4)
+            scroll_cursor -= 4;
+        else
+            scroll_cursor = 0;
+        
+        output_scroll.post(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                int y = output.getLayout().getLineTop(scroll_cursor);
+                output_scroll.scrollTo(0, y);
+            }
+        });
     }
 
     @Override
