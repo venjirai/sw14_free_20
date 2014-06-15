@@ -2,9 +2,6 @@ package com.example.screen.messages;
 
 import java.util.ArrayList;
 
-import android.content.ContentValues;
-import android.content.Intent;
-import android.net.Uri;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +10,6 @@ import com.example.nokiaphonesimulator.Contact;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
 import com.example.nokiaphonesimulator.R;
 import com.example.screen.Screen;
-import com.example.screen.Screen.ScreenId;
 
 public class SendMessage extends Screen
 {
@@ -185,11 +181,5 @@ public class SendMessage extends Screen
         // TODO Auto-generated method stub
 
     }
-
-    private void call(String phone_number)
-    {
-        Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone_number));
-        nokia_phone.startActivity(callIntent);
-    }
-
+    
 }

@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
    GUITest.class,
    MessagesTest.class,
    SampleJUnitTest.class,
-   ContactTest.class
+   ClassesTest.class
 })
 
 public class AllTests {   
