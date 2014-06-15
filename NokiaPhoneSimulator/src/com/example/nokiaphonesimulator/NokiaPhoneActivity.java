@@ -278,52 +278,52 @@ public class NokiaPhoneActivity extends Activity implements OnTouchListener
             switch (v.getId())
             {
                 case R.id.btn_zero:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[0], 1, 1, 0, 0, 1);
                     screens.get(screen_id).zero();
                     break;
 
                 case R.id.btn_one:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[1], 1, 1, 0, 0, 1);
                     screens.get(screen_id).one();
                     break;
 
                 case R.id.btn_two:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[2], 1, 1, 0, 0, 1);
                     screens.get(screen_id).two();
                     break;
 
                 case R.id.btn_three:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[3], 1, 1, 0, 0, 1);
                     screens.get(screen_id).three();
                     break;
 
                 case R.id.btn_four:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[4], 1, 1, 0, 0, 1);
                     screens.get(screen_id).four();
                     break;
 
                 case R.id.btn_five:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[5], 1, 1, 0, 0, 1);
                     screens.get(screen_id).five();
                     break;
 
                 case R.id.btn_six:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[6], 1, 1, 0, 0, 1);
                     screens.get(screen_id).six();
                     break;
 
                 case R.id.btn_seven:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[7], 1, 1, 0, 0, 1);
                     screens.get(screen_id).seven();
                     break;
 
                 case R.id.btn_eight:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[8], 1, 1, 0, 0, 1);
                     screens.get(screen_id).eight();
                     break;
 
                 case R.id.btn_nine:
-                    sp.play(tastenton, 1, 1, 0, 0, 1);
+                    sp.play(sounds[9], 1, 1, 0, 0, 1);
                     screens.get(screen_id).nine();
                     break;
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
@@ -19,11 +20,16 @@ public class MainMenu extends Screen
 
     private List<String> menu_titles;
     private int cursor = 0;
+    
+    private ImageView[] menu_pictures;
 
     public MainMenu(NokiaPhoneActivity nokia_phone)
     {
         super(nokia_phone);
-
+        
+        menu_pictures = new ImageView[2];
+        setupPictures();
+        
         // get content
         this.menu_titles = new ArrayList<String>();
         // menu_titles.add(nokia_phone.getString(R.string.phone_book));
@@ -47,12 +53,34 @@ public class MainMenu extends Screen
         action_text = "Select";
     }
 
+    public void setupPictures()
+    {
+        menu_pictures[0] = (ImageView) nokia_phone.findViewById(R.id.messages);
+        menu_pictures[1] = (ImageView) nokia_phone.findViewById(R.id.calculator);
+        
+        hidePictures();
+        
+    }
+    
+    
+    
+    public void hidePictures()
+    {
+        for (int i = 0; i < menu_pictures.length; i++)
+        {
+            menu_pictures[i].setVisibility(View.INVISIBLE);
+        }
+            
+    }
+    
     @Override
     public void update()
     {
         action.setText(action_text);
         title.setText(menu_titles.get(cursor));
         menu_number.setText(String.valueOf(cursor + 1));
+        hidePictures();
+        menu_pictures[cursor].setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -70,7 +98,8 @@ public class MainMenu extends Screen
     {
         action.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
-        menu_number.setVisibility(View.INVISIBLE);        
+        menu_number.setVisibility(View.INVISIBLE);     
+        hidePictures();
     }
 
     @Override
