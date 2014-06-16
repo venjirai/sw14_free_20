@@ -31,7 +31,7 @@ public class CalcTest extends ActivityInstrumentationTestCase2<NokiaPhoneActivit
   {
     // Go to the calculator
     this.solo.clickOnButton(2); // Enter
-    this.solo.clickOnButton(3); // Key up
+    this.solo.clickOnButton(1); // Key down
     this.solo.clickOnButton(2); // Enter
     
     // Test addition

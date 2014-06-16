@@ -39,7 +39,15 @@
                 android:layout_height="54px" 
                 android:scaleType="fitCenter" />
            
-           
+              <ImageView 
+                android:id="@+id/clock"
+                android:src="@drawable/clock"
+                android:layout_marginLeft="60px"
+                android:layout_marginTop = "80px"
+                android:layout_width="170px"
+                android:layout_height="54px" 
+                android:scaleType="fitCenter" />
+             
             
             <ImageView 
 	            android:id="@+id/signal_indicator"
@@ -141,6 +149,20 @@
                 android:layout_marginBottom="10px"
                 android:layout_height="35px"
                 android:gravity="bottom|right"
+                android:textColor="#2C2328" />
+	          
+	          
+	          <com.example.layout.NokiaTextView
+                android:id="@+id/stopwatch"
+                android:layout_above="@+id/action"
+                android:layout_below="@+id/sub_menu_title_one"
+                android:layout_toLeftOf="@+id/battery_indicator"
+                android:layout_toRightOf="@+id/signal_indicator"
+                android:layout_marginBottom="35px"
+                android:layout_marginLeft="25px"
+                android:visibility="visible"
+                android:layout_width="fill_parent"
+                android:layout_height="35px"
                 android:textColor="#2C2328" />
 	          
             <com.example.layout.NokiaTextView

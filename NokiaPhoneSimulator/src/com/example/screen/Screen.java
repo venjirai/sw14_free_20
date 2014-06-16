@@ -57,5 +57,8 @@ public abstract class Screen
         public static final int WRITE_MESSAGE = 9;
         public static final int SEND_MESSAGE = 10;
         public static final int POPUP = 11;
+        public static final int CLOCK_MENU = 12;
+        public static final int STOPWATCH = 13;
+        public static final int STOPWATCH_MENU = 14;
     }
 }

@@ -28,7 +28,7 @@ public class MainMenu extends Screen
     {
         super(nokia_phone);
         
-        menu_pictures = new ImageView[2];
+        menu_pictures = new ImageView[3];
         setupPictures();
         
         // get content
@@ -43,8 +43,9 @@ public class MainMenu extends Screen
         // menu_titles.add(nokia_phone.getString(R.string.games));
         menu_titles.add(nokia_phone.getString(R.string.calculator));
         // menu_titles.add(nokia_phone.getString(R.string.reminders));
-        // menu_titles.add(nokia_phone.getString(R.string.clock));
+        menu_titles.add(nokia_phone.getString(R.string.clock));
         // menu_titles.add(nokia_phone.getString(R.string.profiles));
+        
 
         // get display elements      
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
@@ -58,6 +59,7 @@ public class MainMenu extends Screen
     {
         menu_pictures[0] = (ImageView) nokia_phone.findViewById(R.id.messages);
         menu_pictures[1] = (ImageView) nokia_phone.findViewById(R.id.calculator);
+        menu_pictures[2] = (ImageView) nokia_phone.findViewById(R.id.clock);
         
         hidePictures();
         
@@ -116,6 +118,9 @@ public class MainMenu extends Screen
                 this.hide();
                 screens.get(ScreenId.CALCULATOR).show();
                 break;
+            case 2:
+                this.hide();
+                screens.get(ScreenId.CLOCK_MENU).show();
         }
     }
 
