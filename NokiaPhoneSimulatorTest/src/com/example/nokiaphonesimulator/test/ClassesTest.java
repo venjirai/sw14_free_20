@@ -42,5 +42,5 @@ public class ClassesTest extends TestCase
         assertEquals("date must be 100000000000", date, sms.getDate());
         assertEquals("read must be 1", read, sms.getRead());
         assertEquals("body must be 1", body, sms.getBody());
-    } 
+    }
 }
