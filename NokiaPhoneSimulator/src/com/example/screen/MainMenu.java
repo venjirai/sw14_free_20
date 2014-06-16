@@ -230,7 +230,11 @@ public class MainMenu extends Screen
         if (!lock_time_passed)
         {
             this.hide();
-            screens.get(ScreenId.START_SCREEN).show();
+            
+            ((StartScreen) screens.get(ScreenId.START_SCREEN)).setLock(true);
+            
+            screens.get(ScreenId.POPUP).show();
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Keypad", "locked", "");
         }
         
         // TODO Auto-generated method stub
