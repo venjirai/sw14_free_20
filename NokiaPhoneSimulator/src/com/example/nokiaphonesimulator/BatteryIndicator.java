@@ -14,7 +14,7 @@ public class BatteryIndicator extends BroadcastReceiver
     private int level = -1;
     private boolean charging = false;
 
-    BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
+    public BatteryIndicator(NokiaPhoneActivity nokia_phone_activity)
     {
         super();
 

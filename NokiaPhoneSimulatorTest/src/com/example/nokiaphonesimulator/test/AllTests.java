@@ -7,7 +7,6 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
    GUITest.class,
    MessagesTest.class,
-   SampleJUnitTest.class,
    ClassesTest.class
 })
 

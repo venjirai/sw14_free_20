@@ -12,7 +12,6 @@ import com.example.screen.Screen;
 
 public class MessagesMenu extends Screen
 {
-
     private TextView action;
     private TextView line1;
     private TextView line2;
