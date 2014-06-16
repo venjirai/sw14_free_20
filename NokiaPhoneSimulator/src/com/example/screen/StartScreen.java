@@ -24,8 +24,12 @@ public class StartScreen extends Screen
 
     private Boolean locked = false;
     private Boolean lock_time_passed = false;
+    private Boolean unlock_time_passed = true;
+    private Boolean enter_pressed = false;
     
     private Handler handler;
+    
+    private TextView menu_line_1, menu_line_2;
 
     public StartScreen(NokiaPhoneActivity nokia_phone)
     {
@@ -37,15 +41,26 @@ public class StartScreen extends Screen
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.clock_view = (TextView) nokia_phone.findViewById(R.id.clock_view);
         this.telephone_number = (TextView) nokia_phone.findViewById(R.id.number_input);
+        
+        this.menu_line_1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
+        this.menu_line_2 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
 
-        handler = new Handler();
+        handler = new Handler();     
         
         action_text = "Menu";
     }
 
     private void digitButton(String digit)
     {
-        if (phone_number_length < 20)
+        if (locked)
+        {
+            this.hide();
+            screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");                
+        }
+        
+        else if (phone_number_length < 20)
         {
             number_text += digit;
             phone_number_length++;
@@ -55,19 +70,50 @@ public class StartScreen extends Screen
     @Override
     public void update()
     {
-        if (phone_number_length == 0)
+        lock_time_passed = false;
+            
+        if (locked)
+            action_text = "Unlock";  
+        else if (phone_number_length == 0)
             action_text = "Menu";
         else
             action_text = "Call";
-        
+               
         action.setText(action_text);
         telephone_number.setText(number_text);
+        
     }
 
     @Override
     public void show()
-    {
-        lock_time_passed = false;
+    {   
+        menu_line_1.setVisibility(View.INVISIBLE);
+        menu_line_2.setVisibility(View.INVISIBLE);
+        
+        if (enter_pressed)
+        {
+            menu_line_1.setText("  Now");
+            menu_line_2.setText("  press *");
+            action_text = "Unlock";
+            menu_line_1.setVisibility(View.VISIBLE);
+            menu_line_2.setVisibility(View.VISIBLE);
+            unlock_time_passed = false;
+            handler.removeCallbacks(timer_for_unlocking);
+            handler.postDelayed(timer_for_unlocking, 2000);
+            enter_pressed = false;
+        }
+        else if (locked)
+        {
+            action_text = "Unlock";  
+            menu_line_1.setText("  Now");
+            menu_line_2.setText("  press *");
+        }
+        else
+        {
+            action_text = "Menu";   
+        }
+
+        action.setText(action_text);
         
         battery_indicator.setVisibility(View.VISIBLE);
         signal_indicator.setVisibility(View.VISIBLE);
@@ -75,9 +121,16 @@ public class StartScreen extends Screen
         clock_view.setVisibility(View.VISIBLE);
         telephone_number.setVisibility(View.VISIBLE);
 
+        
         nokia_phone.setScreenId(ScreenId.START_SCREEN);
     }
 
+    public void setEnterPressed(Boolean value)
+    {
+        enter_pressed = value;
+    }
+    
+    
     @Override
     public void hide()
     {
@@ -91,11 +144,21 @@ public class StartScreen extends Screen
     @Override
     public void enter()
     {
-        if (phone_number_length == 0)
+        if (locked)
+        {      
+            menu_line_1.setVisibility(View.VISIBLE);
+            menu_line_2.setVisibility(View.VISIBLE);
+            unlock_time_passed = false;
+            handler.removeCallbacks(timer_for_unlocking);
+            handler.postDelayed(timer_for_unlocking, 2000);                           
+        }
+        
+        else if (phone_number_length == 0)
         {
             this.hide();
-            handler.removeCallbacks(runnable);
-            handler.postDelayed(runnable, 3000);     
+            
+            handler.removeCallbacks(timer_for_locking);
+            handler.postDelayed(timer_for_locking, 3000);     
             screens.get(ScreenId.MAIN_MENU).show();
         }
         else
@@ -104,14 +167,35 @@ public class StartScreen extends Screen
         }
     }
 
+    
+    public Boolean getLock()
+    {
+        return locked;
+    }
 
     public Boolean getLockTimePassed()
     {
         return lock_time_passed;
     }
     
+    public void setLock(boolean value)
+    {
+        locked = value;
+    }
     
-    Runnable runnable = new Runnable()
+    Runnable timer_for_unlocking = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            unlock_time_passed = true;
+            menu_line_1.setVisibility(View.INVISIBLE);
+            menu_line_2.setVisibility(View.INVISIBLE);
+        }
+    };
+    
+    
+    Runnable timer_for_locking = new Runnable()
     {
         @Override
         public void run()
@@ -123,7 +207,15 @@ public class StartScreen extends Screen
     @Override
     public void clear()
     {
-        if (phone_number_length > 0)
+        if (locked)
+        {
+            this.hide();
+            screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");                
+        }
+        
+        else if (phone_number_length > 0)
         {
             phone_number_length--;
             number_text = number_text.substring(0, number_text.length() - 1);
@@ -133,14 +225,30 @@ public class StartScreen extends Screen
     @Override
     public void down()
     {
-        this.hide();
-        screens.get(ScreenId.CONTACT_SCREEN).show();
+        if (locked)
+        {
+            this.hide();
+            screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");                
+        }
+        else
+        {
+          this.hide();
+          screens.get(ScreenId.CONTACT_SCREEN).show();
+        }
     }
 
     @Override
     public void up()
     {
-        // TODO Auto-generated method stub
+        if (locked)
+        {
+            this.hide();
+            screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");                
+        }
 
     }
 
@@ -207,14 +315,38 @@ public class StartScreen extends Screen
     @Override
     public void pound()
     {
-        // TODO Auto-generated method stub
+        if (locked)
+        {
+            this.hide();
+            screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");                
+        }
 
     }
 
     @Override
     public void star()
     {
-        // TODO Auto-generated method stub
+        if (locked)
+        {
+            if (unlock_time_passed)
+            {
+              this.hide();
+              screens.get(ScreenId.POPUP).show();
+              ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *");    
+            }
+            else
+            {
+                handler.removeCallbacks(timer_for_unlocking);
+                locked = false;
+                this.hide();
+                screens.get(ScreenId.POPUP).show();
+                ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Keypad", "active", ""); 
+                
+            }
+        }
+
 
     }
 

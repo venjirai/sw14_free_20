@@ -29,11 +29,28 @@ public class KeyPadLockTest extends ActivityInstrumentationTestCase2<NokiaPhoneA
 
   public void testKeyLock() throws Throwable
   {
-    this.solo.clickOnButton(2); // Enter
+    this.solo.clickOnButton(2); // Enter  
+    this.solo.clickOnButton(13); // *   
+    
+    TextView output1 = (TextView) solo.getView(R.id.sub_menu_title_one);
+    TextView output2 = (TextView) solo.getView(R.id.sub_menu_title_two);
+    assertEquals("Keypad", output1.getText().toString());
+    assertEquals("locked", output2.getText().toString());               
+  }
+  
+  public void testKeyUnlock() throws Throwable
+  {
+    this.solo.clickOnButton(2); // Enter  
+    this.solo.clickOnButton(13); // *   
+    
+    this.solo.clickOnButton(2); // Enter  
     this.solo.clickOnButton(13); // *  
     
-    // check if keypad is locked
-    TextView output = (TextView) solo.getView(R.id.action);
-    assertEquals("Unlock", output.getText().toString());
+    TextView output1 = (TextView) solo.getView(R.id.sub_menu_title_one);
+    TextView output2 = (TextView) solo.getView(R.id.sub_menu_title_two);
+    assertEquals("Keypad", output1.getText().toString());
+    assertEquals("active", output2.getText().toString());               
   }
+  
+  
 }

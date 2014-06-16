@@ -145,7 +145,8 @@
 	          
             <com.example.layout.NokiaTextView
                 android:id="@+id/sub_menu_title_one"       
-                android:visibility="invisible"         
+                android:visibility="invisible"    
+                android:singleLine="false"     
                 android:layout_width="fill_parent"
                 android:layout_height="35px"
                 android:layout_below="@+id/header_right"
