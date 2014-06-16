@@ -6,9 +6,13 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    GUITest.class,
-   MessagesTest.class,
-   ClassesTest.class
+   ClassesTest.class,
+   CalcTest.class,
+   KeyPadLockTest.class,
+   StopwatchTest.class,
+   MessagesTest.class
 })
 
-public class AllTests {   
+
+public class AllTests  {   
 }  	
