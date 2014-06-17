@@ -14,6 +14,7 @@ public class StartScreen extends Screen
 {
     private ImageView battery_indicator;
     private ImageView signal_indicator;
+    private ImageView key_locked;
     private TextView action;
     private TextView clock_view;
     private TextView telephone_number;
@@ -38,14 +39,17 @@ public class StartScreen extends Screen
         // get display elements
         this.battery_indicator = (ImageView) nokia_phone.findViewById(R.id.battery_indicator);
         this.signal_indicator = (ImageView) nokia_phone.findViewById(R.id.signal_indicator);
+        this.key_locked = (ImageView) nokia_phone.findViewById(R.id.key_locked);
+        
         this.action = (TextView) nokia_phone.findViewById(R.id.action);
         this.clock_view = (TextView) nokia_phone.findViewById(R.id.clock_view);
         this.telephone_number = (TextView) nokia_phone.findViewById(R.id.number_input);
         
         this.menu_line_1 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_one);
         this.menu_line_2 = (TextView) nokia_phone.findViewById(R.id.sub_menu_title_two);
-
+        key_locked.setVisibility(View.INVISIBLE);
         handler = new Handler();     
+        
         
         action_text = "Menu";
     }
@@ -73,7 +77,10 @@ public class StartScreen extends Screen
         lock_time_passed = false;
             
         if (locked)
+        {
             action_text = "Unlock";  
+            key_locked.setVisibility(View.VISIBLE);
+        }
         else if (phone_number_length == 0)
             action_text = "Menu";
         else
@@ -89,6 +96,7 @@ public class StartScreen extends Screen
     {   
         menu_line_1.setVisibility(View.INVISIBLE);
         menu_line_2.setVisibility(View.INVISIBLE);
+        key_locked.setVisibility(View.INVISIBLE);
         
         if (enter_pressed)
         {
@@ -105,6 +113,7 @@ public class StartScreen extends Screen
         else if (locked)
         {
             action_text = "Unlock";  
+            key_locked.setVisibility(View.VISIBLE);
             menu_line_1.setText("  Now");
             menu_line_2.setText("  press *");
         }
@@ -134,6 +143,7 @@ public class StartScreen extends Screen
     @Override
     public void hide()
     {
+        key_locked.setVisibility(View.INVISIBLE);
         battery_indicator.setVisibility(View.INVISIBLE);
         signal_indicator.setVisibility(View.INVISIBLE);
         action.setVisibility(View.INVISIBLE);
