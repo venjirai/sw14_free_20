@@ -115,108 +115,136 @@ public class Popup extends Screen
           ((StartScreen) screens.get(ScreenId.START_SCREEN)).setEnterPressed(true);
           screens.get(ScreenId.START_SCREEN).show();
         }
+        else
+        {
+            this.hide();
+            handler.removeCallbacks(runnable);
+            screens.get(ScreenId.START_SCREEN).show();  
+        }
+            
     }
 
+    
+    public void checkPressUnlock()
+    {
+        handler.removeCallbacks(runnable); 
+        if (((StartScreen) screens.get(ScreenId.START_SCREEN)).getLock())
+        {            
+            locked.setVisibility(View.INVISIBLE);
+            press.setVisibility(View.VISIBLE);
+            popup_line_1.setText("Press");
+            popup_line_2.setText("Unlock");
+            popup_line_3.setText("and then *");
+            handler.postDelayed(runnable, 2000); 
+        }
+        else
+        {
+            this.hide();
+            screens.get(ScreenId.START_SCREEN).show();  
+        }
+        
+    }
+    
     @Override
     public void clear()
     {
-
+        checkPressUnlock();
     }
 
     @Override
     public void down()
     {
-
+        checkPressUnlock();
     }
 
 
     @Override
     public void up()
     {
-
+        checkPressUnlock();
     }
 
     @Override
     public void zero()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void one()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void two()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void three()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void four()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void five()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void six()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void seven()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void eight()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void nine()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void pound()
     {
-        // TODO Auto-generated method stub
+        checkPressUnlock();
 
     }
 
     @Override
     public void star()
     {
-
+        checkPressUnlock();
 
     }
 

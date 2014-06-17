@@ -61,6 +61,8 @@ public class StartScreen extends Screen
             this.hide();
             screens.get(ScreenId.POPUP).show();
             handler.removeCallbacks(timer_for_unlocking);
+            unlock_time_passed = true;
+            handler.removeCallbacks(timer_for_unlocking);
             ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");               
         }
         
@@ -166,7 +168,7 @@ public class StartScreen extends Screen
         else if (phone_number_length == 0)
         {
             this.hide();
-            
+            lock_time_passed = false;
             handler.removeCallbacks(timer_for_locking);
             handler.postDelayed(timer_for_locking, 3000);     
             screens.get(ScreenId.MAIN_MENU).show();
@@ -222,6 +224,8 @@ public class StartScreen extends Screen
             this.hide();
             screens.get(ScreenId.POPUP).show();
             handler.removeCallbacks(timer_for_unlocking);
+            unlock_time_passed = true;
+            handler.removeCallbacks(timer_for_unlocking);
             ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");               
         }
         
@@ -240,6 +244,8 @@ public class StartScreen extends Screen
             this.hide();
             screens.get(ScreenId.POPUP).show();
             handler.removeCallbacks(timer_for_unlocking);
+            unlock_time_passed = true;
+            handler.removeCallbacks(timer_for_unlocking);
             ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");                 
         }
         else
@@ -256,6 +262,8 @@ public class StartScreen extends Screen
         {
             this.hide();
             screens.get(ScreenId.POPUP).show();
+            handler.removeCallbacks(timer_for_unlocking);
+            unlock_time_passed = true;
             handler.removeCallbacks(timer_for_unlocking);
             ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");                
         }
@@ -330,6 +338,8 @@ public class StartScreen extends Screen
             this.hide();
             screens.get(ScreenId.POPUP).show();
             handler.removeCallbacks(timer_for_unlocking);
+            unlock_time_passed = true;
+            handler.removeCallbacks(timer_for_unlocking);
             ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");                
         }
 
@@ -344,6 +354,8 @@ public class StartScreen extends Screen
             {
               this.hide();
               screens.get(ScreenId.POPUP).show();
+              unlock_time_passed = true;
+              handler.removeCallbacks(timer_for_unlocking);
               ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Press", "Unlock", "and then *", "press");    
             }
             else
