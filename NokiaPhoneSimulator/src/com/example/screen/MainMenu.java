@@ -239,7 +239,7 @@ public class MainMenu extends Screen
             ((StartScreen) screens.get(ScreenId.START_SCREEN)).setLock(true);
             
             screens.get(ScreenId.POPUP).show();
-            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Keypad", "locked", "");
+            ((Popup) screens.get(ScreenId.POPUP)).setPopupText("Keypad", "locked", "", "locked");
         }
         
         // TODO Auto-generated method stub
