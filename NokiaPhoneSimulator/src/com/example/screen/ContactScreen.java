@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.Contact;
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
-import com.example.nokiaphonesimulator.R;
+import at.paul.nokiaphonesimulator.R;
 
 public class ContactScreen extends Screen
 {

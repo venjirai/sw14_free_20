@@ -10,7 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
-import com.example.nokiaphonesimulator.R;
+import at.paul.nokiaphonesimulator.R;
 import com.example.nokiaphonesimulator.Sms;
 import com.example.screen.Screen;
 

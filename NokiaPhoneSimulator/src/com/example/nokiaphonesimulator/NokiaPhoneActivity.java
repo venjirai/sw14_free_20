@@ -3,12 +3,10 @@ package com.example.nokiaphonesimulator;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import com.example.layout.LayoutScaler;
 import com.example.screen.*;
 import com.example.screen.messages.*;
 import com.example.screen.Screen.ScreenId;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.media.SoundPool;
 import android.media.AudioManager;
+import at.paul.nokiaphonesimulator.R;
 
 public class NokiaPhoneActivity extends Activity implements OnTouchListener
 {

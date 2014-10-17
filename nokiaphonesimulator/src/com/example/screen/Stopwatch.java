@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
-import com.example.nokiaphonesimulator.R;
+import at.paul.nokiaphonesimulator.R;
 import com.example.screen.Screen.ScreenId;
 
 public class Stopwatch extends Screen

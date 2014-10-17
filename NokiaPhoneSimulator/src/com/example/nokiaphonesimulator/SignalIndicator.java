@@ -6,6 +6,7 @@ import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.ImageView;
+import at.paul.nokiaphonesimulator.R;
 
 public class SignalIndicator extends PhoneStateListener
 {

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.nokiaphonesimulator.NokiaPhoneActivity;
-import com.example.nokiaphonesimulator.R;
+import at.paul.nokiaphonesimulator.R;
 
 public class CalculatorMenu extends Screen
 {

@@ -3,7 +3,6 @@ package com.example.nokiaphonesimulator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -16,6 +15,7 @@ import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.widget.ImageView;
+import at.paul.nokiaphonesimulator.R;
 
 public class SplashScreen extends Activity
 {

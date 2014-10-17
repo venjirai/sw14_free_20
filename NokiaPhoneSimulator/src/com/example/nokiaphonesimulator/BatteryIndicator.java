@@ -7,6 +7,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.BatteryManager;
 import android.util.Log;
 import android.widget.ImageView;
+import at.paul.nokiaphonesimulator.R;
 
 public class BatteryIndicator extends BroadcastReceiver
 {
